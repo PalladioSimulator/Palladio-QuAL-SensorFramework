@@ -8,8 +8,4 @@
          id="de.uka.ipd.sdq.sensorframework.feature"
          version="0.0.0"/>
 
-   <includes
-         id="de.uka.ipd.sdq.sensorframework.visualisation.feature"
-         version="0.0.0"/>
-
 </feature>
