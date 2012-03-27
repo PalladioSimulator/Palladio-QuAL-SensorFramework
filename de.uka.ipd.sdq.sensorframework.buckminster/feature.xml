@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="de.uka.ipd.sdq.sensorframework.buckminster"
+      label="Palladio SensorFramework"
+      version="1.0.0.qualifier">
+
+   <includes
+         id="de.uka.ipd.sdq.sensorframework.feature"
+         version="0.0.0"/>
+
+</feature>
