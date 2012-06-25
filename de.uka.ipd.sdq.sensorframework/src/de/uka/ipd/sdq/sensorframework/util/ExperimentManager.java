@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
 import de.uka.ipd.sdq.sensorframework.entities.Sensor;
@@ -22,6 +25,8 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
  *
  */
 public class ExperimentManager {
+	
+	private static Logger logger = Logger.getLogger(ExperimentManager.class);
 
 	public final static double SCALING_FACTOR = 1000000;
 
@@ -52,9 +57,11 @@ public class ExperimentManager {
 	public void storeTimeSpan(String sensorName, long startTime, long stopTime){
 		double time = (stopTime - startTime) / SCALING_FACTOR;
 		if (sensorName.equals("ServiceTime") && time < 0.5){
-			System.out.println("Time: "+time);
-			System.out.println("startTime: "+startTime);
-			System.out.println("stopTime: "+stopTime);
+			if(logger.isEnabledFor(Level.INFO)) {
+				logger.info("Time: "+time);
+				logger.info("startTime: "+startTime);
+				logger.info("stopTime: "+stopTime);
+			}
 		}
 		TimeSpanSensor sensor = getTimeSpanSensor(sensorName);
 		run.addTimeSpanMeasurement(sensor, startTime, time);

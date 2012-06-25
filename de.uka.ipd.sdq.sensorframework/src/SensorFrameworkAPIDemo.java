@@ -1,5 +1,8 @@
 import java.util.Date;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import de.uka.ipd.sdq.sensorframework.SensorFrameworkDataset;
 import de.uka.ipd.sdq.sensorframework.dao.memory.MemoryDAOFactory;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
@@ -18,6 +21,8 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * @author Steffen Becker
  */
 public class SensorFrameworkAPIDemo {
+	
+	private static Logger logger = Logger.getLogger(SensorFrameworkAPIDemo.class);
 
 	/**
 	 * TODO should be called as a test by the test suite, too! E.g. with try/catch, 
@@ -47,11 +52,15 @@ public class SensorFrameworkAPIDemo {
 			flag = !flag;
 			valueSum += value;
 		}
-		System.out.println("\nDone creating measurements: "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
+		
+		if(logger.isEnabledFor(Level.INFO))
+			logger.info("\nDone creating measurements: "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
 		f.finalizeAndClose();
-		System.out.println("Done storing: "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
-		System.out.println(er.getMeasurementsOfSensor(s).getMeasurements().size());
-		System.out.println("Done "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
+		if(logger.isEnabledFor(Level.INFO)) {
+			logger.info("Done storing: "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
+			logger.info(er.getMeasurementsOfSensor(s).getMeasurements().size());
+			logger.info("Done "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
+		}
 	}
 
 }
