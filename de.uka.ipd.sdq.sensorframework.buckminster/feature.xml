@@ -4,8 +4,21 @@
       label="Palladio SensorFramework"
       version="1.0.0.qualifier">
 
+   <description url="http://sdq.ipd.kit.edu">
+      This feature contains the buckminster build structure for the
+PCM SensorFramework build.
+   </description>
+
+   <url>
+      <discovery label="Palladio Commons" url="http://sdqweb.ipd.kit.edu/eclipse/commons/releases/1.1"/>
+   </url>
+
    <includes
          id="de.uka.ipd.sdq.sensorframework.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="de.uka.ipd.sdq.sensorframework.visualisation.feature"
          version="0.0.0"/>
 
 </feature>
