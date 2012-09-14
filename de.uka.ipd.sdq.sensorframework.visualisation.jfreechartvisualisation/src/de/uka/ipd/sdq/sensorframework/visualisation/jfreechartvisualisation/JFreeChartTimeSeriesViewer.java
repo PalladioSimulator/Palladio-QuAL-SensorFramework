@@ -101,11 +101,9 @@ public class JFreeChartTimeSeriesViewer extends AbstractJFreeChartChart<TimeSeri
 
 	private XYSeries getSeries(TimeSeries ts) {
 		XYSeries series = new XYSeries(ts.getLabel(),true, false);
-		// patched to show ascending number of measurements, starting by 1
-		long number = 1;
 		for (TimeSeriesEntity te : ts.getValues()) {
 			//series.add(te.getXValue(), te.getYValue());
-			series.add(number++, te.getYValue());
+			series.add(te.getXValue(), te.getYValue());
 		}
 		return series;
 	}

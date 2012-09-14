@@ -28,7 +28,7 @@ public class CopyClipboardAsR extends Action {
 		StringBuffer plainText = new StringBuffer("c(");
 		for(Object item : series.getItems()){
 			XYDataItem data = (XYDataItem) item;
-			plainText.append(data.getY()+",");
+			plainText.append(data.getYValue()+",");
 		}
 		TextTransfer textTransfer = TextTransfer.getInstance();
 		clipboard.setContents(new String[] { plainText.substring(0, plainText.length()-1)+")" },
