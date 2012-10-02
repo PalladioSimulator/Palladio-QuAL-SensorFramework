@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Collection;
 
@@ -89,7 +90,11 @@ public class SensorFrameworkPluginActivator extends Plugin {
 				SensorFrameworkDataset.singleton().addDataSource(factory);
 			}
 		} catch (Exception e) {
-			log(IStatus.INFO, "Restoring Dataset Configuration failed. Resetting configuration...", e);
+			if (e instanceof FileNotFoundException) {
+				log(IStatus.INFO, "No preexisting dataset configuration file. Resetting configuration...", null);
+			} else {
+				log(IStatus.WARNING, "Restoring Dataset Configuration failed. Resetting configuration...", e);
+			}
 			if (SensorFrameworkDataset.singleton().getDataSources().size() == 0)
 				SensorFrameworkDataset.singleton().addDataSource(
 						new MemoryDAOFactory(0));
