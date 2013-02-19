@@ -9,6 +9,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reportitems.IReportItem;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reports.RReport;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnection;
+import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnectionImpl;
 
 /**Abstract class with basic capabilities to show reports containing 
  * data of the SensorFramework in R.
@@ -31,7 +32,7 @@ public abstract class AbstractHtmlRReportView extends AbstractHtmlReportView
 	/** {@inheritDoc}
 	 */
 	public void setInput(final Collection < SensorAndMeasurements > c) {
-		if (RConnection.isEngineAvailable()) {
+		if (RConnectionImpl.isEngineAvailable()) {
 			if (c.isEmpty()) {
 				browser.setText("<html><body><h1>Error! </h1>At least "
 						+ "the measurements for one sensor must be "
@@ -43,7 +44,7 @@ public abstract class AbstractHtmlRReportView extends AbstractHtmlReportView
 							+ "Ask the developer to correct this error. "
 							+ "</body></html>");
 				} else {
-					RConnection rConnection = RConnection.getRConnection();
+					RConnection rConnection = RConnectionImpl.getRConnection();
 					ArrayList<IReportItem> items = 
 						getReport().prepareReportItems(c, rConnection);
 		
