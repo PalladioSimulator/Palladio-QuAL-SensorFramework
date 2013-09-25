@@ -27,6 +27,13 @@
                id="de.uka.ipd.sdq.simucomframework.visualisation.JFreeChartCDFReport"
                name="JFreeChart CDF Viewer">
          </editor>
+         <editor
+               class="de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.editor.JFreeChartUtilizationReport"
+               default="false"
+               icon="icons/new_chart.gif"
+               id="de.uka.ipd.sdq.sensorframework.visualisation.jfreeChartUtilizationReport"
+               name="JFreeChart Utilization Viewer ">
+         </editor>
       </extension>
       <extension
             point="de.uka.ipd.sdq.sensorframework.visualisation">
@@ -86,6 +93,16 @@
                class="de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.editor.JFreeChartCDFReport"
                displayName="JFreeChart {0} Histogram-based CDF"
                editorID="de.uka.ipd.sdq.simucomframework.visualisation.JFreeChartCDFReport">
+         </Visualisation>
+      </extension>
+      <extension
+            point="de.uka.ipd.sdq.sensorframework.visualisation">
+         <Visualisation
+               acceptsData="de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.Utilization"
+               acceptsMultiple="true"
+               class="de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.editor.JFreeChartUtilizationReport"
+               displayName="JFeeChart {0} over Time"
+               editorID="de.uka.ipd.sdq.sensorframework.visualisation.jfreeChartUtilizationReport">
          </Visualisation>
       </extension>
 

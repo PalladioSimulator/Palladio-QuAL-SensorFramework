@@ -57,4 +57,11 @@
             id="de.uka.ipd.sdq.sensorframework.adapter.Quantil">
       </DataAdapter>
    </extension>
+   <extension
+         point="de.uka.ipd.sdq.sensorframework.adapter">
+      <DataAdapter
+            class="de.uka.ipd.sdq.sensorframework.adapter.StateSensorToUtilizationFactory"
+            id="de.uka.ipd.sdq.sensorframework.adapter.StateSensorToUtilzationFactory">
+      </DataAdapter>
+   </extension>
 </plugin>
