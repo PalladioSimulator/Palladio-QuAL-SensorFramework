@@ -29,6 +29,7 @@ public class ConfidenceIntervalsHtmlReportView extends AbstractHtmlReportView {
 
 
 		int batcheSize = 100;
+		int cutWarmup = 200;
 
 		if (c.isEmpty()) {
 			browser.setText("<html><body><h1>Error! </h1>At least "
@@ -43,47 +44,18 @@ public class ConfidenceIntervalsHtmlReportView extends AbstractHtmlReportView {
 
 			for (SensorAndMeasurements sensorAndMeasurements : c) {
 				Sensor sensor = sensorAndMeasurements.getSensor();
-				if (sensor instanceof TimeSpanSensor){
-					PhiMixingBatchAlgorithm statisticChecker = new PhiMixingBatchAlgorithm();
-
-					for (Measurement m : sensorAndMeasurements.getMeasurements()) {
-						TimeSpanMeasurement t = (TimeSpanMeasurement)m;
-						statisticChecker.offerSample(t.getTimeSpan());
-					}
-					browserText += "<h2>Sensor "+sensor.getSensorName()+"</h2>";
-					browserText += "<p>Number of observations: "+sensorAndMeasurements.getMeasurements().size()+"<br>";
-
-					browserText += "<h3>Results of PhiMixingBatchAlgorithm</h3>";
-					browserText = evaluateBatchAlgorithm(browserText, alpha,
-							sensorAndMeasurements, statisticChecker);
-
-
-					StaticBatchAlgorithm staticStatisticChecker = new StaticBatchAlgorithm(batcheSize,0);
-
-					for (Measurement m : sensorAndMeasurements.getMeasurements()) {
-						TimeSpanMeasurement t = (TimeSpanMeasurement)m;
-						staticStatisticChecker.offerSample(t.getTimeSpan());
-					}
-
-					browserText += "<h3>Results of Plain Batch Means Algorithm (batch size "+batcheSize+")</h3>";
-					browserText = evaluateBatchAlgorithm(browserText, alpha,
-							sensorAndMeasurements, staticStatisticChecker);
-
-					/*better not use this as it will load all results of this sensor in memory.
-					StaticBatchAlgorithm singleStatisticChecker = new StaticBatchAlgorithm(1,0);
-
-					for (Measurement m : sensorAndMeasurements.getMeasurements()) {
-						TimeSpanMeasurement t = (TimeSpanMeasurement)m;
-						singleStatisticChecker.offerSample(t.getTimeSpan());
-					}
-
-
-*                  browserText += "<h3>Results of Plain Confidence Interval Analysis on Single Samples</h3>";
-					browserText = evaluateBatchAlgorithm(browserText, alpha,
-							sensorAndMeasurements, statisticChecker);*/
-
-				}
+				browserText += "<h2>Sensor "+sensor.getSensorName()+"</h2>";
+				browserText = calculateIntervals(batcheSize, 0,
+						browserText, alpha, sensorAndMeasurements, sensor);
+				
+				browserText += "<h2>Sensor "+sensor.getSensorName()+", "+cutWarmup+" measurements removed as warmup.</h2>" +
+						"<p>"+cutWarmup+" is a hard coded, arbitrarily chosen value. Change "+this.getClass().getCanonicalName()+".java to adjust the value<p>";
+				browserText = calculateIntervals(batcheSize, cutWarmup,
+						browserText, alpha, sensorAndMeasurements, sensor);
 			}
+			
+			
+			
 			browserText += "<h2>Explanations</h2>" +
 					"<h3>PhiMixingBatchAlgorithm</h3><small><p>Implements a batch means procedure based on phi-mixing conditions as described in [1]. " +
 					"Appropriate batch sizes and the number of batches are determined automatically.</p>" +
@@ -105,6 +77,62 @@ public class ConfidenceIntervalsHtmlReportView extends AbstractHtmlReportView {
 			browser.setText(browserText);
 		}
 
+	}
+
+	private String calculateIntervals(int batcheSize, int cutWarmup,
+			String browserText, double alpha,
+			SensorAndMeasurements sensorAndMeasurements, Sensor sensor) {
+		if (sensor instanceof TimeSpanSensor){
+			PhiMixingBatchAlgorithm statisticChecker = new PhiMixingBatchAlgorithm();
+
+			int warmupCounter = 0;
+			for (Measurement m : sensorAndMeasurements.getMeasurements()) {
+				if (warmupCounter >= cutWarmup){
+					TimeSpanMeasurement t = (TimeSpanMeasurement)m;
+					statisticChecker.offerSample(t.getTimeSpan());
+				} else {
+					warmupCounter++;
+				}
+			}
+			
+			browserText += "<p>Number of observations: "+(sensorAndMeasurements.getMeasurements().size()-cutWarmup)+"<br>";
+
+			browserText += "<h3>Results of PhiMixingBatchAlgorithm</h3>";
+			browserText = evaluateBatchAlgorithm(browserText, alpha,
+					sensorAndMeasurements, statisticChecker);
+
+
+			StaticBatchAlgorithm staticStatisticChecker = new StaticBatchAlgorithm(batcheSize,0);
+
+			warmupCounter = 0;
+			for (Measurement m : sensorAndMeasurements.getMeasurements()) {
+				if (warmupCounter >= cutWarmup){
+					TimeSpanMeasurement t = (TimeSpanMeasurement)m;
+					staticStatisticChecker.offerSample(t.getTimeSpan());
+				} else {
+					warmupCounter++;
+				}
+			}
+
+			browserText += "<h3>Results of Plain Batch Means Algorithm (batch size "+batcheSize+")</h3>";
+			browserText = evaluateBatchAlgorithm(browserText, alpha,
+					sensorAndMeasurements, staticStatisticChecker);
+
+			/*better not use this as it will load all results of this sensor in memory.
+			StaticBatchAlgorithm singleStatisticChecker = new StaticBatchAlgorithm(1,0);
+
+			for (Measurement m : sensorAndMeasurements.getMeasurements()) {
+				TimeSpanMeasurement t = (TimeSpanMeasurement)m;
+				singleStatisticChecker.offerSample(t.getTimeSpan());
+			}
+
+
+*                  browserText += "<h3>Results of Plain Confidence Interval Analysis on Single Samples</h3>";
+			browserText = evaluateBatchAlgorithm(browserText, alpha,
+					sensorAndMeasurements, statisticChecker);*/
+
+		}
+		return browserText;
 	}
 
 	private String evaluateBatchAlgorithm(String browserText, double alpha,
