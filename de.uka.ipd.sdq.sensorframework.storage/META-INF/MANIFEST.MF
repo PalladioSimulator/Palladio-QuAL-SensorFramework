@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Sensorframework File Storage Utils
 Bundle-SymbolicName: de.uka.ipd.sdq.sensorframework.storage
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: org.junit4
+Require-Bundle: org.junit;bundle-version="4.11.0"
 Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: de.uka.ipd.sdq.sensorframework.storage.lists
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

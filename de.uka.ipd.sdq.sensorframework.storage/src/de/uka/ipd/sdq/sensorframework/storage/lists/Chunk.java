@@ -48,7 +48,6 @@ public class Chunk<T> {
 		return fromElement;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public T get(int index) {
 		return (T)data[index];
 	}
