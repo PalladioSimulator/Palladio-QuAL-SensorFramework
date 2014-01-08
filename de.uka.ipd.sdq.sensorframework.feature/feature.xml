@@ -225,6 +225,7 @@ litigation.
       <import plugin="org.eclipse.pde.ui"/>
       <import plugin="de.uka.ipd.sdq.dialogs"/>
       <import plugin="de.uka.ipd.sdq.errorhandling"/>
+      <import plugin="org.junit" version="4.11.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
