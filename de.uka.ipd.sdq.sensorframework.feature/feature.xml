@@ -2,7 +2,7 @@
 <feature
       id="de.uka.ipd.sdq.sensorframework.feature"
       label="Sensor Framework Feature"
-      version="3.1.0.qualifier"
+      version="3.5.0.qualifier"
       provider-name="sdq.ipd.kit.edu">
 
    <description url="http://sdq.ipd.uka.de">
