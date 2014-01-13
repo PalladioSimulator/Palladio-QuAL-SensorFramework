@@ -8,3 +8,4 @@ Require-Bundle: de.uka.ipd.sdq.sensorframework,
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.sensorframework.filter
 Bundle-Vendor: sdq.ipd.uka.de
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -15,3 +15,4 @@ Require-Bundle: de.uka.ipd.sdq.sensorframework,
  de.uka.ipd.sdq.errorhandling
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Activator: de.uka.ipd.sdq.sensorframework.dialogs.SensorFrameworkDialogPlugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

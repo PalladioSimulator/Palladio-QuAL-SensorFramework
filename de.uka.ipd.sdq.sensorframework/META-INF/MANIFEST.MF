@@ -26,3 +26,4 @@ Export-Package: de.uka.ipd.sdq.sensorframework,
 Bundle-ClassPath: src/,
  .
 Bundle-Vendor: sdq.ipd.uka.de
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
