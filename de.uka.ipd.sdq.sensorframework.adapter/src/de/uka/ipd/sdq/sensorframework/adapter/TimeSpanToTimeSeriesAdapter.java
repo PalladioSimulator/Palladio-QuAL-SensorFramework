@@ -13,7 +13,7 @@ public class TimeSpanToTimeSeriesAdapter extends DataAdapter {
 //	private FilteredMeasurementsCollection measurements;
 //	private static final String ACTIVEDE_FILTERS = "ACTIVEDE_FILTERS";
 	/** Information about the TimeSpanSensor and the measurements. */
-	private SensorAndMeasurements samInformation;
+	private final SensorAndMeasurements samInformation;
 
 	/** Initializes the adapter with the provided TimeSpanSensor.
 	 * @param samInformation Information about the TimeSpanSensor 
@@ -27,11 +27,12 @@ public class TimeSpanToTimeSeriesAdapter extends DataAdapter {
 
 	/** {@inheritDoc}
 	 */
-	public Object getAdaptedObject() {
+	@Override
+    public Object getAdaptedObject() {
 		TimeSeries series = 
 			new TimeSeries(samInformation.getSensor().getSensorName());
 		for (Measurement m : samInformation.getMeasurements()) {
-			series.add(m.getMeasurementID(), ((TimeSpanMeasurement) m)
+			series.add(((TimeSpanMeasurement)m).getEventTime(), ((TimeSpanMeasurement) m)
 					.getTimeSpan());
 		}
 		return series;
