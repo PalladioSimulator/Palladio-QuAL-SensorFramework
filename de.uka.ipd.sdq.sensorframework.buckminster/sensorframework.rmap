@@ -30,7 +30,7 @@
   </rm:searchPath>
   <rm:searchPath name="thirdparty">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn">
-      <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/ThirdPartyWrapper/trunk/{0}">
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/nightly/">
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
