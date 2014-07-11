@@ -215,31 +215,33 @@ litigation.
    </license>
 
    <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.ui.views.properties.tabbed"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="de.uka.ipd.sdq.sensorframework"/>
-      <import plugin="org.eclipse.core.expressions"/>
-      <import plugin="org.eclipse.debug.ui"/>
-      <import plugin="de.uka.ipd.sdq.sensorframework.adapter"/>
-      <import plugin="org.eclipse.draw2d"/>
-      <import plugin="org.apache.batik.dom"/>
-      <import plugin="org.apache.batik.svggen"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import feature="de.uka.ipd.sdq.statistics.feature" version="1.0.0.qualifier"/>
-      <import plugin="org.apache.log4j" version="1.2.13" match="greaterOrEqual"/>
-      <import plugin="org.apache.batik.ext.awt" version="1.6.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.swt"/>
-      <import plugin="org.eclipse.core.filesystem"/>
-      <import plugin="org.eclipse.pde.ui"/>
-      <import plugin="de.uka.ipd.sdq.dialogs"/>
-      <import plugin="de.uka.ipd.sdq.errorhandling"/>
-      <import plugin="de.uka.ipd.sdq.sensorframework.visualisation" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.views.properties.tabbed" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.10.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.sensorframework" version="1.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui.views.properties.tabbed" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.sensorframework.visualisation" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.sensorframework.adapter" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw2d" version="3.9.100" match="greaterOrEqual"/>
+      <import plugin="org.apache.batik.dom" version="1.6.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.batik.svggen" version="1.6.0" match="greaterOrEqual"/>
+      <import plugin="org.jfree.jfreechart" version="1.0.9" match="greaterOrEqual"/>
+      <import plugin="org.apache.log4j" version="1.2.15" match="greaterOrEqual"/>
+      <import plugin="org.apache.batik.ext.awt" version="1.6.0" match="greaterOrEqual"/>
+      <import plugin="org.rosuda.JRI" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.ui" version="3.106.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.filesystem" version="1.4.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.pde.ui" version="3.8.100" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.dialogs" version="2.0.1" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.errorhandling" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.statistics" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="de.uka.ipd.sdq.statistics.feature" version="1.0.0.qualifier"/>
+      <import plugin="org.eclipse.core.expressions" version="3.4.600" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.ui" version="3.10.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.sensorframework.dialogs" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

@@ -5,3 +5,4 @@ Bundle-SymbolicName: de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

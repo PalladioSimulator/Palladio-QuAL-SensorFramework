@@ -12,91 +12,88 @@ import org.eclipse.swt.widgets.Label;
 
 public class WizardSelectDatasourcePage extends WizardPage {
 
-	/**String constants for existing data sources */
-	public static String MEMORY_DATASRC = "Memory Datasource";
-	public static String FILE_DATASRC = "File Datasource";
-	
-	private Combo myCombo;
-	protected String result = "";
-	private String pageName;
-	private boolean memoryEntry, db40Entry, fileEntry;
+    /** String constants for existing data sources */
+    public static String MEMORY_DATASRC = "Memory Datasource";
+    public static String FILE_DATASRC = "File Datasource";
 
-	protected WizardSelectDatasourcePage(String pageName, boolean memoryEntry,
-			boolean db40Entry, boolean fileEntry) {
-		super(pageName);
-		this.pageName = pageName;
-		this.memoryEntry = memoryEntry;
-		this.db40Entry = db40Entry;
-		this.fileEntry = fileEntry;
-	}
+    private Combo myCombo;
+    protected String result = "";
+    private String pageName;
+    private boolean memoryEntry, db40Entry, fileEntry;
 
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
-	 */
-	public void createControl(Composite parent) {
-		
-		initializeDialogUnits(parent);
-		Composite topLevel = new Composite(parent, SWT.NONE);
-		topLevel.setLayout(new GridLayout());
-		topLevel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL
-				| GridData.HORIZONTAL_ALIGN_FILL));
-		topLevel.setFont(parent.getFont());
-		setControl(topLevel);
-		createPageContent(topLevel);
-		this.setPageComplete(false);
-	}
+    protected WizardSelectDatasourcePage(String pageName, boolean memoryEntry, boolean db40Entry, boolean fileEntry) {
+        super(pageName);
+        this.pageName = pageName;
+        this.memoryEntry = memoryEntry;
+        this.db40Entry = db40Entry;
+        this.fileEntry = fileEntry;
+    }
 
-	private void createPageContent(Composite parent) {
-		Composite panel = new Composite(parent, SWT.NONE);
-		panel.setLayoutData(new GridData(GridData.FILL_BOTH));
-		GridLayout layout = new GridLayout();
-		panel.setLayout(layout);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
+     */
+    public void createControl(Composite parent) {
 
-		Label label = new Label(panel, SWT.NONE);
-		label.setText(pageName + ":");
-		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
+        initializeDialogUnits(parent);
+        Composite topLevel = new Composite(parent, SWT.NONE);
+        topLevel.setLayout(new GridLayout());
+        topLevel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL | GridData.HORIZONTAL_ALIGN_FILL));
+        topLevel.setFont(parent.getFont());
+        setControl(topLevel);
+        createPageContent(topLevel);
+        this.setPageComplete(false);
+    }
 
-		myCombo = new Combo(panel, SWT.DROP_DOWN | SWT.READ_ONLY);
-		populateComboBox();
-		myCombo.addSelectionListener(new SelectionListener() {
+    private void createPageContent(Composite parent) {
+        Composite panel = new Composite(parent, SWT.NONE);
+        panel.setLayoutData(new GridData(GridData.FILL_BOTH));
+        GridLayout layout = new GridLayout();
+        panel.setLayout(layout);
 
-			public void widgetDefaultSelected(SelectionEvent e) {
-				WizardSelectDatasourcePage.this.result = myCombo.getText();
-				WizardSelectDatasourcePage.this.setPageComplete(!myCombo
-						.getText().equals(""));
-			}
+        Label label = new Label(panel, SWT.NONE);
+        label.setText(pageName + ":");
+        label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
 
-			public void widgetSelected(SelectionEvent e) {
-				WizardSelectDatasourcePage.this.result = myCombo.getText();
-				WizardSelectDatasourcePage.this.setPageComplete(!myCombo
-						.getText().equals(""));
-			}
+        myCombo = new Combo(panel, SWT.DROP_DOWN | SWT.READ_ONLY);
+        populateComboBox();
+        myCombo.addSelectionListener(new SelectionListener() {
 
-		});
-	}
+            public void widgetDefaultSelected(SelectionEvent e) {
+                WizardSelectDatasourcePage.this.result = myCombo.getText();
+                WizardSelectDatasourcePage.this.setPageComplete(!myCombo.getText().equals(""));
+            }
 
-	private void populateComboBox() {
-		if (memoryEntry)
-			myCombo.add(MEMORY_DATASRC);
-		if (fileEntry)
-			myCombo.add(FILE_DATASRC);
-	}
+            public void widgetSelected(SelectionEvent e) {
+                WizardSelectDatasourcePage.this.result = myCombo.getText();
+                WizardSelectDatasourcePage.this.setPageComplete(!myCombo.getText().equals(""));
+            }
 
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
-	 */
-	@Override
-	public boolean canFlipToNextPage() {
-		boolean canFlip = !myCombo.getText().equals("");
-		canFlip = canFlip
-				&& (myCombo.getText().equals(FILE_DATASRC));
+        });
+    }
 
-		return super.canFlipToNextPage() && canFlip;
-	}
+    private void populateComboBox() {
+        if (memoryEntry)
+            myCombo.add(MEMORY_DATASRC);
+        if (fileEntry)
+            myCombo.add(FILE_DATASRC);
+    }
 
-	public String getResult() {
-		return result;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+     */
+    @Override
+    public boolean canFlipToNextPage() {
+        boolean canFlip = !myCombo.getText().equals("");
+        canFlip = canFlip && (myCombo.getText().equals(FILE_DATASRC));
+
+        return super.canFlipToNextPage() && canFlip;
+    }
+
+    public String getResult() {
+        return result;
+    }
 }
