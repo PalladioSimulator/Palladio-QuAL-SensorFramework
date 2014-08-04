@@ -1,13 +1,14 @@
 package de.uka.ipd.sdq.sensorframework.visualisation.views;
 
 import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -27,17 +28,14 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.jface.action.Action;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
-
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorInputTransfer;
 import org.eclipse.ui.part.ViewPart;
 
@@ -81,7 +79,7 @@ public class ExperimentsView extends ViewPart {
 	private Action deleteDataSet;
 	private Action properties;
 
-	private static Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger("de.uka.ipd.sdq.sensorframework.visualisation.views.ExperimentsView.log");
 
 	public ExperimentsView() {
@@ -116,7 +114,8 @@ public class ExperimentsView extends ViewPart {
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged
 			 * (org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
-			public void selectionChanged(SelectionChangedEvent event) {
+			@Override
+            public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 				Object selectedObject = selection.getFirstElement();
 				setSelectedElement(selectedObject);
@@ -132,7 +131,8 @@ public class ExperimentsView extends ViewPart {
 		MenuManager menuMgr = new MenuManager("#PopupMenu");
 		menuMgr.setRemoveAllWhenShown(true);
 		menuMgr.addMenuListener(new IMenuListener() {
-			public void menuAboutToShow(IMenuManager manager) {
+			@Override
+            public void menuAboutToShow(IMenuManager manager) {
 				ExperimentsView.this.fillContextMenu(manager);
 			}
 		});
@@ -401,7 +401,7 @@ public class ExperimentsView extends ViewPart {
 				}
 			} else {
 				// The type of measurement is unknown.
-				logger.log(Level.SEVERE, "It is not possible to export this type of measurement "
+				LOGGER.log(Level.SEVERE, "It is not possible to export this type of measurement "
 						+ "to the CSV format. At the moment only instances of StateMeasurement "
 						+ "and TimeSpanMeasurement are suitable.");
 				throw new IllegalArgumentException();
@@ -531,7 +531,7 @@ public class ExperimentsView extends ViewPart {
 			Collection<TreeObject> allExperimentRuns, boolean isHeader, String separator) {
 		// Save all Experiments
 		for (Iterator<TreeObject> iterator = allExperimentRuns.iterator(); iterator.hasNext();) {
-			TreeObject treeObject = (TreeObject) iterator.next();
+			TreeObject treeObject = iterator.next();
 			Object innerObject = treeObject.getObject();
 
 			// Save all ExperimentRuns
@@ -585,7 +585,7 @@ public class ExperimentsView extends ViewPart {
 			saveAsCSV.setEnabled(false);
 		} else if (selected instanceof ExperimentAndDAO) {
 			ExperimentAndDAO experimentAndDAO = (ExperimentAndDAO) selected;
-			selectedExperiment = (Experiment) experimentAndDAO.getExperiment();
+			selectedExperiment = experimentAndDAO.getExperiment();
 			selectedFactory = experimentAndDAO.getDatasource();
 			deleteDataSet.setEnabled(true);
 			properties.setEnabled(false);

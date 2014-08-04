@@ -23,14 +23,14 @@ import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.views.TimeSer
  */
 public class OpenRReportAction implements IWorkbenchWindowActionDelegate {
 	/** The logger used by this class. */
-	private static Logger logger = 
+	private static final Logger LOGGER = 
 		Logger.getLogger(RConnection.class.getName());
 	
 	/** The parent window. Used to display message boxes. */
 	private IWorkbenchWindow parentWorkbenchWindow;
 	
 	/** Identifier of the factory responsible for creating data adapters. */
-	private String adapterFactoryID;
+	private final String adapterFactoryID;
 
 	/**Initializes a new report.
 	 * @param adapterFactoryID The identifier for the factory that is 
@@ -42,7 +42,8 @@ public class OpenRReportAction implements IWorkbenchWindowActionDelegate {
 
 	/** {@inheritDoc}
 	 */
-	public void run(final IAction action) {
+	@Override
+    public void run(final IAction action) {
 		/*
 		 * The action has been activated. The argument of the
 		 * method represents the 'real' action sitting
@@ -56,7 +57,7 @@ public class OpenRReportAction implements IWorkbenchWindowActionDelegate {
 			page.openEditor(new ConfigEditorInput(adapterFactoryID), 
 					TimeSeriesHtmlReportView.RREPORTVIEW_ID);
 		} catch (PartInitException e) {
-			logger.error("Could not generate R report for the ID " 
+			LOGGER.error("Could not generate R report for the ID " 
 					+ TimeSeriesHtmlReportView.RREPORTVIEW_ID + " and data "
 					+ "adapter factory "
 					+ "with ID " + adapterFactoryID + ".", e);
@@ -72,7 +73,8 @@ public class OpenRReportAction implements IWorkbenchWindowActionDelegate {
 
 	/** {@inheritDoc}
 	 */
-	public void selectionChanged(final IAction action, 
+	@Override
+    public void selectionChanged(final IAction action, 
 			final ISelection selection) {
 		/*
 		 * Selection in the workbench has been changed. We 
@@ -91,12 +93,14 @@ public class OpenRReportAction implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#dispose
 	 * {@inheritDoc}
 	 */
-	public void dispose() {
+	@Override
+    public void dispose() {
 	}
 
 	/** {@inheritDoc}
 	 */
-	public void init(final IWorkbenchWindow parentWindow) {
+	@Override
+    public void init(final IWorkbenchWindow parentWindow) {
 		/*
 		 * We will cache window object in order to
 		 * be able to provide parent shell for the message dialog.

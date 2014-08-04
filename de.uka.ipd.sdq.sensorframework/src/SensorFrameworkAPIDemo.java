@@ -22,7 +22,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  */
 public class SensorFrameworkAPIDemo {
 	
-	private static Logger logger = Logger.getLogger(SensorFrameworkAPIDemo.class);
+	private static final Logger LOGGER = Logger.getLogger(SensorFrameworkAPIDemo.class);
 
 	/**
 	 * TODO should be called as a test by the test suite, too! E.g. with try/catch, 
@@ -44,8 +44,13 @@ public class SensorFrameworkAPIDemo {
 		double valueSum = 0;
 		long start = System.nanoTime();
 		for (int i=0; i<200000; i++) {
-			if (i % 1000 == 0) System.out.print(".");//progress bar simulation... not to be replaced by proper logging...
-			if (i % 100000 == 0) System.out.print("\n");
+			if (i % 1000 == 0)
+             {
+                System.out.print(".");//progress bar simulation... not to be replaced by proper logging...
+            }
+			if (i % 100000 == 0) {
+                System.out.print("\n");
+            }
 			double value = Math.random() * 5000;
 			er.addTimeSpanMeasurement(s, value, value);//2nd param: event time, 3rd param: timespan
 			er.addStateMeasurement(stateSen, flag ? busyState : idleState, valueSum);//the last parameter is used as event time :-(
@@ -53,13 +58,14 @@ public class SensorFrameworkAPIDemo {
 			valueSum += value;
 		}
 		
-		if(logger.isEnabledFor(Level.INFO))
-			logger.info("\nDone creating measurements: "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
+		if(LOGGER.isEnabledFor(Level.INFO)) {
+            LOGGER.info("\nDone creating measurements: "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
+        }
 		f.finalizeAndClose();
-		if(logger.isEnabledFor(Level.INFO)) {
-			logger.info("Done storing: "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
-			logger.info(er.getMeasurementsOfSensor(s).getMeasurements().size());
-			logger.info("Done "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
+		if(LOGGER.isEnabledFor(Level.INFO)) {
+			LOGGER.info("Done storing: "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
+			LOGGER.info(er.getMeasurementsOfSensor(s).getMeasurements().size());
+			LOGGER.info("Done "+(System.nanoTime()-start)/Math.pow(10, 9)+" s");
 		}
 	}
 

@@ -19,7 +19,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.RVisualisatio
  */
 public class RConnectionImpl implements RConnection {
 	/** The logger used by this class. */
-	private static Logger logger = 
+	private static final Logger LOGGER = 
 		Logger.getLogger(RConnectionImpl.class.getName());
 
 	/** The text console of the connected R engine. */
@@ -257,7 +257,7 @@ public class RConnectionImpl implements RConnection {
 			locale += sLocales[number] + "\n";
 		}
 
-		logger.debug("Environmental Information:\n" 
+		LOGGER.debug("Environmental Information:\n" 
 				+ locale);
 		// MessageBox needed, as PDE log only allows few characters.
 //		new MessageDialog(

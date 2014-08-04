@@ -26,17 +26,17 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
  */
 public class ExperimentManager {
 	
-	private static Logger logger = Logger.getLogger(ExperimentManager.class);
+	private static final Logger LOGGER = Logger.getLogger(ExperimentManager.class);
 
 	public final static double SCALING_FACTOR = 1000000;
 
-	private Hashtable<String, TimeSpanSensor> timeSpanSensorHash = new Hashtable<String, TimeSpanSensor>();
+	private final Hashtable<String, TimeSpanSensor> timeSpanSensorHash = new Hashtable<String, TimeSpanSensor>();
 	
-	private Experiment experiment;
+	private final Experiment experiment;
 	
-	private ExperimentRun run;
+	private final ExperimentRun run;
 	
-	private IDAOFactory factory;
+	private final IDAOFactory factory;
 	
 	public ExperimentManager(String experimentName, IDAOFactory factory){
 		this.factory = factory;
@@ -57,10 +57,10 @@ public class ExperimentManager {
 	public void storeTimeSpan(String sensorName, long startTime, long stopTime){
 		double time = (stopTime - startTime) / SCALING_FACTOR;
 		if (sensorName.equals("ServiceTime") && time < 0.5){
-			if(logger.isEnabledFor(Level.INFO)) {
-				logger.info("Time: "+time);
-				logger.info("startTime: "+startTime);
-				logger.info("stopTime: "+stopTime);
+			if(LOGGER.isEnabledFor(Level.INFO)) {
+				LOGGER.info("Time: "+time);
+				LOGGER.info("startTime: "+startTime);
+				LOGGER.info("stopTime: "+stopTime);
 			}
 		}
 		TimeSpanSensor sensor = getTimeSpanSensor(sensorName);
