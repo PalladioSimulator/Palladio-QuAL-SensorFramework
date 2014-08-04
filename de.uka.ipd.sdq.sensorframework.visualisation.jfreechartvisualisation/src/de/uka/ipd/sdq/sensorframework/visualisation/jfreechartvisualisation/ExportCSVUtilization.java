@@ -21,7 +21,7 @@ import org.jfree.data.xy.XYSeries;
  */
 public class ExportCSVUtilization extends Action {
     /** Logger for this class. */
-    private static final Logger logger = Logger.getLogger(ExportCSVUtilization.class);
+    private static final Logger LOGGER = Logger.getLogger(ExportCSVUtilization.class);
     /** The compatible viewer. */
     private IUtilizationSeriesExporter viewer;
 
@@ -57,7 +57,7 @@ public class ExportCSVUtilization extends Action {
             bufferedWriter.close();
             fileWriter.close();
         } catch (Exception e) {
-            logger.error("Error writing CSV file.", e);
+            LOGGER.error("Error writing CSV file.", e);
         }
     }
 }

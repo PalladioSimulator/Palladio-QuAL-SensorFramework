@@ -14,7 +14,7 @@ import org.jfree.data.xy.XYSeries;
 
 public class ExportCSV extends Action {
     /** Logger for this class. */
-    private static final Logger logger = Logger.getLogger(ExportCSV.class);
+    private static final Logger LOGGER = Logger.getLogger(ExportCSV.class);
 
     private ISeriesExporter viewer;
 
@@ -46,7 +46,7 @@ public class ExportCSV extends Action {
             bufferedWriter.close();
             fileWriter.close();
         } catch (Exception e) {
-            logger.error("Error writing CSV file.", e);
+            LOGGER.error("Error writing CSV file.", e);
         }
     }
 }

@@ -21,7 +21,7 @@ import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.UtilizationBucketI
  */
 public class LoadCSVUtilization extends Action {
     /** Logger for this class. */
-    private static final Logger logger = Logger.getLogger(LoadCSVUtilization.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(LoadCSVUtilization.class.getCanonicalName());
     /** Utilization values. */
     private Utilization utilization;
     /** The viewer accepting the utilization input. */
@@ -68,7 +68,7 @@ public class LoadCSVUtilization extends Action {
             bufferedReader.close();
             fileReader.close();
         } catch (Exception e) {
-            logger.error("Could not load utilization values from CSV file.", e);
+            LOGGER.error("Could not load utilization values from CSV file.", e);
         }
         return utilization;
     }
