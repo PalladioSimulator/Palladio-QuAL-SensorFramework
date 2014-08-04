@@ -6,28 +6,28 @@ import de.uka.ipd.sdq.sensorframework.entities.StateSensor;
 
 public class StateSensorToUtilizationFactory implements IAdapterFactory {
 
-	public boolean canAdapt(Object adaptee, Class<?> targetClass) {
-		if (adaptee instanceof SensorAndMeasurements){
-			SensorAndMeasurements sam = (SensorAndMeasurements) adaptee;
-			if (sam.getSensor() instanceof StateSensor && Utilization.class == targetClass)
-				return true;
-		}
-		return false;
-	}
-	
-	public DataAdapter getAdapter(Object adaptee) {
-		return new StateToUtilizationAdapter((SensorAndMeasurements) adaptee);
-	}
+    public boolean canAdapt(Object adaptee, Class<?> targetClass) {
+        if (adaptee instanceof SensorAndMeasurements) {
+            SensorAndMeasurements sam = (SensorAndMeasurements) adaptee;
+            if (sam.getSensor() instanceof StateSensor && Utilization.class == targetClass)
+                return true;
+        }
+        return false;
+    }
 
-	public String getMetricLabel() {
-		return "Utilization";
-	}
+    public DataAdapter getAdapter(Object adaptee) {
+        return new StateToUtilizationAdapter((SensorAndMeasurements) adaptee);
+    }
 
-	public String getAdapterFactoryID() {
-		return "StateSensorToUtilizationFactory";
-	}
-	
-	public boolean createsAdaptersFor(Class<?> targetClass) {
-		return targetClass.isAssignableFrom(Utilization.class);
-	}	
+    public String getMetricLabel() {
+        return "Utilization";
+    }
+
+    public String getAdapterFactoryID() {
+        return "StateSensorToUtilizationFactory";
+    }
+
+    public boolean createsAdaptersFor(Class<?> targetClass) {
+        return targetClass.isAssignableFrom(Utilization.class);
+    }
 }

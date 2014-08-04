@@ -1,34 +1,32 @@
 package de.uka.ipd.sdq.sensorframework.entities.dao;
 
-
 public interface ISensorDAO {
 
-	de.uka.ipd.sdq.sensorframework.entities.StateSensor addStateSensor(
+    de.uka.ipd.sdq.sensorframework.entities.StateSensor addStateSensor(
 
-	de.uka.ipd.sdq.sensorframework.entities.State p_initialstate
+    de.uka.ipd.sdq.sensorframework.entities.State p_initialstate
 
-	,
+    ,
 
-	String p_sensorname);
+    String p_sensorname);
 
-	de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor addTimeSpanSensor(
+    de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor addTimeSpanSensor(
 
-	String p_sensorname);
-	
-	de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor addScalabilitySensor(
+    String p_sensorname);
 
-			String p_sensorname);
+    de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor addScalabilitySensor(
 
-	/* Finder methods to search for Sensors */
+    String p_sensorname);
 
-	java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Sensor> findBySensorName(
-			String searchKey);;
+    /* Finder methods to search for Sensors */
 
-	de.uka.ipd.sdq.sensorframework.entities.Sensor get(long id);
+    java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Sensor> findBySensorName(String searchKey);;
 
-	java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Sensor> getSensors();
-	
-	void removeSensor(de.uka.ipd.sdq.sensorframework.entities.Sensor sensor, boolean doCascade);
+    de.uka.ipd.sdq.sensorframework.entities.Sensor get(long id);
 
-	void storeAll();
+    java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Sensor> getSensors();
+
+    void removeSensor(de.uka.ipd.sdq.sensorframework.entities.Sensor sensor, boolean doCascade);
+
+    void storeAll();
 }

@@ -24,63 +24,63 @@ import de.uka.ipd.sdq.sensorframework.entities.impl.TimeSpanMeasurementImpl;
  */
 public class MemoryMeasurementDAO implements IMeasurementDAO {
 
-	private long nextID = 0;
-	private IDAOFactory myFactory;
-	private HashMap<Long, Measurement> index = new HashMap<Long, Measurement>();
-	
-	public MemoryMeasurementDAO(IDAOFactory myFactory){
-		this.myFactory = myFactory;
-	}
-	
-	public synchronized StateMeasurement addStateMeasurement(StateSensor p_sensor,
-			State p_sensorstate, double p_eventtime) {
-		StateMeasurement result = new StateMeasurementImpl(myFactory);
-		result.setMeasurementID(nextID++);
-		result.setEventTime(p_eventtime);
-		result.setSensor(p_sensor);
-		result.setSensorState(p_sensorstate);
-		
-		index.put(result.getMeasurementID(), result);
-		return result;
-	}
+    private long nextID = 0;
+    private IDAOFactory myFactory;
+    private HashMap<Long, Measurement> index = new HashMap<Long, Measurement>();
 
-	public synchronized TimeSpanMeasurement addTimeSpanMeasurement(TimeSpanSensor p_sensor,
-			double p_eventtime, double p_timespan) {
-		TimeSpanMeasurement result = new TimeSpanMeasurementImpl(myFactory);
-		result.setMeasurementID(nextID++);
-		result.setEventTime(p_eventtime);
-		result.setSensor(p_sensor);
-		result.setTimeSpan(p_timespan);
+    public MemoryMeasurementDAO(IDAOFactory myFactory) {
+        this.myFactory = myFactory;
+    }
 
-		index.put(result.getMeasurementID(), result);
-		return result;
-	}
-	
-	public synchronized ScalabilityMeasurement addScalabilityMeasurement(ScalabilitySensor p_sensor,
-			Double[] p_params, double p_result ) {
-		ScalabilityMeasurement result = new ScalabilityMeasurementImpl(myFactory);
-		result.setMeasurementID(nextID++);
-		result.setEventTime(p_result);
-		result.setSensor(p_sensor);
-		result.setParameters(p_params);
+    public synchronized StateMeasurement addStateMeasurement(StateSensor p_sensor, State p_sensorstate,
+            double p_eventtime) {
+        StateMeasurement result = new StateMeasurementImpl(myFactory);
+        result.setMeasurementID(nextID++);
+        result.setEventTime(p_eventtime);
+        result.setSensor(p_sensor);
+        result.setSensorState(p_sensorstate);
 
-		index.put(result.getMeasurementID(), result);
-		return result;
-	}
+        index.put(result.getMeasurementID(), result);
+        return result;
+    }
 
-	public synchronized Measurement get(long id) {
-		return index.get(id);
-	}
+    public synchronized TimeSpanMeasurement addTimeSpanMeasurement(TimeSpanSensor p_sensor, double p_eventtime,
+            double p_timespan) {
+        TimeSpanMeasurement result = new TimeSpanMeasurementImpl(myFactory);
+        result.setMeasurementID(nextID++);
+        result.setEventTime(p_eventtime);
+        result.setSensor(p_sensor);
+        result.setTimeSpan(p_timespan);
 
-	public synchronized Collection<Measurement> getMeasurements() {
-		return Collections.unmodifiableCollection(index.values());
-	}
+        index.put(result.getMeasurementID(), result);
+        return result;
+    }
 
-	public synchronized void removeMeasurement(Measurement measurement, boolean doCascade) {
-		if (measurement == null) {
-			return;
-		}
-				
-		index.remove(measurement.getMeasurementID());		
-	}
+    public synchronized ScalabilityMeasurement addScalabilityMeasurement(ScalabilitySensor p_sensor, Double[] p_params,
+            double p_result) {
+        ScalabilityMeasurement result = new ScalabilityMeasurementImpl(myFactory);
+        result.setMeasurementID(nextID++);
+        result.setEventTime(p_result);
+        result.setSensor(p_sensor);
+        result.setParameters(p_params);
+
+        index.put(result.getMeasurementID(), result);
+        return result;
+    }
+
+    public synchronized Measurement get(long id) {
+        return index.get(id);
+    }
+
+    public synchronized Collection<Measurement> getMeasurements() {
+        return Collections.unmodifiableCollection(index.values());
+    }
+
+    public synchronized void removeMeasurement(Measurement measurement, boolean doCascade) {
+        if (measurement == null) {
+            return;
+        }
+
+        index.remove(measurement.getMeasurementID());
+    }
 }

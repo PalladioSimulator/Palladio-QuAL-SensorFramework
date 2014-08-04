@@ -10,9 +10,9 @@ package de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes;
  */
 public class FrequencyPie extends AbstractPie {
 
-	public FrequencyPie(String string) {
-		super(string);
-		// TODO Auto-generated constructor stub
-	}
+    public FrequencyPie(String string) {
+        super(string);
+        // TODO Auto-generated constructor stub
+    }
 
 }

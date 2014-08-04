@@ -12,38 +12,38 @@ import java.util.List;
  */
 public class FilteredCollectionRegistry {
 
-	/** Define the FilteredCollectionRegistry instance. */
-	private static FilteredCollectionRegistry singletonInstance = new FilteredCollectionRegistry();
-	
-	/** Define the map with filtered collections (filter name, collection). */
-	private static HashMap<String, IFilteredCollectionFactory> factories = new HashMap<String, IFilteredCollectionFactory>();
+    /** Define the FilteredCollectionRegistry instance. */
+    private static FilteredCollectionRegistry singletonInstance = new FilteredCollectionRegistry();
 
-	/** Singleton pattern. */
-	private FilteredCollectionRegistry() {
-	}
+    /** Define the map with filtered collections (filter name, collection). */
+    private static HashMap<String, IFilteredCollectionFactory> factories = new HashMap<String, IFilteredCollectionFactory>();
 
-	public static FilteredCollectionRegistry singleton() {
-		return singletonInstance;
-	}
+    /** Singleton pattern. */
+    private FilteredCollectionRegistry() {
+    }
 
-	public void addFilteredCollectionFactory(String filterName,
-			IFilteredCollectionFactory filter) {
-		factories.put(filterName, filter);
-	}
+    public static FilteredCollectionRegistry singleton() {
+        return singletonInstance;
+    }
 
-	public IFilteredCollectionFactory getFilteredCollectionFactoryByID(
-			String factoryID) {
-		return factories.get(factoryID);
-	}
+    public void addFilteredCollectionFactory(String filterName, IFilteredCollectionFactory filter) {
+        factories.put(filterName, filter);
+    }
 
-	/**TODO add documentation
-	 * @return
-	 */
-	public List<IFilteredCollectionFactory> getAllAvailableCollectionFactories() {
-		ArrayList<IFilteredCollectionFactory> result = new ArrayList<IFilteredCollectionFactory>();
-		for (IFilteredCollectionFactory filter : factories.values()) {
-			result.add(filter);
-		}
-		return result;
-	}
+    public IFilteredCollectionFactory getFilteredCollectionFactoryByID(String factoryID) {
+        return factories.get(factoryID);
+    }
+
+    /**
+     * TODO add documentation
+     * 
+     * @return
+     */
+    public List<IFilteredCollectionFactory> getAllAvailableCollectionFactories() {
+        ArrayList<IFilteredCollectionFactory> result = new ArrayList<IFilteredCollectionFactory>();
+        for (IFilteredCollectionFactory filter : factories.values()) {
+            result.add(filter);
+        }
+        return result;
+    }
 }

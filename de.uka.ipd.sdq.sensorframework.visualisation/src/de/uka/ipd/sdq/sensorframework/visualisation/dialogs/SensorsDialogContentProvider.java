@@ -17,48 +17,54 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.SensorValidationToVie
 /** @author roman */
 public class SensorsDialogContentProvider implements IStructuredContentProvider {
 
-	Collection<Sensor> sensors;
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
-	 */
-	public Object[] getElements(Object inputElement) {
-		if (inputElement instanceof ConfigEntry)
-			return sensorsValidation((ConfigEntry) inputElement);
-		return null;
-	}
-	
-	/**
-	 * This function get a sensors list, which can be indicated by
-	 * current View.
-	 */
-	private Object[] sensorsValidation(ConfigEntry entry) {
-		ExperimentRun run = entry.getExperimentRun();
-		Collection<Sensor> sensors = entry.getExperiment().getSensors();
-		ArrayList<Sensor> validSensors = new ArrayList<Sensor>();
+    Collection<Sensor> sensors;
 
-		for (Sensor sensor : sensors) {
-			if (SensorValidationToView.canViewSensor(run
-					.getMeasurementsOfSensor(sensor)))
-				validSensors.add(sensor);
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
+     */
+    public Object[] getElements(Object inputElement) {
+        if (inputElement instanceof ConfigEntry)
+            return sensorsValidation((ConfigEntry) inputElement);
+        return null;
+    }
 
-		return validSensors.toArray();
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
-	 */
-	public void dispose() {
-		// TODO Auto-generated method stub
+    /**
+     * This function get a sensors list, which can be indicated by current View.
+     */
+    private Object[] sensorsValidation(ConfigEntry entry) {
+        ExperimentRun run = entry.getExperimentRun();
+        Collection<Sensor> sensors = entry.getExperiment().getSensors();
+        ArrayList<Sensor> validSensors = new ArrayList<Sensor>();
 
-	}
+        for (Sensor sensor : sensors) {
+            if (SensorValidationToView.canViewSensor(run.getMeasurementsOfSensor(sensor)))
+                validSensors.add(sensor);
+        }
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-	 */
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// TODO Auto-generated method stub
+        return validSensors.toArray();
+    }
 
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.viewers.IContentProvider#dispose()
+     */
+    public void dispose() {
+        // TODO Auto-generated method stub
+
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer,
+     * java.lang.Object, java.lang.Object)
+     */
+    public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+        // TODO Auto-generated method stub
+
+    }
 }

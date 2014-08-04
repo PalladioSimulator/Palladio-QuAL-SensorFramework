@@ -16,28 +16,32 @@ import de.uka.ipd.sdq.sensorframework.tests.util.TempDir;
  */
 public class FileSerialiserTests extends AbstractSerialiserTests {
 
-	private File lastTempDir;
+    private File lastTempDir;
 
-	/**
+    /**
 	 * 
 	 */
-	public FileSerialiserTests() {
-	}
+    public FileSerialiserTests() {
+    }
 
-	/* (non-Javadoc)
-	 * @see de.uka.ipd.sdq.sensorframework.tests.AbstractSerialiserTests#createCleanDAOFactory()
-	 */
-	@Override
-	protected IDAOFactory createCleanDAOFactory() throws IOException {
-		this.lastTempDir = TempDir.createGeneratedName("TempDB");
-		return new FileDAOFactory(lastTempDir.getAbsolutePath());
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see de.uka.ipd.sdq.sensorframework.tests.AbstractSerialiserTests#createCleanDAOFactory()
+     */
+    @Override
+    protected IDAOFactory createCleanDAOFactory() throws IOException {
+        this.lastTempDir = TempDir.createGeneratedName("TempDB");
+        return new FileDAOFactory(lastTempDir.getAbsolutePath());
+    }
 
-	/* (non-Javadoc)
-	 * @see de.uka.ipd.sdq.sensorframework.tests.AbstractSerialiserTests#createDAOFactory()
-	 */
-	@Override
-	protected IDAOFactory createDAOFactory() {
-		return new FileDAOFactory(lastTempDir.getAbsolutePath());
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see de.uka.ipd.sdq.sensorframework.tests.AbstractSerialiserTests#createDAOFactory()
+     */
+    @Override
+    protected IDAOFactory createDAOFactory() {
+        return new FileDAOFactory(lastTempDir.getAbsolutePath());
+    }
 }

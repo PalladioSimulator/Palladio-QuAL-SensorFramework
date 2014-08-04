@@ -3,63 +3,62 @@ package de.uka.ipd.sdq.sensorframework.entities;
 public interface ExperimentRun
 
 {
-	/* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
+    /* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
 
-	String getExperimentDateTime();
+    String getExperimentDateTime();
 
-	void setExperimentDateTime(String value);;
+    void setExperimentDateTime(String value);;
 
-	long getExperimentRunID();
+    long getExperimentRunID();
 
-	void setExperimentRunID(long value);
+    void setExperimentRunID(long value);
 
-	/* Getter and Setter for Properties with cardinality 0..1 or 1 which are a composition */
+    /* Getter and Setter for Properties with cardinality 0..1 or 1 which are a composition */
 
-	/* Getter and Setter for Properties with cardinality 0..* which are not a composition */
+    /* Getter and Setter for Properties with cardinality 0..* which are not a composition */
 
-	/* Getter and Setter for Properties with cardinality 0..* which are a composition */
+    /* Getter and Setter for Properties with cardinality 0..* which are a composition */
 
-	de.uka.ipd.sdq.sensorframework.entities.StateMeasurement addStateMeasurement(
+    de.uka.ipd.sdq.sensorframework.entities.StateMeasurement addStateMeasurement(
 
-	de.uka.ipd.sdq.sensorframework.entities.StateSensor p_sensor,
+    de.uka.ipd.sdq.sensorframework.entities.StateSensor p_sensor,
 
-	de.uka.ipd.sdq.sensorframework.entities.State p_sensorstate
+    de.uka.ipd.sdq.sensorframework.entities.State p_sensorstate
 
-	,
+    ,
 
-	double p_eventtime);
-	
-	de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement addScalabilityMeasurement(
+    double p_eventtime);
 
-			de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor p_sensor,
+    de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement addScalabilityMeasurement(
 
-			Double[] p_parameters,
-			double p_result
+    de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor p_sensor,
 
-			);
+    Double[] p_parameters, double p_result
 
-	de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement addTimeSpanMeasurement(
+    );
 
-	de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor p_sensor
+    de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement addTimeSpanMeasurement(
 
-	,
+    de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor p_sensor
 
-	double p_eventtime,
+    ,
 
-	double p_timespan);
+    double p_eventtime,
 
-	void addMeasurement(de.uka.ipd.sdq.sensorframework.entities.Measurement value);
+    double p_timespan);
 
-	java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Measurement> getMeasurements();
+    void addMeasurement(de.uka.ipd.sdq.sensorframework.entities.Measurement value);
 
-	/* Abstract Operations */
+    java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Measurement> getMeasurements();
 
-	de.uka.ipd.sdq.sensorframework.entities.SensorAndMeasurements
+    /* Abstract Operations */
 
-	getMeasurementsOfSensor(
+    de.uka.ipd.sdq.sensorframework.entities.SensorAndMeasurements
 
-	de.uka.ipd.sdq.sensorframework.entities.Sensor sensor
+    getMeasurementsOfSensor(
 
-	);
+    de.uka.ipd.sdq.sensorframework.entities.Sensor sensor
+
+    );
 
 }

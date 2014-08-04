@@ -6,28 +6,28 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor;
 
 public class TimeSpanSensorToHistogramFactory implements IAdapterFactory {
 
-	public boolean canAdapt(Object adaptee, Class<?> targetClass) {
-		if (adaptee instanceof SensorAndMeasurements){
-			SensorAndMeasurements sam = (SensorAndMeasurements) adaptee;
-			if (sam.getSensor() instanceof TimeSpanSensor && Histogram.class == targetClass)
-				return true;
-		}
-		return false;
-	}
-	
-	public DataAdapter getAdapter(Object adaptee) {
-		return new TimeSpanToHistogramAdapter((SensorAndMeasurements) adaptee);
-	}
+    public boolean canAdapt(Object adaptee, Class<?> targetClass) {
+        if (adaptee instanceof SensorAndMeasurements) {
+            SensorAndMeasurements sam = (SensorAndMeasurements) adaptee;
+            if (sam.getSensor() instanceof TimeSpanSensor && Histogram.class == targetClass)
+                return true;
+        }
+        return false;
+    }
 
-	public String getMetricLabel() {
-		return "Response Time";
-	}
+    public DataAdapter getAdapter(Object adaptee) {
+        return new TimeSpanToHistogramAdapter((SensorAndMeasurements) adaptee);
+    }
 
-	public String getAdapterFactoryID() {
-		return "TimeSpanToHistogramFactory";
-	}
-	
-	public boolean createsAdaptersFor(Class<?> targetClass) {
-		return targetClass.isAssignableFrom(Histogram.class);
-	}	
+    public String getMetricLabel() {
+        return "Response Time";
+    }
+
+    public String getAdapterFactoryID() {
+        return "TimeSpanToHistogramFactory";
+    }
+
+    public boolean createsAdaptersFor(Class<?> targetClass) {
+        return targetClass.isAssignableFrom(Histogram.class);
+    }
 }

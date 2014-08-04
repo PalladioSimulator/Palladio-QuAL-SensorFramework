@@ -4,6 +4,6 @@ import org.jfree.data.xy.XYSeries;
 
 public interface ISeriesExporter {
 
-	XYSeries getSeries();
+    XYSeries getSeries();
 
 }

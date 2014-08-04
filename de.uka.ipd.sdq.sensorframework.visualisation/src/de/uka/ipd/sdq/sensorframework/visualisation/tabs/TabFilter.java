@@ -4,8 +4,8 @@ import org.eclipse.jface.viewers.IFilter;
 
 public class TabFilter implements IFilter {
 
-	public boolean select(Object toTest) {
-		return true;
-	}
+    public boolean select(Object toTest) {
+        return true;
+    }
 
 }

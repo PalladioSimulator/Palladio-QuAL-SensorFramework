@@ -10,9 +10,9 @@ package de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes;
  */
 public class TimeDeltaPie extends AbstractPie {
 
-	public TimeDeltaPie(String string) {
-		super(string);
-		// TODO Auto-generated constructor stub
-	}
+    public TimeDeltaPie(String string) {
+        super(string);
+        // TODO Auto-generated constructor stub
+    }
 
 }

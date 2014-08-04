@@ -14,13 +14,15 @@ import de.uka.ipd.sdq.sensorframework.visualisation.VisualisationPlugin;
  */
 public class TabbedLabelProvider extends LabelProvider {
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
-	 */
-	@Override
-	public String getText(Object element) {
-		IEditorPart editor = VisualisationPlugin.getDefault().getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		return editor.getTitle();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
+     */
+    @Override
+    public String getText(Object element) {
+        IEditorPart editor = VisualisationPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
+                .getActiveEditor();
+        return editor.getTitle();
+    }
 }

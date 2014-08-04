@@ -5,7 +5,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 @javax.persistence.Entity
 public class StateSensorImpl extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractStateSensor {
 
-	public StateSensorImpl(IDAOFactory myFactory) {
-		super(myFactory);
-	}
+    public StateSensorImpl(IDAOFactory myFactory) {
+        super(myFactory);
+    }
 }

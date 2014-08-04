@@ -5,44 +5,44 @@ import de.uka.ipd.sdq.sensorframework.entities.Sensor;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
 /**
- * @author Ihssane El-Oudghiri 
+ * @author Ihssane El-Oudghiri
  */
 public abstract class SensorImpl extends AbstractFileEntity implements Sensor, SerializableEntity {
 
-	/**
-	 * For Serialization 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	protected long sensorID;
-	
-	protected String sensorName;
+    /**
+     * For Serialization
+     */
+    private static final long serialVersionUID = 1L;
 
-	public SensorImpl(IDAOFactory factory) {
-		super(factory);
-	}
+    protected long sensorID;
 
-	public String getFileName() {
-		return FileDAOFactory.SENSOR_FILE_NAME_PREFIX + getSensorID();
-	}
+    protected String sensorName;
 
-	public long getID() {
-		return this.sensorID;
-	}
+    public SensorImpl(IDAOFactory factory) {
+        super(factory);
+    }
 
-	public long getSensorID() {
-		return sensorID;
-	}
+    public String getFileName() {
+        return FileDAOFactory.SENSOR_FILE_NAME_PREFIX + getSensorID();
+    }
 
-	public String getSensorName() {
-		return sensorName;
-	}
+    public long getID() {
+        return this.sensorID;
+    }
 
-	public void setSensorID(long sensorID) {
-		this.sensorID = sensorID;
-	}
+    public long getSensorID() {
+        return sensorID;
+    }
 
-	public void setSensorName(String sensorName) {
-		this.sensorName = sensorName;
-	}
+    public String getSensorName() {
+        return sensorName;
+    }
+
+    public void setSensorID(long sensorID) {
+        this.sensorID = sensorID;
+    }
+
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
+    }
 }

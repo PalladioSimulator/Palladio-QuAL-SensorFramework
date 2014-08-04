@@ -19,33 +19,37 @@ import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.TimeSeriesEntity;
 
 public class JFreeChartTimeSeriesViewer extends AbstractJFreeChartChart<TimeSeries> implements ISeriesExporter {
 
-	DefaultTableXYDataset dataset = new DefaultTableXYDataset();
-	
-	public JFreeChartTimeSeriesViewer(Composite parent, int style) {
-		super(parent, style);
-	}
+    DefaultTableXYDataset dataset = new DefaultTableXYDataset();
 
-	@Override
-	protected void initializeContextMenu(MenuManager menu_manager) {
-		super.initializeContextMenu(menu_manager);
-	    menu_manager.add(new ExportCSV(this));
-		menu_manager.add(new CopyClipboardAsR(this));
-	}
-	
-	protected void initChart() {
-		chart = ChartFactory.createScatterPlot("Time Series", "Number of Measurement", "Time", dataset, PlotOrientation.VERTICAL, true, true, true);
-		NumberAxis yAxis = (NumberAxis) chart.getXYPlot().getRangeAxis();
+    public JFreeChartTimeSeriesViewer(Composite parent, int style) {
+        super(parent, style);
+    }
+
+    @Override
+    protected void initializeContextMenu(MenuManager menu_manager) {
+        super.initializeContextMenu(menu_manager);
+        menu_manager.add(new ExportCSV(this));
+        menu_manager.add(new CopyClipboardAsR(this));
+    }
+
+    protected void initChart() {
+        chart = ChartFactory.createScatterPlot("Time Series", "Number of Measurement", "Time", dataset,
+                PlotOrientation.VERTICAL, true, true, true);
+        NumberAxis yAxis = (NumberAxis) chart.getXYPlot().getRangeAxis();
         yAxis.setAutoRangeIncludesZero(false);
-        // adjusted to work with values with an accuracy of tick units (y-Axis labels) of up to 1e-16.
+        // adjusted to work with values with an accuracy of tick units (y-Axis labels) of up to
+        // 1e-16.
         yAxis.setAutoRangeMinimumSize(1e-16);
         yAxis.setStandardTickUnits(createAdvancedTickUnits());
-	}
+    }
 
-	/**Creates an advanced version of tick units.
-	 * Works with up to 16 digits. Necessary to enable ticks by the auto range feature for values like 1/3.
-	 * @return
-	 */
-	private static final TickUnitSource createAdvancedTickUnits() {
+    /**
+     * Creates an advanced version of tick units. Works with up to 16 digits. Necessary to enable
+     * ticks by the auto range feature for values like 1/3.
+     * 
+     * @return
+     */
+    private static final TickUnitSource createAdvancedTickUnits() {
         TickUnits tu = (TickUnits) NumberAxis.createStandardTickUnits();
         DecimalFormat df16 = new DecimalFormat("0.0000000000000000");
         DecimalFormat df15 = new DecimalFormat("0.000000000000000");
@@ -54,9 +58,9 @@ public class JFreeChartTimeSeriesViewer extends AbstractJFreeChartChart<TimeSeri
         DecimalFormat df12 = new DecimalFormat("0.000000000000");
         DecimalFormat df11 = new DecimalFormat("0.00000000000");
         DecimalFormat df10 = new DecimalFormat("0.0000000000");
-        DecimalFormat df9 =  new DecimalFormat("0.000000000");
-        DecimalFormat df8 =  new DecimalFormat("0.00000000");
-        
+        DecimalFormat df9 = new DecimalFormat("0.000000000");
+        DecimalFormat df8 = new DecimalFormat("0.00000000");
+
         tu.add(new NumberTickUnit(0.0000000000000001, df16));
         tu.add(new NumberTickUnit(0.000000000000001, df15));
         tu.add(new NumberTickUnit(0.00000000000001, df14));
@@ -85,31 +89,31 @@ public class JFreeChartTimeSeriesViewer extends AbstractJFreeChartChart<TimeSeri
         tu.add(new NumberTickUnit(0.00000000025, df11));
         tu.add(new NumberTickUnit(0.0000000025, df10));
         tu.add(new NumberTickUnit(0.000000025, df9));
-        
+
         return tu;
-	}
+    }
 
-	public void setData(Collection<TimeSeries> data){
-		dataset.removeAllSeries();
-		
-		for (TimeSeries timeSeries : data)
-			dataset.addSeries(getSeries(timeSeries));
-		initChart();
-		this.setChart(chart);
-		this.forceRedraw();
-	}
+    public void setData(Collection<TimeSeries> data) {
+        dataset.removeAllSeries();
 
-	private XYSeries getSeries(TimeSeries ts) {
-		XYSeries series = new XYSeries(ts.getLabel(),true, false);
-		for (TimeSeriesEntity te : ts.getValues()) {
-			//series.add(te.getXValue(), te.getYValue());
-			series.add(te.getXValue(), te.getYValue());
-		}
-		return series;
-	}
-	
-	public XYSeries getSeries() {
-		return dataset.getSeries(0);
-	}
-	
+        for (TimeSeries timeSeries : data)
+            dataset.addSeries(getSeries(timeSeries));
+        initChart();
+        this.setChart(chart);
+        this.forceRedraw();
+    }
+
+    private XYSeries getSeries(TimeSeries ts) {
+        XYSeries series = new XYSeries(ts.getLabel(), true, false);
+        for (TimeSeriesEntity te : ts.getValues()) {
+            // series.add(te.getXValue(), te.getYValue());
+            series.add(te.getXValue(), te.getYValue());
+        }
+        return series;
+    }
+
+    public XYSeries getSeries() {
+        return dataset.getSeries(0);
+    }
+
 }

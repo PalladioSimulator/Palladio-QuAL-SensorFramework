@@ -3,55 +3,54 @@ package de.uka.ipd.sdq.sensorframework.entities;
 public interface Experiment
 
 {
-	/* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
+    /* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
 
-	long getExperimentID();
+    long getExperimentID();
 
-	void setExperimentID(long value);;
+    void setExperimentID(long value);;
 
-	String getExperimentName();
+    String getExperimentName();
 
-	void setExperimentName(String value);
+    void setExperimentName(String value);
 
-	/* Getter and Setter for Properties with cardinality 0..1 or 1 which are a composition */
+    /* Getter and Setter for Properties with cardinality 0..1 or 1 which are a composition */
 
-	/* Getter and Setter for Properties with cardinality 0..* which are not a composition */
+    /* Getter and Setter for Properties with cardinality 0..* which are not a composition */
 
-	/* Getter and Setter for Properties with cardinality 0..* which are a composition */
+    /* Getter and Setter for Properties with cardinality 0..* which are a composition */
 
-	de.uka.ipd.sdq.sensorframework.entities.StateSensor addStateSensor(
+    de.uka.ipd.sdq.sensorframework.entities.StateSensor addStateSensor(
 
-	de.uka.ipd.sdq.sensorframework.entities.State p_initialstate
+    de.uka.ipd.sdq.sensorframework.entities.State p_initialstate
 
-	,
+    ,
 
-	String p_sensorname);
+    String p_sensorname);
 
-	de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor addTimeSpanSensor(
+    de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor addTimeSpanSensor(
 
-	String p_sensorname);
-	
-	de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor addScalabilitySensor(
+    String p_sensorname);
 
-			String p_sensorname);
+    de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor addScalabilitySensor(
 
-	void addSensor(de.uka.ipd.sdq.sensorframework.entities.Sensor value);
+    String p_sensorname);
 
-	java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Sensor> getSensors();;
+    void addSensor(de.uka.ipd.sdq.sensorframework.entities.Sensor value);
 
-	de.uka.ipd.sdq.sensorframework.entities.ExperimentRun addExperimentRun(
+    java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Sensor> getSensors();;
 
-	String p_experimentdatetime);
-	
-	de.uka.ipd.sdq.sensorframework.entities.ExperimentRun addScalabilityExperimentRun(
+    de.uka.ipd.sdq.sensorframework.entities.ExperimentRun addExperimentRun(
 
-			String p_experimentdatetime);
+    String p_experimentdatetime);
 
-	void addExperimentRun(
-			de.uka.ipd.sdq.sensorframework.entities.ExperimentRun experimentRun);
+    de.uka.ipd.sdq.sensorframework.entities.ExperimentRun addScalabilityExperimentRun(
 
-	java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.ExperimentRun> getExperimentRuns();
+    String p_experimentdatetime);
 
-	/* Abstract Operations */
+    void addExperimentRun(de.uka.ipd.sdq.sensorframework.entities.ExperimentRun experimentRun);
+
+    java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.ExperimentRun> getExperimentRuns();
+
+    /* Abstract Operations */
 
 }

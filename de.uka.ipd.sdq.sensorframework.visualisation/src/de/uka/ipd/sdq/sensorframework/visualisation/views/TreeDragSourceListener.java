@@ -19,94 +19,92 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.SensorValidationToVie
  */
 public class TreeDragSourceListener implements DragSourceListener {
 
-	TreeViewer viewer;
-	
-	public TreeDragSourceListener(TreeViewer viewer) {
-		this.viewer = viewer;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.swt.dnd.DragSourceListener#dragSetData(org.eclipse.swt.dnd.DragSourceEvent)
-	 */
-	public void dragSetData(DragSourceEvent event) {
-		IStructuredSelection selection = (IStructuredSelection) viewer
-				.getSelection();
-		Object object = selection.getFirstElement();
-		Object[] viewers = null;
+    TreeViewer viewer;
 
-		if (EditorInputTransfer.getInstance().isSupportedType(event.dataType)) {
-			TreeObject treeObject = (TreeObject) object;
-			Object innerObject = treeObject.getObject();
+    public TreeDragSourceListener(TreeViewer viewer) {
+        this.viewer = viewer;
+    }
 
-			/** Sensor */
-			if (innerObject instanceof Sensor) {
-				Sensor sensor = (Sensor) innerObject;
-				/** return all view, which can represent the sensor */
-				viewers = SensorValidationToView.findViews(treeObject.getRun()
-						.getMeasurementsOfSensor(sensor));
-			}
-			/** Experiment Run */
-			if (innerObject instanceof ExperimentRun) {
-				/** return all view */
-				viewers = SensorValidationToView.getConfigurationElements();
-			}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.swt.dnd.DragSourceListener#dragSetData(org.eclipse.swt.dnd.DragSourceEvent)
+     */
+    public void dragSetData(DragSourceEvent event) {
+        IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+        Object object = selection.getFirstElement();
+        Object[] viewers = null;
 
-			ViewAndAdapterFactory selectedView = SensorValidationToView.getSelectedAction(event.display
-					.getActiveShell(), viewers);
-			if (selectedView != null) {
+        if (EditorInputTransfer.getInstance().isSupportedType(event.dataType)) {
+            TreeObject treeObject = (TreeObject) object;
+            Object innerObject = treeObject.getObject();
 
-				ConfigEditorInput editorInput = new ConfigEditorInput(selectedView.getFactory().getAdapterFactoryID());
-				/** Sensor */
-				if (innerObject instanceof Sensor) {
-					Sensor sensor = (Sensor) innerObject;
-					ConfigEntry configEntry = new ConfigEntry(
-							treeObject.getDatasource(),
-							treeObject.getRun(),
-							treeObject.getExperiment(), sensor);
-					editorInput.addConfigEntry(configEntry);
-				}
-				/** Experiment Run */
-				if (innerObject instanceof ExperimentRun) {
-					ExperimentRun run = (ExperimentRun) innerObject;
-					ConfigEntry configEntry = new ConfigEntry(treeObject.getDatasource(),
-							run, treeObject
-							.getExperiment(), null);
-					editorInput.addConfigEntry(configEntry);
-				}
-				EditorInputTransfer.EditorInputData[] transferArray = new EditorInputTransfer.EditorInputData[] { EditorInputTransfer
-						.createEditorInputData(selectedView.getView().getAttribute("editorID"),
-								editorInput) };
-				event.data = transferArray;
-			} else {
-				event.data = null;
-				event.doit = false;
-			}
-		} else if (LocalSelectionTransfer.getTransfer().isSupportedType(
-				event.dataType)) {
-			LocalSelectionTransfer.getTransfer().setSelection(selection);
-		}
-	}
+            /** Sensor */
+            if (innerObject instanceof Sensor) {
+                Sensor sensor = (Sensor) innerObject;
+                /** return all view, which can represent the sensor */
+                viewers = SensorValidationToView.findViews(treeObject.getRun().getMeasurementsOfSensor(sensor));
+            }
+            /** Experiment Run */
+            if (innerObject instanceof ExperimentRun) {
+                /** return all view */
+                viewers = SensorValidationToView.getConfigurationElements();
+            }
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.swt.dnd.DragSourceListener#dragStart(org.eclipse.swt.dnd.DragSourceEvent)
-	 */
-	public void dragStart(DragSourceEvent event) {
-		IStructuredSelection selection = (IStructuredSelection) viewer
-				.getSelection();
-		Object object = selection.getFirstElement();
+            ViewAndAdapterFactory selectedView = SensorValidationToView.getSelectedAction(
+                    event.display.getActiveShell(), viewers);
+            if (selectedView != null) {
 
-		event.doit = false;
+                ConfigEditorInput editorInput = new ConfigEditorInput(selectedView.getFactory().getAdapterFactoryID());
+                /** Sensor */
+                if (innerObject instanceof Sensor) {
+                    Sensor sensor = (Sensor) innerObject;
+                    ConfigEntry configEntry = new ConfigEntry(treeObject.getDatasource(), treeObject.getRun(),
+                            treeObject.getExperiment(), sensor);
+                    editorInput.addConfigEntry(configEntry);
+                }
+                /** Experiment Run */
+                if (innerObject instanceof ExperimentRun) {
+                    ExperimentRun run = (ExperimentRun) innerObject;
+                    ConfigEntry configEntry = new ConfigEntry(treeObject.getDatasource(), run,
+                            treeObject.getExperiment(), null);
+                    editorInput.addConfigEntry(configEntry);
+                }
+                EditorInputTransfer.EditorInputData[] transferArray = new EditorInputTransfer.EditorInputData[] {
+                    EditorInputTransfer.createEditorInputData(selectedView.getView().getAttribute("editorID"),
+                            editorInput)
+                };
+                event.data = transferArray;
+            } else {
+                event.data = null;
+                event.doit = false;
+            }
+        } else if (LocalSelectionTransfer.getTransfer().isSupportedType(event.dataType)) {
+            LocalSelectionTransfer.getTransfer().setSelection(selection);
+        }
+    }
 
-		if (object instanceof TreeObject) {
-			event.doit = true;
-			// if the sensor is not a child from ExperimentRun
-			TreeObject treeObject = (TreeObject) object;
-			ExperimentRun run = treeObject.getRun();
-			if (treeObject.getObject() instanceof Sensor && run == null)
-				event.doit = false;
-		}
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.swt.dnd.DragSourceListener#dragStart(org.eclipse.swt.dnd.DragSourceEvent)
+     */
+    public void dragStart(DragSourceEvent event) {
+        IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+        Object object = selection.getFirstElement();
 
-	public void dragFinished(DragSourceEvent event) {
-	}
+        event.doit = false;
+
+        if (object instanceof TreeObject) {
+            event.doit = true;
+            // if the sensor is not a child from ExperimentRun
+            TreeObject treeObject = (TreeObject) object;
+            ExperimentRun run = treeObject.getRun();
+            if (treeObject.getObject() instanceof Sensor && run == null)
+                event.doit = false;
+        }
+    }
+
+    public void dragFinished(DragSourceEvent event) {
+    }
 }

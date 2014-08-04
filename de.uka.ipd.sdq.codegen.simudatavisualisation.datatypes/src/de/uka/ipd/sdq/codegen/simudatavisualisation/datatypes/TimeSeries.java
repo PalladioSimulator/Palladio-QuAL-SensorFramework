@@ -4,41 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TimeSeries {
-	private String myLabel;
-	
-	List<TimeSeriesEntity> values = new ArrayList<TimeSeriesEntity>();
+    private String myLabel;
 
-	public TimeSeries(String myLabel) {
-		super();
-		this.myLabel = myLabel;
-	}
+    List<TimeSeriesEntity> values = new ArrayList<TimeSeriesEntity>();
 
-	public String getLabel() {
-		return myLabel;
-	}
+    public TimeSeries(String myLabel) {
+        super();
+        this.myLabel = myLabel;
+    }
 
-	public void setLabel(String newLabel) {
-		myLabel=newLabel;
-	}
+    public String getLabel() {
+        return myLabel;
+    }
 
-	public List<TimeSeriesEntity> getValues() {
-		return values;
-	}
+    public void setLabel(String newLabel) {
+        myLabel = newLabel;
+    }
 
-	public void setValues(List<TimeSeriesEntity> values) {
-		this.values = values;
-	}
+    public List<TimeSeriesEntity> getValues() {
+        return values;
+    }
 
-	public void add(double x, double y) {
-		values.add(new TimeSeriesEntity(x,y));
-	}
-	
-	@Override
-	public String toString() {
-		String result = this.myLabel + "\n";
-		for (TimeSeriesEntity e : this.values) {
-			result += e + "\n";
-		}
-		return result;
-	}
+    public void setValues(List<TimeSeriesEntity> values) {
+        this.values = values;
+    }
+
+    public void add(double x, double y) {
+        values.add(new TimeSeriesEntity(x, y));
+    }
+
+    @Override
+    public String toString() {
+        String result = this.myLabel + "\n";
+        for (TimeSeriesEntity e : this.values) {
+            result += e + "\n";
+        }
+        return result;
+    }
 }

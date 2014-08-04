@@ -30,8 +30,8 @@ public class LoadCSVHistogram extends Action {
     public void run() {
         final FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
         dialog.open();
-        if (dialog.getFileName() != null){
-            this.histogram = importHistogram(dialog.getFilterPath()+File.separator+dialog.getFileName());
+        if (dialog.getFileName() != null) {
+            this.histogram = importHistogram(dialog.getFilterPath() + File.separator + dialog.getFileName());
         }
         viewer.addHistogram(histogram);
     }
@@ -44,14 +44,13 @@ public class LoadCSVHistogram extends Action {
             String row;
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
-            while((row=bufferedReader.readLine()) != null)
-            {
+            while ((row = bufferedReader.readLine()) != null) {
                 final String[] parts = row.split(";");
-                final double x = Double.parseDouble(parts[0].replace(',','.'));
-                final double y = Double.parseDouble(parts[1].replace(',','.'));
+                final double x = Double.parseDouble(parts[0].replace(',', '.'));
+                final double y = Double.parseDouble(parts[1].replace(',', '.'));
                 h.addEntity(new HistogramBucketInformation(y, x));
             }
-        } catch(final Exception e) {
+        } catch (final Exception e) {
             return null;
             // TODO: Error Message Box
         } finally {
@@ -63,8 +62,9 @@ public class LoadCSVHistogram extends Action {
                 }
             }
         }
-        for (final HistogramBucketInformation e:h.getBucketInformation()) {
-            System.out.print("runif("+Math.round(e.getProbability()*100000)+","+(e.getValue()-5)+","+(e.getValue()+5)+"),");
+        for (final HistogramBucketInformation e : h.getBucketInformation()) {
+            System.out.print("runif(" + Math.round(e.getProbability() * 100000) + "," + (e.getValue() - 5) + ","
+                    + (e.getValue() + 5) + "),");
         }
         return h;
     }

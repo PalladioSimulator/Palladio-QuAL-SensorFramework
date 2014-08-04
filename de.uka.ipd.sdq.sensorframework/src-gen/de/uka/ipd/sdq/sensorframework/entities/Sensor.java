@@ -3,22 +3,22 @@ package de.uka.ipd.sdq.sensorframework.entities;
 public interface Sensor
 
 {
-	/* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
+    /* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
 
-	String getSensorName();
+    String getSensorName();
 
-	void setSensorName(String value);;
+    void setSensorName(String value);;
 
-	long getSensorID();
+    long getSensorID();
 
-	void setSensorID(long value);
+    void setSensorID(long value);
 
-	/* Getter and Setter for Properties with cardinality 0..1 or 1 which are a composition */
+    /* Getter and Setter for Properties with cardinality 0..1 or 1 which are a composition */
 
-	/* Getter and Setter for Properties with cardinality 0..* which are not a composition */
+    /* Getter and Setter for Properties with cardinality 0..* which are not a composition */
 
-	/* Getter and Setter for Properties with cardinality 0..* which are a composition */
+    /* Getter and Setter for Properties with cardinality 0..* which are a composition */
 
-	/* Abstract Operations */
+    /* Abstract Operations */
 
 }

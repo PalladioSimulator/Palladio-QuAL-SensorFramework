@@ -11,32 +11,32 @@ import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.PieEntity;
 
 public class JFreeChartPieViewer extends AbstractJFreeChartChart<AbstractPie> {
 
-	DefaultPieDataset pieDataset=null;
-	
-	public JFreeChartPieViewer(Composite parent, int style) {
-		super(parent, style);
-	}
+    DefaultPieDataset pieDataset = null;
 
-	protected void initChart() {
-		if(pieDataset != null)
-			chart = ChartFactory.createPieChart3D("Pie", pieDataset, true, true, true);
-		else
-			chart = ChartFactory.createPieChart3D("Pie", new DefaultPieDataset(), true, true, true);
-	}
+    public JFreeChartPieViewer(Composite parent, int style) {
+        super(parent, style);
+    }
 
-	public void setData(Collection<AbstractPie> data){
-		assert((data.size() == 1) && (data.iterator().next() instanceof AbstractPie));
-		
-		AbstractPie pie = (AbstractPie)data.iterator().next();
-		
-		pieDataset = new DefaultPieDataset();
-		for (PieEntity pe : pie.getEntities(40)){
-			pieDataset.setValue(pe.getLabel(), pe.getValue());
-		}
-		initChart();
-		chart.setTitle(pie.getLabel());
-		this.setChart(chart);
+    protected void initChart() {
+        if (pieDataset != null)
+            chart = ChartFactory.createPieChart3D("Pie", pieDataset, true, true, true);
+        else
+            chart = ChartFactory.createPieChart3D("Pie", new DefaultPieDataset(), true, true, true);
+    }
 
-		this.forceRedraw();
-	}
+    public void setData(Collection<AbstractPie> data) {
+        assert ((data.size() == 1) && (data.iterator().next() instanceof AbstractPie));
+
+        AbstractPie pie = (AbstractPie) data.iterator().next();
+
+        pieDataset = new DefaultPieDataset();
+        for (PieEntity pe : pie.getEntities(40)) {
+            pieDataset.setValue(pe.getLabel(), pe.getValue());
+        }
+        initChart();
+        chart.setTitle(pie.getLabel());
+        this.setChart(chart);
+
+        this.forceRedraw();
+    }
 }

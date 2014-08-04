@@ -14,98 +14,93 @@ import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnec
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.views.TimeSeriesHtmlReportView;
 
 /**
- * Our sample action implements workbench action delegate.
- * The action proxy will be created by the workbench and
- * shown in the UI. When the user tries to use the action,
- * this delegate will be created and execution will be 
- * delegated to it.
+ * Our sample action implements workbench action delegate. The action proxy will be created by the
+ * workbench and shown in the UI. When the user tries to use the action, this delegate will be
+ * created and execution will be delegated to it.
+ * 
  * @see IWorkbenchWindowActionDelegate
  */
 public class OpenRReportAction implements IWorkbenchWindowActionDelegate {
-	/** The logger used by this class. */
-	private static final Logger LOGGER = 
-		Logger.getLogger(RConnection.class.getName());
-	
-	/** The parent window. Used to display message boxes. */
-	private IWorkbenchWindow parentWorkbenchWindow;
-	
-	/** Identifier of the factory responsible for creating data adapters. */
-	private final String adapterFactoryID;
+    /** The logger used by this class. */
+    private static final Logger LOGGER = Logger.getLogger(RConnection.class.getName());
 
-	/**Initializes a new report.
-	 * @param adapterFactoryID The identifier for the factory that is 
-	 *        responsible for creating data adapters.
-	 */
-	public OpenRReportAction(final String adapterFactoryID) {
-		this.adapterFactoryID = adapterFactoryID;
-	}
+    /** The parent window. Used to display message boxes. */
+    private IWorkbenchWindow parentWorkbenchWindow;
 
-	/** {@inheritDoc}
-	 */
-	@Override
+    /** Identifier of the factory responsible for creating data adapters. */
+    private final String adapterFactoryID;
+
+    /**
+     * Initializes a new report.
+     * 
+     * @param adapterFactoryID
+     *            The identifier for the factory that is responsible for creating data adapters.
+     */
+    public OpenRReportAction(final String adapterFactoryID) {
+        this.adapterFactoryID = adapterFactoryID;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void run(final IAction action) {
-		/*
-		 * The action has been activated. The argument of the
-		 * method represents the 'real' action sitting
-		 * in the workbench UI.
-		 * @see IWorkbenchWindowActionDelegate#run
-		 */
-		IWorkbenchPage page = RVisualisationPlugin.getDefault().getWorkbench()
-		.getActiveWorkbenchWindow().getActivePage();
-		
-		try {
-			page.openEditor(new ConfigEditorInput(adapterFactoryID), 
-					TimeSeriesHtmlReportView.RREPORTVIEW_ID);
-		} catch (PartInitException e) {
-			LOGGER.error("Could not generate R report for the ID " 
-					+ TimeSeriesHtmlReportView.RREPORTVIEW_ID + " and data "
-					+ "adapter factory "
-					+ "with ID " + adapterFactoryID + ".", e);
-			MessageDialog.openError(parentWorkbenchWindow.getShell(), "Could "
-					+ "not generate R report", 
-					"The R report for the ID " 
-					+ TimeSeriesHtmlReportView.RREPORTVIEW_ID 
-					+ " and data adapter factory " + "with ID " 
-					+ adapterFactoryID + "could not be generated. Details were"
-					+ " written to the logfile.");
-		}
-	}
+        /*
+         * The action has been activated. The argument of the method represents the 'real' action
+         * sitting in the workbench UI.
+         * 
+         * @see IWorkbenchWindowActionDelegate#run
+         */
+        IWorkbenchPage page = RVisualisationPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow()
+                .getActivePage();
 
-	/** {@inheritDoc}
-	 */
-	@Override
-    public void selectionChanged(final IAction action, 
-			final ISelection selection) {
-		/*
-		 * Selection in the workbench has been changed. We 
-		 * can change the state of the 'real' action here
-		 * if we want, but this can only happen after 
-		 * the delegate has been created.
-		 * @see IWorkbenchWindowActionDelegate#selectionChanged
-		 */
+        try {
+            page.openEditor(new ConfigEditorInput(adapterFactoryID), TimeSeriesHtmlReportView.RREPORTVIEW_ID);
+        } catch (PartInitException e) {
+            LOGGER.error("Could not generate R report for the ID " + TimeSeriesHtmlReportView.RREPORTVIEW_ID
+                    + " and data " + "adapter factory " + "with ID " + adapterFactoryID + ".", e);
+            MessageDialog.openError(parentWorkbenchWindow.getShell(), "Could " + "not generate R report",
+                    "The R report for the ID " + TimeSeriesHtmlReportView.RREPORTVIEW_ID + " and data adapter factory "
+                            + "with ID " + adapterFactoryID + "could not be generated. Details were"
+                            + " written to the logfile.");
+        }
+    }
 
-		// Nothing to do
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void selectionChanged(final IAction action, final ISelection selection) {
+        /*
+         * Selection in the workbench has been changed. We can change the state of the 'real' action
+         * here if we want, but this can only happen after the delegate has been created.
+         * 
+         * @see IWorkbenchWindowActionDelegate#selectionChanged
+         */
 
-	/**
-	 * We can use this method to dispose of any system
-	 * resources we previously allocated.
-	 * @see IWorkbenchWindowActionDelegate#dispose
-	 * {@inheritDoc}
-	 */
-	@Override
+        // Nothing to do
+    }
+
+    /**
+     * We can use this method to dispose of any system resources we previously allocated.
+     * 
+     * @see IWorkbenchWindowActionDelegate#dispose {@inheritDoc}
+     */
+    @Override
     public void dispose() {
-	}
+    }
 
-	/** {@inheritDoc}
-	 */
-	@Override
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void init(final IWorkbenchWindow parentWindow) {
-		/*
-		 * We will cache window object in order to
-		 * be able to provide parent shell for the message dialog.
-		 * @see IWorkbenchWindowActionDelegate#init
-		 */
-		parentWorkbenchWindow = parentWindow;
-	}
+        /*
+         * We will cache window object in order to be able to provide parent shell for the message
+         * dialog.
+         * 
+         * @see IWorkbenchWindowActionDelegate#init
+         */
+        parentWorkbenchWindow = parentWindow;
+    }
 }

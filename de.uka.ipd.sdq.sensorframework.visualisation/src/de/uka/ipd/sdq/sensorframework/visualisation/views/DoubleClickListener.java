@@ -19,57 +19,58 @@ import de.uka.ipd.sdq.sensorframework.visualisation.menu.DoubleClickAction;
 /** @author roman */
 public class DoubleClickListener implements IDoubleClickListener {
 
-	private DoubleClickAction doubleClickAction;
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.IDoubleClickListener#doubleClick(org.eclipse.jface.viewers.DoubleClickEvent)
-	 */
-	public void doubleClick(DoubleClickEvent event) {
-		if (event.getSelection() instanceof IStructuredSelection) {
-			IStructuredSelection selection = (IStructuredSelection) event
-					.getSelection();
-			Object object = selection.getFirstElement();
+    private DoubleClickAction doubleClickAction;
 
-			if (object instanceof TreeObject) {
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.viewers.IDoubleClickListener#doubleClick(org.eclipse.jface.viewers.
+     * DoubleClickEvent)
+     */
+    public void doubleClick(DoubleClickEvent event) {
+        if (event.getSelection() instanceof IStructuredSelection) {
+            IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+            Object object = selection.getFirstElement();
 
-				TreeObject treeObject = (TreeObject) object;
-				Object innerObject = treeObject.getObject();
-				ExperimentRun run = treeObject.getRun();
+            if (object instanceof TreeObject) {
 
-				/** Sensor */
-				if (innerObject instanceof Sensor && run != null) {
-					Sensor sensor = (Sensor) innerObject;
-					SensorAndMeasurements sam = run.getMeasurementsOfSensor(sensor);
-					
-					if (sam.getMeasurements().size() != 0) {
-						/** return all view, which can represent the sensor */
-						Object[] viewers = SensorValidationToView.findViews(sam);
-	
-						ViewAndAdapterFactory selecedView = SensorValidationToView.getSelectedAction(event.getViewer().getControl()
-								.getShell(), viewers);
-						if (selecedView != null) {
-							ConfigEditorInput editorInput = new ConfigEditorInput(selecedView.getFactory().getAdapterFactoryID());
-							ConfigEntry configEntry = new ConfigEntry(treeObject
-									.getDatasource(), treeObject.getRun(), treeObject
-									.getExperiment(), sensor);
-							editorInput.addConfigEntry(configEntry);
-							IConfigurationElement action = selecedView.getView();
-							hookDoubleClickAction(editorInput, action.getAttribute("editorID"));
-						}
-					} else {
-						MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), 
-								"Empty Sensor", 
-								"The selected sensor does not contain measurements in the selected Experiment Run." +
-								" Refused to open view.");
-					}
-				}
-			}
-		}
-	}
-	
-	private void hookDoubleClickAction(ConfigEditorInput editorInput,
-			String editorID) {
-		doubleClickAction = new DoubleClickAction(editorInput, editorID);
-		doubleClickAction.run();
-	}
+                TreeObject treeObject = (TreeObject) object;
+                Object innerObject = treeObject.getObject();
+                ExperimentRun run = treeObject.getRun();
+
+                /** Sensor */
+                if (innerObject instanceof Sensor && run != null) {
+                    Sensor sensor = (Sensor) innerObject;
+                    SensorAndMeasurements sam = run.getMeasurementsOfSensor(sensor);
+
+                    if (sam.getMeasurements().size() != 0) {
+                        /** return all view, which can represent the sensor */
+                        Object[] viewers = SensorValidationToView.findViews(sam);
+
+                        ViewAndAdapterFactory selecedView = SensorValidationToView.getSelectedAction(event.getViewer()
+                                .getControl().getShell(), viewers);
+                        if (selecedView != null) {
+                            ConfigEditorInput editorInput = new ConfigEditorInput(selecedView.getFactory()
+                                    .getAdapterFactoryID());
+                            ConfigEntry configEntry = new ConfigEntry(treeObject.getDatasource(), treeObject.getRun(),
+                                    treeObject.getExperiment(), sensor);
+                            editorInput.addConfigEntry(configEntry);
+                            IConfigurationElement action = selecedView.getView();
+                            hookDoubleClickAction(editorInput, action.getAttribute("editorID"));
+                        }
+                    } else {
+                        MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                                "Empty Sensor",
+                                "The selected sensor does not contain measurements in the selected Experiment Run."
+                                        + " Refused to open view.");
+                    }
+                }
+            }
+        }
+    }
+
+    private void hookDoubleClickAction(ConfigEditorInput editorInput, String editorID) {
+        doubleClickAction = new DoubleClickAction(editorInput, editorID);
+        doubleClickAction.run();
+    }
 }

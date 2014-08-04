@@ -1,60 +1,69 @@
 package de.uka.ipd.sdq.sensorframework.entities.dao;
 
 /**
- * Classes implementing this interface bundle the access to data access objects 
- * of one type (e.g. file data sources, memory datasources), i.e. one family 
- * (as described in the AbstractFactory patterns). 
- * An IDAOFactory has five data access objects enclosed: <code>ExperimentDAO</code>, 
+ * Classes implementing this interface bundle the access to data access objects of one type (e.g.
+ * file data sources, memory datasources), i.e. one family (as described in the AbstractFactory
+ * patterns). An IDAOFactory has five data access objects enclosed: <code>ExperimentDAO</code>,
  * <code>StateDAO/code>, <code>MeasurementDAO/code>, <code>ExperimentRunDAO/code> 
  * and <code>SensorDAO/code>, and initialises them all on one type of access, 
  * i.e. file or memory.
- *   
+ * 
  * @author ?
  * @documentedBy: Anne
  *
  */
 public interface IDAOFactory {
-	public static long ID_NOT_SET = -1;
-	
-	String getName();
+    public static long ID_NOT_SET = -1;
 
-	String getDescription();
-	
-	long getID();
-	
-	void finalizeAndClose();
+    String getName();
 
-	/** Returns the <code>Experiment</code> data access object or creates a new one, 
-	 * if none was there before. Actually, this is rather a get method that might
-	 * lazily create the <code>ExperimentDAO</code> when you first access it.*/
-	de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO createExperimentDAO();
+    String getDescription();
 
-	/** Returns the <code>State</code> data access object or creates a new one, 
-	 * if none was there before. Actually, this is rather a get method that might 
-	 * lazily create the <code>StateDAO</code> when you first access it.*/
-	de.uka.ipd.sdq.sensorframework.entities.dao.IStateDAO createStateDAO();
+    long getID();
 
-	/** Returns the <code>Measurement</code> data access object or creates a new one, 
-	 * if none was there before. Actually, this is rather a get method that might 
-	 * lazily create the <code>MeasurementDAO</code> when you first access it.*/
-	de.uka.ipd.sdq.sensorframework.entities.dao.IMeasurementDAO createMeasurementDAO();
+    void finalizeAndClose();
 
-	/** Returns the <code>ExperimentRun</code> data access object or creates a new one, 
-	 * if none was there before. Actually, this is rather a get method that might 
-	 * lazily create the <code>ExperimentRunDAO</code> when you first access it.*/
-	de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentRunDAO createExperimentRunDAO();
+    /**
+     * Returns the <code>Experiment</code> data access object or creates a new one, if none was
+     * there before. Actually, this is rather a get method that might lazily create the
+     * <code>ExperimentDAO</code> when you first access it.
+     */
+    de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO createExperimentDAO();
 
-	/** Returns the <code>Sensor</code> data access object or creates a new one, 
-	 * if none was there before. Actually, this is rather a get method that might 
-	 * lazily create the <code>SensorDAO</code> when you first access it.*/
-	de.uka.ipd.sdq.sensorframework.entities.dao.ISensorDAO createSensorDAO();
+    /**
+     * Returns the <code>State</code> data access object or creates a new one, if none was there
+     * before. Actually, this is rather a get method that might lazily create the
+     * <code>StateDAO</code> when you first access it.
+     */
+    de.uka.ipd.sdq.sensorframework.entities.dao.IStateDAO createStateDAO();
 
-	void setID(long l);
+    /**
+     * Returns the <code>Measurement</code> data access object or creates a new one, if none was
+     * there before. Actually, this is rather a get method that might lazily create the
+     * <code>MeasurementDAO</code> when you first access it.
+     */
+    de.uka.ipd.sdq.sensorframework.entities.dao.IMeasurementDAO createMeasurementDAO();
 
-	String getPersistendInfo();
+    /**
+     * Returns the <code>ExperimentRun</code> data access object or creates a new one, if none was
+     * there before. Actually, this is rather a get method that might lazily create the
+     * <code>ExperimentRunDAO</code> when you first access it.
+     */
+    de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentRunDAO createExperimentRunDAO();
 
-	void reload();
+    /**
+     * Returns the <code>Sensor</code> data access object or creates a new one, if none was there
+     * before. Actually, this is rather a get method that might lazily create the
+     * <code>SensorDAO</code> when you first access it.
+     */
+    de.uka.ipd.sdq.sensorframework.entities.dao.ISensorDAO createSensorDAO();
 
-	void store();
+    void setID(long l);
+
+    String getPersistendInfo();
+
+    void reload();
+
+    void store();
 
 }
