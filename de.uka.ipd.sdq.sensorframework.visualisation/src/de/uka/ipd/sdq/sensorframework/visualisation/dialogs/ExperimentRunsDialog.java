@@ -30,7 +30,10 @@ import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
 import de.uka.ipd.sdq.sensorframework.visualisation.views.TreeLabelProvider;
 import de.uka.ipd.sdq.sensorframework.visualisation.views.TreeObject;
 
-/** @author roman */
+/**
+ * @author roman
+ * @deprecated Superseded by EDP2.
+ * */
 public class ExperimentRunsDialog extends TitleAreaDialog {
 
     private TreeObject selectedObject = null;
@@ -93,6 +96,7 @@ public class ExperimentRunsDialog extends TitleAreaDialog {
         viewer.setLabelProvider(new TreeLabelProvider());
         viewer.setInput(new ArrayList<Object>());
         viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
             public void selectionChanged(SelectionChangedEvent event) {
 
                 IStructuredSelection sel = (IStructuredSelection) event.getSelection();
@@ -102,8 +106,9 @@ public class ExperimentRunsDialog extends TitleAreaDialog {
                     selectedObject = (TreeObject) objeckt;
                     setSelectedField(selectedObject);
                     okButton.setEnabled(true);
-                } else
+                } else {
                     okButton.setEnabled(false);
+                }
             }
         });
 
@@ -145,8 +150,9 @@ public class ExperimentRunsDialog extends TitleAreaDialog {
     private void setSelectedField(TreeObject treeObject) {
         ExperimentRun run = (ExperimentRun) treeObject.getObject();
 
-        if (selectedField != null)
+        if (selectedField != null) {
             selectedField.setText(run.getExperimentDateTime());
+        }
     }
 
     /*

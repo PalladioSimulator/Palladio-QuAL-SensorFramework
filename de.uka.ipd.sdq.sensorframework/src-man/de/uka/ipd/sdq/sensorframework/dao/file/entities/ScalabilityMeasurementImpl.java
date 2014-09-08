@@ -9,8 +9,11 @@ import de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor;
 /**
  * @author Ihssane El-Oudghiri
  * 
- *         TODO Kommentare TODO Warum wird hier nicht TimeSpanSensorAndMeasurement referenziert??
+ * TODO Kommentare
  * 
+ * TODO Warum wird hier nicht TimeSpanSensorAndMeasurement referenziert??
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class ScalabilityMeasurementImpl extends MeasurementImpl implements ScalabilityMeasurement {
 
@@ -21,18 +24,22 @@ public class ScalabilityMeasurementImpl extends MeasurementImpl implements Scala
         this.params = params;
     }
 
+    @Override
     public Double[] getParameters() {
         return params;
     }
 
+    @Override
     public ScalabilitySensor getSensor() {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setParameters(Double[] value) {
         this.params = value;
     }
 
+    @Override
     public void setSensor(ScalabilitySensor value) {
         throw new UnsupportedOperationException();
     }

@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "MEASUREMENT")
 public abstract class AbstractMeasurement
@@ -21,10 +24,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.Measurement
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long m_measurementID;
 
+    @Override
     public long getMeasurementID() {
         return m_measurementID;
     }
 
+    @Override
     public void setMeasurementID(long value) {
         this.m_measurementID = value;
     };
@@ -32,10 +37,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.Measurement
     @javax.persistence.Column(name = "EVENTTIME")
     private double m_eventTime;
 
+    @Override
     public double getEventTime() {
         return m_eventTime;
     }
 
+    @Override
     public void setEventTime(double value) {
         this.m_eventTime = value;
     }

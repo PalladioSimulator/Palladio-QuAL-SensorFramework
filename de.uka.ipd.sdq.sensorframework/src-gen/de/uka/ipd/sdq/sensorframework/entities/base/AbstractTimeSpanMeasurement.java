@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 public abstract class AbstractTimeSpanMeasurement
 
@@ -18,10 +21,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement
     @javax.persistence.Column(name = "TIMESPAN")
     private double m_timeSpan;
 
+    @Override
     public double getTimeSpan() {
         return m_timeSpan;
     }
 
+    @Override
     public void setTimeSpan(double value) {
         this.m_timeSpan = value;
     };
@@ -32,10 +37,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement
     @javax.persistence.JoinColumn(name = "FK_SENSOR")
     private de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor m_sensor;
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor getSensor() {
         return m_sensor;
     }
 
+    @Override
     public void setSensor(de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor value) {
         this.m_sensor = value;
     }

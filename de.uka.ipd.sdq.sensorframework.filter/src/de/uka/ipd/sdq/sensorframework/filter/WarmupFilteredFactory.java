@@ -5,6 +5,9 @@ import java.util.Properties;
 
 import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class WarmupFilteredFactory implements IFilteredCollectionFactory {
 
     /** The properties settings for this filtered collection */
@@ -25,6 +28,7 @@ public class WarmupFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public AbstractMeasurementsCollection getFilteredCollection(Collection<Measurement> filtrate) {
         return new WarmupFilteredCollection(filtrate, DEFAULT_WARMUP);
     }
@@ -32,6 +36,7 @@ public class WarmupFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Properties getProperties() {
         return filterProperties;
     }
@@ -39,6 +44,7 @@ public class WarmupFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setProperties(Properties newProperties) {
         filterProperties = newProperties;
     }
@@ -46,6 +52,7 @@ public class WarmupFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean canFilter(Collection<Measurement> filtrate, Number attribute) {
         return attribute.longValue() < filtrate.size();
     }
@@ -53,6 +60,7 @@ public class WarmupFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public AbstractMeasurementsCollection getFilteredCollection(Collection<Measurement> filtrate, Number parameter) {
         filterProperties.put(WARMUP, parameter.longValue());
         return new WarmupFilteredCollection(filtrate, parameter.longValue());
@@ -61,6 +69,7 @@ public class WarmupFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getFilterFactoryID() {
         return "Warm Up Filter";
     }
@@ -68,6 +77,7 @@ public class WarmupFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Long convertToType(String type) {
         return Long.parseLong(type);
     }

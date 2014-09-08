@@ -3,6 +3,9 @@ package de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class TimeSeries {
     private String myLabel;
 

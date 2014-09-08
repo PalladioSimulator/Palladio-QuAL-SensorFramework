@@ -8,6 +8,9 @@ import org.jfree.data.xy.XYSeries;
 
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.Histogram;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public abstract class AbstractJFreeChartWidthViewer extends AbstractJFreeChartChart<Histogram> {
 
     protected Collection<Histogram> lastData;
@@ -18,6 +21,7 @@ public abstract class AbstractJFreeChartWidthViewer extends AbstractJFreeChartCh
         super(parent, style);
     }
 
+    @Override
     public void setData(Collection<Histogram> data) {
         densityDataset.removeAllSeries();
 

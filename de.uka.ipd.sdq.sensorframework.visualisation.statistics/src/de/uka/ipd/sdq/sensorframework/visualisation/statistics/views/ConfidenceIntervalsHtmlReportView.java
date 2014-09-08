@@ -23,9 +23,11 @@ import de.uka.ipd.sdq.statistics.independence.RunUpTest;
  * @author martens
  * @see PhiMixingBatchAlgorithm
  * @see RunUpTest
+ * @deprecated Superseded by EDP2.
  */
 public class ConfidenceIntervalsHtmlReportView extends AbstractHtmlReportView {
 
+    @Override
     public void setInput(Collection<SensorAndMeasurements> c) {
 
         int batcheSize = 100;

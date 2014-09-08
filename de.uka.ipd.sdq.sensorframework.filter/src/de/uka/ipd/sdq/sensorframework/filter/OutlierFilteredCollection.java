@@ -9,10 +9,13 @@ import java.util.Iterator;
 import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 import de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class OutlierFilteredCollection extends AbstractMeasurementsCollection {
 
     /** The configurations parameter. */
-    private double parameter;
+    private final double parameter;
 
     /**
      * Initializes a new OutlierFilteredCollection with the given measurements and filter parameter.
@@ -34,11 +37,13 @@ public class OutlierFilteredCollection extends AbstractMeasurementsCollection {
     protected void applyFilter(Collection<Measurement> filteredItemsList) {
         int outlierNumber = 0;
         outlierNumber = (int) (parameter * originalMeasurements.size());
-        ArrayList<TimeSpanMeasurement> sortedMeasurements = (ArrayList<TimeSpanMeasurement>) new ArrayList<TimeSpanMeasurement>();
-        for (Iterator<?> it = originalMeasurements.iterator(); it.hasNext();)
+        ArrayList<TimeSpanMeasurement> sortedMeasurements = new ArrayList<TimeSpanMeasurement>();
+        for (Iterator<?> it = originalMeasurements.iterator(); it.hasNext();) {
             sortedMeasurements.add((TimeSpanMeasurement) it.next());
+        }
         Collections.sort(sortedMeasurements, new Comparator<TimeSpanMeasurement>() {
 
+            @Override
             public int compare(TimeSpanMeasurement o1, TimeSpanMeasurement o2) {
                 return Double.compare(o1.getTimeSpan(), o2.getTimeSpan());
             }

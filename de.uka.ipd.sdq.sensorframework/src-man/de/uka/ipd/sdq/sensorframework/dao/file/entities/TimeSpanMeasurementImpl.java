@@ -11,6 +11,8 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor;
  * 
  *         TODO Kommentare TODO Warum wird hier nicht TimeSpanSensorAndMeasurement referenziert??
  *         TODO add toString method...
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class TimeSpanMeasurementImpl extends MeasurementImpl implements TimeSpanMeasurement {
 
@@ -21,18 +23,22 @@ public class TimeSpanMeasurementImpl extends MeasurementImpl implements TimeSpan
         this.timeSpan = timeSpan;
     }
 
+    @Override
     public TimeSpanSensor getSensor() {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public double getTimeSpan() {
         return timeSpan;
     }
 
+    @Override
     public void setSensor(TimeSpanSensor value) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setTimeSpan(double value) {
         this.timeSpan = value;
     }
@@ -42,6 +48,7 @@ public class TimeSpanMeasurementImpl extends MeasurementImpl implements TimeSpan
      * 
      * @see java.lang.Object#toString()
      */
+    @Override
     public String toString() {
         return "TimeSpanMeasurementImpl: ID=" + this.getMeasurementID() + ", " + "eventTime=" + this.eventTime + ", "
                 + "timeSpan=" + this.timeSpan;

@@ -6,6 +6,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * @author roman Compilation of the pictures used in de.uka.ipd.sdq.dialogs-Plugin
+ * @deprecated Superseded by EDP2.
  */
 public class DialogsImages {
 

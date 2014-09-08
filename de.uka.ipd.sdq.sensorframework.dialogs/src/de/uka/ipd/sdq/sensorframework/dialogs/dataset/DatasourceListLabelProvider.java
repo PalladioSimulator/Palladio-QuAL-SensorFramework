@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.uka.ipd.sdq.sensorframework.dialogs.dataset;
 
 import org.eclipse.jface.viewers.LabelProvider;
@@ -9,6 +6,9 @@ import org.eclipse.swt.graphics.Image;
 import de.uka.ipd.sdq.sensorframework.dialogs.DialogsImages;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class DatasourceListLabelProvider extends LabelProvider {
 
     /*
@@ -27,8 +27,9 @@ public class DatasourceListLabelProvider extends LabelProvider {
 
     @Override
     public Image getImage(Object element) {
-        if (element instanceof IDAOFactory)
+        if (element instanceof IDAOFactory) {
             return DialogsImages.imageRegistry.get(DialogsImages.TREEROOT);
+        }
         return super.getImage(element);
     }
 

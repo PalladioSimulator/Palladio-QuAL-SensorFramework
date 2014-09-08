@@ -16,6 +16,9 @@ import de.uka.ipd.sdq.sensorframework.dao.memory.MemoryDAOFactory;
 import de.uka.ipd.sdq.sensorframework.dialogs.SensorFrameworkDialogPlugin;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class AddNewDatasourceWizard extends Wizard {
 
     private WizardNewFolderMainPage newFolderPage;

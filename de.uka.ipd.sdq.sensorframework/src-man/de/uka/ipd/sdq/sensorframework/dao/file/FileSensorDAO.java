@@ -22,7 +22,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.ISensorDAO;
  * @author Steffen Becker
  * 
  *         Data Access Object (DAO) for persistence of Sensor Objects.
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class FileSensorDAO extends AbstractFileDAO<Sensor> implements ISensorDAO {
 
@@ -30,6 +30,7 @@ public class FileSensorDAO extends AbstractFileDAO<Sensor> implements ISensorDAO
         super(factory, idGen, FileDAOFactory.SENSOR_FILE_NAME_PREFIX);
     }
 
+    @Override
     public StateSensor addStateSensor(State p_initialstate, String p_sensorname) {
         StateSensor stsen = new StateSensorImpl(factory);
         stsen.setInitialState(p_initialstate);
@@ -41,6 +42,7 @@ public class FileSensorDAO extends AbstractFileDAO<Sensor> implements ISensorDAO
         return stsen;
     }
 
+    @Override
     public TimeSpanSensor addTimeSpanSensor(String p_sensorname) {
         TimeSpanSensor result = new TimeSpanSensorImpl(factory);
         result.setSensorID(idGen.getNextSensorID());
@@ -51,6 +53,7 @@ public class FileSensorDAO extends AbstractFileDAO<Sensor> implements ISensorDAO
         return result;
     }
 
+    @Override
     public ScalabilitySensor addScalabilitySensor(String p_sensorname) {
         ScalabilitySensor result = new ScalabilitySensorImpl(factory);
         result.setSensorID(idGen.getNextSensorID());
@@ -61,19 +64,24 @@ public class FileSensorDAO extends AbstractFileDAO<Sensor> implements ISensorDAO
         return result;
     }
 
+    @Override
     public Collection<Sensor> findBySensorName(String searchKey) {
         Collection<Sensor> result = new ArrayList<Sensor>();
-        for (Sensor sen : getAllEntities())
-            if (sen.getSensorName().equals(searchKey))
+        for (Sensor sen : getAllEntities()) {
+            if (sen.getSensorName().equals(searchKey)) {
                 result.add(sen);
+            }
+        }
 
         return Collections.unmodifiableCollection(result);
     }
 
+    @Override
     public Collection<Sensor> getSensors() {
         return this.getAllEntities();
     }
 
+    @Override
     public void removeSensor(Sensor sensor, boolean doCascade) {
         this.removeEntity(sensor, doCascade);
     }

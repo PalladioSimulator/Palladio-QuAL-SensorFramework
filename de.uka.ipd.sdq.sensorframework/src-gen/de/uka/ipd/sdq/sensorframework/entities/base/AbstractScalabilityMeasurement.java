@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 public abstract class AbstractScalabilityMeasurement
 
@@ -18,10 +21,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement
     @javax.persistence.Column(name = "TIMESPAN")
     private Double[] m_timeSpan;
 
+    @Override
     public Double[] getParameters() {
         return m_timeSpan;
     }
 
+    @Override
     public void setParameters(Double[] value) {
         this.m_timeSpan = value;
     };
@@ -32,10 +37,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement
     @javax.persistence.JoinColumn(name = "FK_SENSOR")
     private de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor m_sensor;
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor getSensor() {
         return m_sensor;
     }
 
+    @Override
     public void setSensor(de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor value) {
         this.m_sensor = value;
     }

@@ -7,6 +7,7 @@ package de.uka.ipd.sdq.sensorframework.storage.lists;
  * background storage and calculate the number of elements.
  * 
  * @author Steffen Becker
+ * @deprecated Superseded by EDP2.
  */
 public interface ISerialiser<T> {
 

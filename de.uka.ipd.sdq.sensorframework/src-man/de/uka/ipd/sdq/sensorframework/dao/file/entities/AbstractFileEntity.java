@@ -7,7 +7,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * Abstract superclass of all entities persistable by File DAOs
  * 
  * @author Steffen Becker
- *
+ * @deprecated Superseded by EDP2.
  */
 public abstract class AbstractFileEntity implements SerializableEntity {
 
@@ -35,6 +35,7 @@ public abstract class AbstractFileEntity implements SerializableEntity {
      * 
      * Called by the deserialisation method to provide the factory after deserialisation
      */
+    @Override
     public void setFactory(FileDAOFactory factory) {
         this.factory = factory;
     }

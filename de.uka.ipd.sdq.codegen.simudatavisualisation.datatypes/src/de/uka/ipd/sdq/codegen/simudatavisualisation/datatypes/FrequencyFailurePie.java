@@ -6,7 +6,7 @@ package de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes;
  * Used for execution result visualization of failure results only (reliability-related).
  * 
  * @author brosch
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class FrequencyFailurePie extends AbstractPie {
 

@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class TempDir {
     private static DirDeleter deleterThread;
 
@@ -29,10 +32,12 @@ public class TempDir {
      */
     public static File createGeneratedName(String prefix, File directory) throws IOException {
         File tempFile = File.createTempFile(prefix, "", directory);
-        if (!tempFile.delete())
+        if (!tempFile.delete()) {
             throw new IOException();
-        if (!tempFile.mkdir())
+        }
+        if (!tempFile.mkdir()) {
             throw new IOException();
+        }
         deleterThread.add(tempFile);
         return tempFile;
     }
@@ -43,8 +48,9 @@ public class TempDir {
      */
     public static File createNamed(String name, File directory) throws IOException {
         File tempFile = new File(directory, name);
-        if (!tempFile.mkdir())
+        if (!tempFile.mkdir()) {
             throw new IOException();
+        }
         deleterThread.add(tempFile);
         return tempFile;
     }

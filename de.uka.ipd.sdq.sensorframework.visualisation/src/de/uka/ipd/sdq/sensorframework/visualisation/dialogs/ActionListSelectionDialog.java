@@ -15,6 +15,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
  * Dialog possible make selection from actions in Menu/Visualasetions are contained.
  * 
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class ActionListSelectionDialog extends ElementListSelectionDialog {
 

@@ -16,7 +16,10 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEntry;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.SensorValidationToView;
 import de.uka.ipd.sdq.sensorframework.visualisation.menu.DoubleClickAction;
 
-/** @author roman */
+/**
+ * @author roman
+ * @deprecated Superseded by EDP2.
+ */
 public class DoubleClickListener implements IDoubleClickListener {
 
     private DoubleClickAction doubleClickAction;
@@ -27,6 +30,7 @@ public class DoubleClickListener implements IDoubleClickListener {
      * @see org.eclipse.jface.viewers.IDoubleClickListener#doubleClick(org.eclipse.jface.viewers.
      * DoubleClickEvent)
      */
+    @Override
     public void doubleClick(DoubleClickEvent event) {
         if (event.getSelection() instanceof IStructuredSelection) {
             IStructuredSelection selection = (IStructuredSelection) event.getSelection();

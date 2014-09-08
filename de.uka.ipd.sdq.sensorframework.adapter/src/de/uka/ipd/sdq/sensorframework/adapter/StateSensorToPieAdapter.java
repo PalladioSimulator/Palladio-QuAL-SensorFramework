@@ -15,6 +15,7 @@ import de.uka.ipd.sdq.sensorframework.entities.StateSensor;
  * Provides an adapter that allows to convert StateSensors to Pies.
  * 
  * @author Henning Groenda
+ * @deprecated Superseded by EDP2.
  */
 public abstract class StateSensorToPieAdapter extends DataAdapter {
 
@@ -38,6 +39,7 @@ public abstract class StateSensorToPieAdapter extends DataAdapter {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getAdaptedObject() {
         HashMap<String, Double> fractions = new HashMap<String, Double>();
         double sum = calculateFractions(fractions);

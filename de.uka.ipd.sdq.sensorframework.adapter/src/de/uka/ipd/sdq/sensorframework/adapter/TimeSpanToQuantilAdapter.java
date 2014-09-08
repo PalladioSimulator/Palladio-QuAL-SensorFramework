@@ -9,6 +9,7 @@ import de.uka.ipd.sdq.sensorframework.entities.SensorAndMeasurements;
  * Adapter for TimeSpanSensors to Quantiles.
  * 
  * @author groenda
+ * @deprecated Superseded by EDP2.
  */
 public class TimeSpanToQuantilAdapter extends DataAdapter {
 
@@ -21,7 +22,7 @@ public class TimeSpanToQuantilAdapter extends DataAdapter {
     /** Factor to use for the histogram for correct scaling of qunatiles. */
     private static final double QUANTILE_FACTOR = 0.001;
     /** Information about the TimeSpanSensor and the measurements. */
-    private SensorAndMeasurements samInformation;
+    private final SensorAndMeasurements samInformation;
 
     /**
      * Initializes the adapter with the provided TimeSpanSensor.
@@ -39,6 +40,7 @@ public class TimeSpanToQuantilAdapter extends DataAdapter {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getAdaptedObject() {
         TimeSpanToHistogramAdapter tstha = new TimeSpanToHistogramAdapter(samInformation);
         tstha.getProperties().put("HISTOGRAM_WIDTH", new Double(QUANTILE_FACTOR));

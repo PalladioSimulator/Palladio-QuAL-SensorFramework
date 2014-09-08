@@ -7,6 +7,7 @@ import java.io.Serializable;
  * 
  * @author Ihssane El-Oudghiri
  * @author Steffen Becker
+ * @deprecated Superseded by EDP2.
  */
 public class IDGenerator implements Serializable {
 

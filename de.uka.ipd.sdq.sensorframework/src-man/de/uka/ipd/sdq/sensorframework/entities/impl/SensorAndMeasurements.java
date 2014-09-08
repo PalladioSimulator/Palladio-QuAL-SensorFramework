@@ -5,9 +5,12 @@ import java.util.Collection;
 import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 import de.uka.ipd.sdq.sensorframework.entities.Sensor;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class SensorAndMeasurements {// TODO why dow it not implement AbstractSensorAndMeasurements?
-    private Sensor mySensor;
-    private Collection<Measurement> myMeasurements;
+    private final Sensor mySensor;
+    private final Collection<Measurement> myMeasurements;
 
     public SensorAndMeasurements(Sensor s, Collection<Measurement> m) {// TODO checks for null-ness?
         this.mySensor = s;

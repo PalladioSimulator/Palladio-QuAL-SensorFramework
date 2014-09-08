@@ -19,14 +19,17 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 import de.uka.ipd.sdq.sensorframework.filter.FilteredCollectionsManager;
 import de.uka.ipd.sdq.sensorframework.visualisation.VisualisationPlugin;
 
-/** @author Roman Andrej */
+/**
+ * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
+ */
 public class ConfigEditorInput extends Observable implements IEditorInput, IPersistableElement, IAdaptable, Observer {
 
     /** Create the filter manager instance. */
-    private FilteredCollectionsManager filtersManager = new FilteredCollectionsManager();
+    private final FilteredCollectionsManager filtersManager = new FilteredCollectionsManager();
 
-    private List<ConfigEntry> configEntrys;
-    private String adapterFactoryID;
+    private final List<ConfigEntry> configEntrys;
+    private final String adapterFactoryID;
 
     public ConfigEditorInput(String adapterFactoryID) {
         this.configEntrys = new ArrayList<ConfigEntry>();
@@ -48,8 +51,9 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
             ConfigEntry confEntry = new ConfigEntry(datasource, run, experiment, sensor);
             confEntry.addObserver(this);
             configEntrys.add(confEntry);
-        } else
+        } else {
             configEntry.setSensorChecked(sensor);
+        }
         notifyObserver();
     }
 
@@ -71,8 +75,9 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
 
     public ConfigEntry getConfigEntryToRun(ExperimentRun run) {
         for (ConfigEntry re : configEntrys) {
-            if (re.getExperimentRun().equals(run))
+            if (re.getExperimentRun().equals(run)) {
                 return re;
+            }
         }
         return null;
     }
@@ -90,6 +95,7 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
      * 
      * @see org.eclipse.ui.IEditorInput#exists()
      */
+    @Override
     public boolean exists() {
         return false;
     }
@@ -99,6 +105,7 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
      * 
      * @see org.eclipse.ui.IEditorInput#getImageDescriptor()
      */
+    @Override
     public ImageDescriptor getImageDescriptor() {
         return ImageDescriptor.getMissingImageDescriptor();
     }
@@ -108,6 +115,7 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
      * 
      * @see org.eclipse.ui.IEditorInput#getName()
      */
+    @Override
     public String getName() {
         return "";
     }
@@ -117,6 +125,7 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
      * 
      * @see org.eclipse.ui.IEditorInput#getPersistable()
      */
+    @Override
     public IPersistableElement getPersistable() {
         return this;
     }
@@ -126,6 +135,7 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
      * 
      * @see org.eclipse.ui.IEditorInput#getToolTipText()
      */
+    @Override
     public String getToolTipText() {
         return "";
     }
@@ -135,10 +145,12 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
      * 
      * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
      */
+    @Override
     @SuppressWarnings("unchecked")
     public Object getAdapter(Class adapter) {
-        if (adapter == ConfigEditorInput.class)
+        if (adapter == ConfigEditorInput.class) {
             return this;
+        }
         return null;
     }
 
@@ -147,6 +159,7 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
      * 
      * @see org.eclipse.ui.IPersistableElement#getFactoryId()
      */
+    @Override
     public String getFactoryId() {
         return ConfigEditorInputFactory.getFactoryId();
     }
@@ -156,6 +169,7 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
      * 
      * @see org.eclipse.ui.IPersistable#saveState(org.eclipse.ui.IMemento)
      */
+    @Override
     public void saveState(IMemento memento) {
         try {
             ConfigEditorInputFactory.saveState(memento, this);
@@ -178,6 +192,7 @@ public class ConfigEditorInput extends Observable implements IEditorInput, IPers
     /**
      * {@inheritDoc}
      */
+    @Override
     public void update(Observable o, Object arg) {
         // call the local method.
         notifyObserver();

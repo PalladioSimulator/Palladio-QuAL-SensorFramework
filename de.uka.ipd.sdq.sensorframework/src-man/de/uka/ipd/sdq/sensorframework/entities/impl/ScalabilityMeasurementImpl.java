@@ -2,6 +2,9 @@ package de.uka.ipd.sdq.sensorframework.entities.impl;
 
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 public class ScalabilityMeasurementImpl extends
         de.uka.ipd.sdq.sensorframework.entities.base.AbstractScalabilityMeasurement {
@@ -18,6 +21,7 @@ public class ScalabilityMeasurementImpl extends
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setParameters(Double[] value) {
         // if (value < -EPSILON_ERROR)
         // throw new

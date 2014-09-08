@@ -9,6 +9,7 @@ import java.util.Collection;
  *
  * @param <T>
  *            The class of the data which can be displayed in this viewer
+ * @deprecated Superseded by EDP2.
  */
 public interface IVisualisation<T> {
     /**

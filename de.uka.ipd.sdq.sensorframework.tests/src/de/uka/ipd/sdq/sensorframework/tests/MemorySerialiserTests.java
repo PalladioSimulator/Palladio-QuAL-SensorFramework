@@ -5,6 +5,9 @@ import java.io.IOException;
 import de.uka.ipd.sdq.sensorframework.dao.memory.MemoryDAOFactory;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class MemorySerialiserTests extends AbstractSerialiserTests {
 
     private MemoryDAOFactory lastDAO;

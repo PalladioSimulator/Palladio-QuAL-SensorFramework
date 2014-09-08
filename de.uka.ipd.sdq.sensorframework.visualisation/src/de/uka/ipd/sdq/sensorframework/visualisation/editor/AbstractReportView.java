@@ -32,6 +32,9 @@ import de.uka.ipd.sdq.sensorframework.entities.Sensor;
 import de.uka.ipd.sdq.sensorframework.entities.SensorAndMeasurements;
 import de.uka.ipd.sdq.sensorframework.visualisation.views.ViewDropTargetListener;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public abstract class AbstractReportView extends EditorPart implements ITabbedPropertySheetPageContributor, Observer {
 
     /** Contributor identifier. */
@@ -60,16 +63,20 @@ public abstract class AbstractReportView extends EditorPart implements ITabbedPr
     public void createPartControl(Composite parent) {
         getSite().setSelectionProvider(new ISelectionProvider() {
 
+            @Override
             public void addSelectionChangedListener(ISelectionChangedListener listener) {
             }
 
+            @Override
             public ISelection getSelection() {
                 return new StructuredSelection(this);
             }
 
+            @Override
             public void removeSelectionChangedListener(ISelectionChangedListener listener) {
             }
 
+            @Override
             public void setSelection(ISelection selection) {
             }
         });
@@ -103,12 +110,14 @@ public abstract class AbstractReportView extends EditorPart implements ITabbedPr
     @SuppressWarnings("unchecked")
     @Override
     public Object getAdapter(Class adapter) {
-        if (adapter == IPropertySheetPage.class)
+        if (adapter == IPropertySheetPage.class) {
             return new TabbedPropertySheetPage(this);
+        }
         return super.getAdapter(adapter);
     }
 
     /** The method return the contributor identifier for 'ConfigEditorInput'. */
+    @Override
     public String getContributorId() {
         return ABSTRACT_EDITOR_ID;
     }
@@ -138,14 +147,18 @@ public abstract class AbstractReportView extends EditorPart implements ITabbedPr
     /**
      * {@inheritDoc}
      */
+    @Override
     public void update(Observable o, Object arg) {
         getSite().getPage().activate(this);
         if (arg != null) {
-            if (arg == DataAdapter.SETTINGS_CHANGED)
-                if (!ignoreDataSettingsChanged)
+            if (arg == DataAdapter.SETTINGS_CHANGED) {
+                if (!ignoreDataSettingsChanged) {
                     generateVisualization(dataAdapters);
-            if (ConfigEditorInput.class.isInstance(arg))
+                }
+            }
+            if (ConfigEditorInput.class.isInstance(arg)) {
                 changedInputData();
+            }
         }
     }
 

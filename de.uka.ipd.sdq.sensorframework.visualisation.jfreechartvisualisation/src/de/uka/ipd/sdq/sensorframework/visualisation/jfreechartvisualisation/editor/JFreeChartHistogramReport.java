@@ -8,6 +8,9 @@ import de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation;
 import de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.AbstractJFreeChartWidthViewer;
 import de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.JFreeChartHistogramViewer;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class JFreeChartHistogramReport extends AbstractJFreeChartWidthReport implements
         ITabbedPropertySheetPageContributor, IVisualisation<Histogram> {
 

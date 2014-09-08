@@ -10,11 +10,11 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEntry;
 
 /**
  * @author admin
- *
+ * @deprecated Superseded by EDP2.
  */
 public class SensorsDialogCellModifier implements ICellModifier {
 
-    private ConfigEntry entry;
+    private final ConfigEntry entry;
     private Sensor selectedSensor;
 
     public SensorsDialogCellModifier(ConfigEntry entry) {
@@ -26,6 +26,7 @@ public class SensorsDialogCellModifier implements ICellModifier {
      * 
      * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object, java.lang.String)
      */
+    @Override
     public boolean canModify(Object element, String property) {
         return true;
     }
@@ -35,6 +36,7 @@ public class SensorsDialogCellModifier implements ICellModifier {
      * 
      * @see org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object, java.lang.String)
      */
+    @Override
     public Object getValue(Object element, String property) {
         selectedSensor = (Sensor) element;
         return new Boolean(entry.isSensorChecked(selectedSensor));
@@ -46,13 +48,16 @@ public class SensorsDialogCellModifier implements ICellModifier {
      * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object, java.lang.String,
      * java.lang.Object)
      */
+    @Override
     public void modify(Object element, String property, Object value) {
         boolean checked = (((Boolean) value).booleanValue());
 
-        if (checked)
+        if (checked) {
             entry.setSensorChecked(selectedSensor);
-        if (!checked)
+        }
+        if (!checked) {
             entry.setSensorUnchecked(selectedSensor);
+        }
     }
 
 }

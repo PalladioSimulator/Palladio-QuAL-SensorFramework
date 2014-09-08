@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "STATE")
 public abstract class AbstractState
@@ -21,10 +24,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.State
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long m_stateID;
 
+    @Override
     public long getStateID() {
         return m_stateID;
     }
 
+    @Override
     public void setStateID(long value) {
         this.m_stateID = value;
     };
@@ -32,10 +37,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.State
     @javax.persistence.Column(name = "STATELITERAL")
     private String m_stateLiteral;
 
+    @Override
     public String getStateLiteral() {
         return m_stateLiteral;
     }
 
+    @Override
     public void setStateLiteral(String value) {
         this.m_stateLiteral = value;
     }

@@ -9,7 +9,7 @@ import java.util.List;
  * remove them. It can be queried, but not reset.
  * 
  * @author Steffen Becker
- *
+ * @deprecated Superseded by EDP2.
  */
 public class AdapterRegistry {
 

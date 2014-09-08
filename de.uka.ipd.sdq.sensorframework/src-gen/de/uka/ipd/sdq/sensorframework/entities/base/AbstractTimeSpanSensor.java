@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 public abstract class AbstractTimeSpanSensor extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractSensor
         implements de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor {

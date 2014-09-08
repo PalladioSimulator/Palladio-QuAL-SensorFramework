@@ -61,6 +61,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.dialogs.DialogType;
  * using a content provider.
  * 
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class ExperimentsView extends ViewPart {
     private TreeViewer viewer;

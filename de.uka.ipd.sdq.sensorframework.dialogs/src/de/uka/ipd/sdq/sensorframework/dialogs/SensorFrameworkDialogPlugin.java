@@ -4,6 +4,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class SensorFrameworkDialogPlugin extends AbstractUIPlugin {
 
     private static SensorFrameworkDialogPlugin plugin = null;
@@ -20,6 +23,7 @@ public class SensorFrameworkDialogPlugin extends AbstractUIPlugin {
      * 
      * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
      */
+    @Override
     public void start(BundleContext context) throws Exception {
         super.start(context);
         plugin = this;
@@ -30,6 +34,7 @@ public class SensorFrameworkDialogPlugin extends AbstractUIPlugin {
      * 
      * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
      */
+    @Override
     public void stop(BundleContext context) throws Exception {
         plugin = null;
         super.stop(context);

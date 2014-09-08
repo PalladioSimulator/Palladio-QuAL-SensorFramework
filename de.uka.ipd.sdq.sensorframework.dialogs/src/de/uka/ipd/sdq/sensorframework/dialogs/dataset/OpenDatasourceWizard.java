@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.uka.ipd.sdq.sensorframework.dialogs.dataset;
 
 import org.eclipse.core.resources.IResource;
@@ -19,6 +16,8 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * The OpenDatasourceWizard allows the user to choose which data source file to run.
  * 
  * @author Roman Andrej
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class OpenDatasourceWizard extends Wizard {
 

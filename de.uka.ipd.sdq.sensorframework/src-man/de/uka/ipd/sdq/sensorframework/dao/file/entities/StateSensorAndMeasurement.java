@@ -17,11 +17,13 @@ import de.uka.ipd.sdq.sensorframework.storage.lists.BackgroundMemoryList;
 
 /**
  * @author Ihssane El-Oudghiri
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class StateSensorAndMeasurement extends AbstractSensorAndMeasurements {
 
     private static final long serialVersionUID = -7553464522648015852L;
-    private BackgroundMemoryList<State> states;
+    private final BackgroundMemoryList<State> states;
 
     public StateSensorAndMeasurement(FileManager fm, ExperimentRun er, Sensor sensor) throws IOException {
         super(fm, er, sensor);
@@ -36,8 +38,9 @@ public class StateSensorAndMeasurement extends AbstractSensorAndMeasurements {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof StateSensorAndMeasurement))
+        if (!(obj instanceof StateSensorAndMeasurement)) {
             return false;
+        }
         StateSensorAndMeasurement sam = (StateSensorAndMeasurement) obj;
         return (super.equals(obj)) && (getStates().equals(sam.getStates()));
     }
@@ -55,6 +58,7 @@ public class StateSensorAndMeasurement extends AbstractSensorAndMeasurements {
         // Nothing to serialize here
     }
 
+    @Override
     public void setFactory(FileDAOFactory factory) {
     }
 

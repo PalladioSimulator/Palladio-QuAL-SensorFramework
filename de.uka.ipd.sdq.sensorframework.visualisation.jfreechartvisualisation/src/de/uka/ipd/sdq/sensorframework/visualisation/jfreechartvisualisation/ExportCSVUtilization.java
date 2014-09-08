@@ -17,13 +17,13 @@ import org.jfree.data.xy.XYSeries;
  * 
  * @see LoadCSVUtilization
  * @author hgroenda
- *
+ * @deprecated Superseded by EDP2.
  */
 public class ExportCSVUtilization extends Action {
     /** Logger for this class. */
     private static final Logger LOGGER = Logger.getLogger(ExportCSVUtilization.class);
     /** The compatible viewer. */
-    private IUtilizationSeriesExporter viewer;
+    private final IUtilizationSeriesExporter viewer;
 
     public ExportCSVUtilization(IUtilizationSeriesExporter freeChartUtilizationViewer) {
         super();

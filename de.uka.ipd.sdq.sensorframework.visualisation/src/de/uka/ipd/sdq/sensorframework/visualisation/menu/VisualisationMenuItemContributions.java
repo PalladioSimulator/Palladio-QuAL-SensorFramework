@@ -14,6 +14,8 @@ import de.uka.ipd.sdq.sensorframework.adapter.IAdapterFactory;
 /**
  * A compound contribution is a contribution item consisting of a dynamic list of contribution
  * items.
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class VisualisationMenuItemContributions extends CompoundContributionItem {
 

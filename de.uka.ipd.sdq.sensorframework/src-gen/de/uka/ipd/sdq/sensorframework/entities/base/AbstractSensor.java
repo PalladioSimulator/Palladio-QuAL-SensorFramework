@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "SENSOR")
 public abstract class AbstractSensor
@@ -19,10 +22,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.Sensor
     @javax.persistence.Column(name = "SENSORNAME")
     private String m_sensorName;
 
+    @Override
     public String getSensorName() {
         return m_sensorName;
     }
 
+    @Override
     public void setSensorName(String value) {
         this.m_sensorName = value;
     };
@@ -32,10 +37,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.Sensor
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long m_sensorID;
 
+    @Override
     public long getSensorID() {
         return m_sensorID;
     }
 
+    @Override
     public void setSensorID(long value) {
         this.m_sensorID = value;
     }

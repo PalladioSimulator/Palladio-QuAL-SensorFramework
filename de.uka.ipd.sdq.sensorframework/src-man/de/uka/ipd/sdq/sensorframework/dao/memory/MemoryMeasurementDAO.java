@@ -21,17 +21,19 @@ import de.uka.ipd.sdq.sensorframework.entities.impl.TimeSpanMeasurementImpl;
 /**
  * TODO
  *
+ * @deprecated Superseded by EDP2.
  */
 public class MemoryMeasurementDAO implements IMeasurementDAO {
 
     private long nextID = 0;
-    private IDAOFactory myFactory;
-    private HashMap<Long, Measurement> index = new HashMap<Long, Measurement>();
+    private final IDAOFactory myFactory;
+    private final HashMap<Long, Measurement> index = new HashMap<Long, Measurement>();
 
     public MemoryMeasurementDAO(IDAOFactory myFactory) {
         this.myFactory = myFactory;
     }
 
+    @Override
     public synchronized StateMeasurement addStateMeasurement(StateSensor p_sensor, State p_sensorstate,
             double p_eventtime) {
         StateMeasurement result = new StateMeasurementImpl(myFactory);
@@ -44,6 +46,7 @@ public class MemoryMeasurementDAO implements IMeasurementDAO {
         return result;
     }
 
+    @Override
     public synchronized TimeSpanMeasurement addTimeSpanMeasurement(TimeSpanSensor p_sensor, double p_eventtime,
             double p_timespan) {
         TimeSpanMeasurement result = new TimeSpanMeasurementImpl(myFactory);
@@ -56,6 +59,7 @@ public class MemoryMeasurementDAO implements IMeasurementDAO {
         return result;
     }
 
+    @Override
     public synchronized ScalabilityMeasurement addScalabilityMeasurement(ScalabilitySensor p_sensor, Double[] p_params,
             double p_result) {
         ScalabilityMeasurement result = new ScalabilityMeasurementImpl(myFactory);
@@ -68,14 +72,17 @@ public class MemoryMeasurementDAO implements IMeasurementDAO {
         return result;
     }
 
+    @Override
     public synchronized Measurement get(long id) {
         return index.get(id);
     }
 
+    @Override
     public synchronized Collection<Measurement> getMeasurements() {
         return Collections.unmodifiableCollection(index.values());
     }
 
+    @Override
     public synchronized void removeMeasurement(Measurement measurement, boolean doCascade) {
         if (measurement == null) {
             return;

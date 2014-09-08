@@ -18,7 +18,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
  * @author Steffen Becker
  * 
  *         Data Access Object (DAO) for persistence of Experiment Objects.
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class FileExperimentDAO extends AbstractFileDAO<Experiment> implements IExperimentDAO {
 
@@ -26,6 +26,7 @@ public class FileExperimentDAO extends AbstractFileDAO<Experiment> implements IE
         super(factory, idGen, FileDAOFactory.EXP_FILE_NAME_PREFIX);
     }
 
+    @Override
     public Experiment addExperiment(String p_experimentname) {
         ExperimentImpl exp = new ExperimentImpl(factory);
         exp.setExperimentID(idGen.getNextExperimentID());
@@ -37,19 +38,24 @@ public class FileExperimentDAO extends AbstractFileDAO<Experiment> implements IE
     }
 
     /** {@inheritDoc} */
+    @Override
     public Collection<Experiment> findByExperimentName(String searchKey) {
         List<Experiment> result = new ArrayList<Experiment>();
-        for (Experiment exp : getAllEntities())
-            if (exp.getExperimentName().equals(searchKey))
+        for (Experiment exp : getAllEntities()) {
+            if (exp.getExperimentName().equals(searchKey)) {
                 result.add(exp);
+            }
+        }
 
         return Collections.unmodifiableCollection(result);
     }
 
+    @Override
     public Collection<Experiment> getExperiments() {
         return this.getAllEntities();
     }
 
+    @Override
     public void removeExperiment(Experiment experiment, boolean doCascade) {
         this.removeEntity(experiment, doCascade);
     }

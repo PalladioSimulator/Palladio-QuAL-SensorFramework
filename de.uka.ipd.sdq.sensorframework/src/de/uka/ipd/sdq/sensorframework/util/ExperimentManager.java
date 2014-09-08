@@ -21,8 +21,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
  * 
  * @author Jens Happe
  * @author Steffen Becker
- * 
- *
+ * @deprecated Superseded by EDP2.
  */
 public class ExperimentManager {
 

@@ -5,9 +5,12 @@ import java.util.Iterator;
 
 import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class WarmupFilteredCollection extends AbstractMeasurementsCollection {
 
-    private long parameter;
+    private final long parameter;
 
     /**
      * Initializes a new WarmupFilteredCollection with the given measurements and filter parameter.

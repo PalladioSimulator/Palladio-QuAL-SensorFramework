@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public interface State
 
 {

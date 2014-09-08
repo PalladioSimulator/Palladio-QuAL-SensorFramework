@@ -30,7 +30,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * 
  * @author Ihssane El-Oudghiri
  * @author Steffen Becker
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentRun, Serializable {
 
@@ -70,10 +70,12 @@ public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentR
      * @see de.uka.ipd.sdq.sensorframework.entities.ExperimentRun#addMeasurement(de.uka.ipd.sdq.
      * sensorframework.entities.Measurement)
      */
+    @Override
     public void addMeasurement(Measurement value) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public ScalabilityMeasurement addScalabilityMeasurement(ScalabilitySensor p_sensor, Double[] p_parameters,
             double p_result) {
         AbstractSensorAndMeasurements sam = saveGetSensorAndMeasurements(p_sensor);
@@ -84,9 +86,11 @@ public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentR
         return null;
     }
 
+    @Override
     public StateMeasurement addStateMeasurement(StateSensor p_sensor, State p_sensorstate, double p_eventtime) {
-        if (p_sensor == null || p_sensorstate == null)
+        if (p_sensor == null || p_sensorstate == null) {
             throw new IllegalArgumentException("p_sensor or p_sensorstate is null, eventtime is " + p_eventtime);
+        }
 
         AbstractSensorAndMeasurements sam = saveGetSensorAndMeasurements(p_sensor);
         ((StateSensorAndMeasurement) sam).addState(p_eventtime, p_sensorstate);
@@ -96,6 +100,7 @@ public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentR
         return null;
     }
 
+    @Override
     public TimeSpanMeasurement addTimeSpanMeasurement(TimeSpanSensor p_sensor, double p_eventtime, double p_timespan) {
         AbstractSensorAndMeasurements sam = saveGetSensorAndMeasurements(p_sensor);
         ((TimeSpanSensorAndMeasurement) sam).addTimeSpan(p_eventtime, p_timespan);
@@ -108,16 +113,17 @@ public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentR
     private AbstractSensorAndMeasurements createMeasurementStorage(Sensor sensor) {
         AbstractSensorAndMeasurements sam = null;
         try {
-            if (sensor instanceof TimeSpanSensor)
+            if (sensor instanceof TimeSpanSensor) {
                 sam = new TimeSpanSensorAndMeasurement(((FileDAOFactory) factory).getFileManager(), this, sensor);
-            else if (sensor instanceof StateSensor)
+            } else if (sensor instanceof StateSensor) {
                 sam = new StateSensorAndMeasurement(((FileDAOFactory) factory).getFileManager(), this, sensor);
-            else if (sensor instanceof ScalabilitySensor)
+            } else if (sensor instanceof ScalabilitySensor) {
                 sam = new ScalabilitySensorAndMeasurement(((FileDAOFactory) factory).getFileManager(), this, sensor);
-            else
+            } else {
                 throw new RuntimeException("Invalid sensor type found: " + sensor.getClass()
                         + " is not a TimeSpanSensor, a StateSensor, "
                         + "or a Scalability sensor - fix your implementation, please!");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -127,28 +133,34 @@ public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentR
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof ExperimentRunImpl))
+        if (!(obj instanceof ExperimentRunImpl)) {
             return false;
+        }
         ExperimentRunImpl er = (ExperimentRunImpl) obj;
 
-        if (!(experimentRunID == er.getExperimentRunID() && experimentDateTime.equals(er.getExperimentDateTime())))
+        if (!(experimentRunID == er.getExperimentRunID() && experimentDateTime.equals(er.getExperimentDateTime()))) {
             return false;
+        }
 
         return true;
     }
 
+    @Override
     public String getExperimentDateTime() {
         return experimentDateTime;
     }
 
+    @Override
     public long getExperimentRunID() {
         return experimentRunID;
     }
 
+    @Override
     public long getID() {
         return this.getExperimentRunID();
     }
 
+    @Override
     public Collection<Measurement> getMeasurements() {
         ArrayList<Measurement> m = new ArrayList<Measurement>();
 
@@ -158,6 +170,7 @@ public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentR
         return m;
     }
 
+    @Override
     public SensorAndMeasurements getMeasurementsOfSensor(Sensor sensor) {
         if (!getParentExperiment().getSensors().contains(sensor)) {
             throw new IllegalArgumentException("Error: Sensor given is not part of this experiment "
@@ -186,10 +199,12 @@ public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentR
         return sam;
     }
 
+    @Override
     public void setExperimentDateTime(String experimetDateTime) {
         this.experimentDateTime = experimetDateTime;
     }
 
+    @Override
     public void setExperimentRunID(long experimentRunID) {
         this.experimentRunID = experimentRunID;
     }
@@ -197,8 +212,9 @@ public class ExperimentRunImpl extends AbstractFileEntity implements ExperimentR
     @Override
     public void setFactory(FileDAOFactory factory) {
         super.setFactory(factory);
-        if (measurementsForSensor == null)
+        if (measurementsForSensor == null) {
             measurementsForSensor = new HashMap<Long, AbstractSensorAndMeasurements>();
+        }
     }
 
     public void setParentExperimentID(long id) {

@@ -5,6 +5,9 @@ import java.util.AbstractList;
 import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 import de.uka.ipd.sdq.sensorframework.storage.lists.BackgroundMemoryList;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public abstract class MeasurementListWithBackgroundStore<T> extends AbstractList<Measurement> {
 
     protected final BackgroundMemoryList<T> measurementsStore;

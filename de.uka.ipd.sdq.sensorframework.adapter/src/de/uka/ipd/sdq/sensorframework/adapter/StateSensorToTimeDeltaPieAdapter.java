@@ -16,7 +16,7 @@ import de.uka.ipd.sdq.sensorframework.entities.StateSensor;
  * Used for resource utilization visualization.
  * 
  * @author brosch
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class StateSensorToTimeDeltaPieAdapter extends StateSensorToPieAdapter {
 
@@ -37,6 +37,7 @@ public class StateSensorToTimeDeltaPieAdapter extends StateSensorToPieAdapter {
      * de.uka.ipd.sdq.sensorframework.adapter.StateSensorToPieAdapter#calculateFractions(java.util
      * .HashMap)
      */
+    @Override
     protected double calculateFractions(final HashMap<String, Double> fractions) {
         for (State state : ((StateSensor) samInformation.getSensor()).getSensorStates()) {
             fractions.put(state.getStateLiteral(), 0.0);
@@ -64,6 +65,7 @@ public class StateSensorToTimeDeltaPieAdapter extends StateSensorToPieAdapter {
      * de.uka.ipd.sdq.sensorframework.adapter.StateSensorToPieAdapter#instantiatePie(java.lang.String
      * )
      */
+    @Override
     protected AbstractPie instantiatePie(String sensorName) {
         return new TimeDeltaPie(sensorName);
     }

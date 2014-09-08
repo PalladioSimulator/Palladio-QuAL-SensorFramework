@@ -17,7 +17,7 @@ import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.UtilizationBucketI
  * 
  * @see ExportCSVUtilization
  * @author hgroenda
- *
+ * @deprecated Superseded by EDP2.
  */
 public class LoadCSVUtilization extends Action {
     /** Logger for this class. */
@@ -25,7 +25,7 @@ public class LoadCSVUtilization extends Action {
     /** Utilization values. */
     private Utilization utilization;
     /** The viewer accepting the utilization input. */
-    private IUtilizationAccepter viewer;
+    private final IUtilizationAccepter viewer;
 
     public Utilization getUtilization() {
         return utilization;

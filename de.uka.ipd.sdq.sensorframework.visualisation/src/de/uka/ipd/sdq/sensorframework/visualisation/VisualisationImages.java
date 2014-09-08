@@ -3,6 +3,9 @@ package de.uka.ipd.sdq.sensorframework.visualisation;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class VisualisationImages {
 
     public static final String RUN = "lrun_obj";

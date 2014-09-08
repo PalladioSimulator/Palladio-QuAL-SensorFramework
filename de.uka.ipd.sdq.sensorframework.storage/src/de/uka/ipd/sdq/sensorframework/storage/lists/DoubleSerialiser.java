@@ -4,13 +4,16 @@ package de.uka.ipd.sdq.sensorframework.storage.lists;
  * A serialiser to serialise doubles
  * 
  * @author Steffen Becker
+ * @deprecated Superseded by EDP2.
  */
 public class DoubleSerialiser implements ISerialiser<Double> {
 
+    @Override
     public long getElementLength() {
         return 8;
     }
 
+    @Override
     public byte[] serialise(Object[] objects, int count) {
         byte[] block = new byte[(int) (count * getElementLength())];
         int blockPos = 0;
@@ -24,6 +27,7 @@ public class DoubleSerialiser implements ISerialiser<Double> {
         return block;
     }
 
+    @Override
     public Double[] deserialise(byte[] bytes) {
         Double[] doubles = new Double[(int) (bytes.length / getElementLength())];
         int blockPos = 0;

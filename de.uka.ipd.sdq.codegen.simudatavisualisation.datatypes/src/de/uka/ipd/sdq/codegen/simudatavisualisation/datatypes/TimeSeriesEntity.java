@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class TimeSeriesEntity {
     double xValue = 0;
     double yValue = 0;

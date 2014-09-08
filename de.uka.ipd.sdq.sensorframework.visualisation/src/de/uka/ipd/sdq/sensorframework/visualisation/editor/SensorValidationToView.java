@@ -20,7 +20,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.dialogs.ViewAndAdapterFactor
  * Sensor->View - that only Views for sensors can be selected that can represent this sensor
  * 
  * @author Roman Andrej
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class SensorValidationToView {
 
@@ -60,8 +60,9 @@ public class SensorValidationToView {
         for (int i = 0; i < views.length; i++) {
             ViewAndAdapterFactory viewer = (ViewAndAdapterFactory) views[i];
             String editorId = viewer.getView().getAttribute("editorID");
-            if (activeEditorId.equals(editorId))
+            if (activeEditorId.equals(editorId)) {
                 return true;
+            }
         }
         return false;
     }
@@ -98,10 +99,11 @@ public class SensorValidationToView {
         dialog.setElements(elements);
         dialog.open();
         Object[] results = dialog.getResult();
-        if (results != null)
+        if (results != null) {
             return (ViewAndAdapterFactory) results[0];
-        else
+        } else {
             return null;
+        }
     }
 }
 

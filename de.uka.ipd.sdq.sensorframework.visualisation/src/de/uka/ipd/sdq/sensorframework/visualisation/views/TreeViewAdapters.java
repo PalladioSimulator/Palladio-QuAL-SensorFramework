@@ -21,10 +21,12 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
 
 /**
  * Adapter class that supplies functionality applicable to Experiments
+ * 
+ * @deprecated Superseded by EDP2.
  */
 class ExperimentsAdapter implements ISelectionChangedListener {
 
-    private TreeViewer myChildTree;
+    private final TreeViewer myChildTree;
 
     private Action myDeleteAction;
     private Action myRenameAction;
@@ -69,6 +71,7 @@ class ExperimentsAdapter implements ISelectionChangedListener {
         // don't add anything to the toolbar
     }
 
+    @Override
     public void selectionChanged(SelectionChangedEvent event) {
         updateNavigationButtons();
     }
@@ -218,6 +221,7 @@ class ExperimentsAdapter implements ISelectionChangedListener {
 
         private class NameValidator implements IInputValidator {
 
+            @Override
             public String isValid(String newText) {
                 if (newText == "") {
                     return "Please enter a name!";

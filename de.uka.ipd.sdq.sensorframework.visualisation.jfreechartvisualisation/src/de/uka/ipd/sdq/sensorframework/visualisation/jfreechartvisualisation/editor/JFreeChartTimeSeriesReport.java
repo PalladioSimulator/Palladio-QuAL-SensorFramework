@@ -13,6 +13,9 @@ import de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.AbstractReportView;
 import de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.JFreeChartTimeSeriesViewer;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class JFreeChartTimeSeriesReport extends AbstractReportView implements ITabbedPropertySheetPageContributor,
         IVisualisation<TimeSeries> {
 
@@ -41,8 +44,9 @@ public class JFreeChartTimeSeriesReport extends AbstractReportView implements IT
     @Override
     protected void generateVisualization(List<DataAdapter> list) {
         ArrayList<TimeSeries> viewerInput = new ArrayList<TimeSeries>();
-        for (DataAdapter a : list)
+        for (DataAdapter a : list) {
             viewerInput.add((TimeSeries) a.getAdaptedObject());
+        }
         this.setInput(viewerInput);
     }
 
@@ -52,6 +56,7 @@ public class JFreeChartTimeSeriesReport extends AbstractReportView implements IT
      * @see
      * de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation#addInput(java.util.Collection)
      */
+    @Override
     public void addInput(Collection<TimeSeries> c) {
         // The implementation is not necessary.
     }
@@ -62,6 +67,7 @@ public class JFreeChartTimeSeriesReport extends AbstractReportView implements IT
      * @see
      * de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation#deleteInput(java.util.Collection)
      */
+    @Override
     public void deleteInput(Collection<TimeSeries> c) {
         // The implementation is not necessary.
     }
@@ -72,6 +78,7 @@ public class JFreeChartTimeSeriesReport extends AbstractReportView implements IT
      * @see
      * de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation#setInput(java.util.Collection)
      */
+    @Override
     public void setInput(Collection<TimeSeries> c) {
         viewer.setData(c);
     }

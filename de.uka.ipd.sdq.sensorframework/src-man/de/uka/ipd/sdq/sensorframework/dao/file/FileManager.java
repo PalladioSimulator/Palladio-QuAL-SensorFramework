@@ -23,24 +23,25 @@ import de.uka.ipd.sdq.sensorframework.storage.lists.BackgroundMemoryList;
  * 
  *         This class provides methods to deal with files. Especially to serialize and deserialize
  *         an object to a file.
+ * @deprecated Superseded by EDP2.
  */
 public class FileManager {
 
     /**
      * Directory in which this file provider stores its data
      */
-    private String rootDirectory;
+    private final String rootDirectory;
 
     /**
      * The parent DAOFactory which stores its data using this class
      */
-    private FileDAOFactory factory;
+    private final FileDAOFactory factory;
 
     /**
      * A registry of open BackgroundMemoryLists. Used to finally close all open lists on closing
      * this file provider
      */
-    private ArrayList<BackgroundMemoryList<?>> openLists = new ArrayList<BackgroundMemoryList<?>>();
+    private final ArrayList<BackgroundMemoryList<?>> openLists = new ArrayList<BackgroundMemoryList<?>>();
 
     public FileManager(String rootDirectory, FileDAOFactory factory) {
         checkPath(rootDirectory);
@@ -56,8 +57,9 @@ public class FileManager {
      */
     private void checkPath(String path) {
         File f = new File(path);
-        if (!f.isDirectory())
+        if (!f.isDirectory()) {
             throw new IllegalArgumentException("Error: " + path + " is not a directory!");
+        }
     }
 
     /**

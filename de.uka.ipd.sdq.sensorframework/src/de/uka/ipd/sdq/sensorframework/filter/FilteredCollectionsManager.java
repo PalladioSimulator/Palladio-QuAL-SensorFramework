@@ -11,6 +11,7 @@ import de.uka.ipd.sdq.sensorframework.entities.SensorAndMeasurements;
  * The class creates the filtered collection from measurements collection.
  * 
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class FilteredCollectionsManager {
 

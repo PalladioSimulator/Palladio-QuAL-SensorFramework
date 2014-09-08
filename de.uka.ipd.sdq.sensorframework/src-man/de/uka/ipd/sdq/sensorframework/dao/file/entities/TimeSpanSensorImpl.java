@@ -9,6 +9,7 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor;
 /**
  * @author Ihssane El-Oudghiri
  * 
+ * @deprecated Superseded by EDP2.
  */
 public class TimeSpanSensorImpl extends SensorImpl implements TimeSpanSensor {
 
@@ -20,11 +21,13 @@ public class TimeSpanSensorImpl extends SensorImpl implements TimeSpanSensor {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof TimeSpanSensorImpl))
+        if (!(obj instanceof TimeSpanSensorImpl)) {
             return false;
+        }
         TimeSpanSensorImpl s = (TimeSpanSensorImpl) obj;
-        if (!(sensorID == s.getSensorID() && sensorName.equals(s.getSensorName())))
+        if (!(sensorID == s.getSensorID() && sensorName.equals(s.getSensorName()))) {
             return false;
+        }
         return true;
     }
 

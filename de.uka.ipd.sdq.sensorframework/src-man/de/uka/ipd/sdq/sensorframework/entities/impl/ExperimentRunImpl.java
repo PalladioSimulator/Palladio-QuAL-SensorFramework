@@ -9,6 +9,9 @@ import de.uka.ipd.sdq.sensorframework.entities.StateMeasurement;
 import de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 public class ExperimentRunImpl extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractExperimentRun {
 
@@ -29,13 +32,15 @@ public class ExperimentRunImpl extends de.uka.ipd.sdq.sensorframework.entities.b
         for (Measurement m : this.getMeasurements()) {
             if (m instanceof TimeSpanMeasurement) {
                 TimeSpanMeasurement tsm = (TimeSpanMeasurement) m;
-                if (tsm.getSensor() == sensor)
+                if (tsm.getSensor() == sensor) {
                     result.add(m);
+                }
             }
             if (m instanceof StateMeasurement) {
                 StateMeasurement tsm = (StateMeasurement) m;
-                if (tsm.getSensor() == sensor)
+                if (tsm.getSensor() == sensor) {
                     result.add(m);
+                }
             }
         }
         return new SensorAndMeasurements(sensor, result);

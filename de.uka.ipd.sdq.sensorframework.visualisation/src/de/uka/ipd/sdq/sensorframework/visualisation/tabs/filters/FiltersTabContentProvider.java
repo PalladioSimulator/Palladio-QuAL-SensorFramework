@@ -10,6 +10,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEditorInput;
 
 /**
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class FiltersTabContentProvider implements IStructuredContentProvider {
 
@@ -18,6 +19,7 @@ public class FiltersTabContentProvider implements IStructuredContentProvider {
      * 
      * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
      */
+    @Override
     public Object[] getElements(Object inputElement) {
         if (inputElement instanceof ConfigEditorInput) {
             ConfigEditorInput configuration = (ConfigEditorInput) inputElement;
@@ -31,6 +33,7 @@ public class FiltersTabContentProvider implements IStructuredContentProvider {
      * 
      * @see org.eclipse.jface.viewers.IContentProvider#dispose()
      */
+    @Override
     public void dispose() {
         // The implementation is not necessary.
     }
@@ -42,6 +45,7 @@ public class FiltersTabContentProvider implements IStructuredContentProvider {
      * org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer,
      * java.lang.Object, java.lang.Object)
      */
+    @Override
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
         // The implementation is not necessary.
     }

@@ -5,6 +5,9 @@ import java.util.Properties;
 
 import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class OutlierFilteredFactory implements IFilteredCollectionFactory {
 
     /** The properties settings for this filtered collection */
@@ -25,6 +28,7 @@ public class OutlierFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public AbstractMeasurementsCollection getFilteredCollection(Collection<Measurement> filtrate) {
         return new OutlierFilteredCollection(filtrate, DEFAULT_OUTLIER);
     }
@@ -32,6 +36,7 @@ public class OutlierFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Properties getProperties() {
         return filterProperties;
     }
@@ -39,6 +44,7 @@ public class OutlierFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setProperties(Properties newProperties) {
         filterProperties = newProperties;
     }
@@ -46,6 +52,7 @@ public class OutlierFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean canFilter(Collection<Measurement> filtrate, Number attribute) {
         return attribute.doubleValue() < 1.0;
     }
@@ -53,6 +60,7 @@ public class OutlierFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public AbstractMeasurementsCollection getFilteredCollection(Collection<Measurement> filtrate, Number parameter) {
         filterProperties.put(OUTLIER, parameter.doubleValue());
         return new OutlierFilteredCollection(filtrate, parameter.doubleValue());
@@ -61,6 +69,7 @@ public class OutlierFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getFilterFactoryID() {
         return "Outlier Filter";
     }
@@ -68,6 +77,7 @@ public class OutlierFilteredFactory implements IFilteredCollectionFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Double convertToType(String type) {
         return Double.parseDouble(type);
     }

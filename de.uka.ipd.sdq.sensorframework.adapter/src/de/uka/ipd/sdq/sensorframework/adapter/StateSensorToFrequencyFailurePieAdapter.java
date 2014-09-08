@@ -10,6 +10,9 @@ import de.uka.ipd.sdq.sensorframework.entities.State;
 import de.uka.ipd.sdq.sensorframework.entities.StateMeasurement;
 import de.uka.ipd.sdq.sensorframework.entities.StateSensor;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class StateSensorToFrequencyFailurePieAdapter extends StateSensorToPieAdapter {
 
     /**
@@ -28,6 +31,7 @@ public class StateSensorToFrequencyFailurePieAdapter extends StateSensorToPieAda
      * @seede.uka.ipd.sdq.sensorframework.adapter.StateSensorToPieAdapter#
      * calculateFractions(java.util.HashMap)
      */
+    @Override
     protected double calculateFractions(final HashMap<String, Double> fractions) {
         for (State state : ((StateSensor) samInformation.getSensor()).getSensorStates()) {
             if (!state.getStateLiteral().equals("Success")) {
@@ -54,6 +58,7 @@ public class StateSensorToFrequencyFailurePieAdapter extends StateSensorToPieAda
      * @see de.uka.ipd.sdq.sensorframework.adapter.StateSensorToPieAdapter#instantiatePie
      * (java.lang.String)
      */
+    @Override
     protected AbstractPie instantiatePie(String sensorName) {
         return new FrequencyFailurePie(sensorName);
     }

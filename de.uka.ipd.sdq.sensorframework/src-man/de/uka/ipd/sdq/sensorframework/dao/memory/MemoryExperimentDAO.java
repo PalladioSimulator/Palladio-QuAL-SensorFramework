@@ -14,18 +14,20 @@ import de.uka.ipd.sdq.sensorframework.entities.impl.ExperimentImpl;
 /**
  * @author Steffen Becker
  *
+ * @deprecated Superseded by EDP2.
  */
 public class MemoryExperimentDAO implements IExperimentDAO {
 
     private long nextID = 0;
-    private HashMap<Long, Experiment> index = new HashMap<Long, Experiment>();
+    private final HashMap<Long, Experiment> index = new HashMap<Long, Experiment>();
 
-    private MemoryDAOFactory factory;
+    private final MemoryDAOFactory factory;
 
     public MemoryExperimentDAO(MemoryDAOFactory memoryDAOFactory) {
         this.factory = memoryDAOFactory;
     }
 
+    @Override
     public synchronized Experiment addExperiment(String p_experimentname) {
         ExperimentImpl result = new ExperimentImpl(factory);
         result.setExperimentID(nextID++);
@@ -36,20 +38,24 @@ public class MemoryExperimentDAO implements IExperimentDAO {
         return result;
     }
 
+    @Override
     public synchronized Experiment get(long id) {
         return index.get(id);
     }
 
+    @Override
     public synchronized Collection<Experiment> getExperiments() {
         return Collections.unmodifiableCollection(index.values());
     }
 
     /** {@inheritDoc} */
+    @Override
     public synchronized Collection<Experiment> findByExperimentName(String searchKey) {
         ArrayList<Experiment> result = new ArrayList<Experiment>();
         for (Experiment e : this.index.values()) {
-            if (e.getExperimentName().equals(searchKey))
+            if (e.getExperimentName().equals(searchKey)) {
                 result.add(e);
+            }
         }
         return Collections.unmodifiableCollection(result);
     }
@@ -57,6 +63,7 @@ public class MemoryExperimentDAO implements IExperimentDAO {
     public void store(Experiment e) {
     }
 
+    @Override
     public synchronized void removeExperiment(Experiment experiment, boolean doCascade) {
         if (experiment == null) {
             return;
@@ -75,6 +82,7 @@ public class MemoryExperimentDAO implements IExperimentDAO {
         index.remove(experiment.getExperimentID());
     }
 
+    @Override
     public void storeAll() {
         // Nothing to do here
     }

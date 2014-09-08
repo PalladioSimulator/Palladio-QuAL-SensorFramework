@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 public abstract class AbstractStateSensor
 
@@ -21,10 +24,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.StateSensor
     @javax.persistence.JoinColumn(name = "FK_INITIALSTATE")
     private de.uka.ipd.sdq.sensorframework.entities.State m_initialState;
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.State getInitialState() {
         return m_initialState;
     }
 
+    @Override
     public void setInitialState(de.uka.ipd.sdq.sensorframework.entities.State value) {
         this.m_initialState = value;
     }
@@ -41,8 +46,9 @@ implements de.uka.ipd.sdq.sensorframework.entities.StateSensor
     }, inverseJoinColumns = {
         @javax.persistence.JoinColumn(name = "SENSORSTATE_ID")
     })
-    private java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.State> m_sensorStates = new java.util.ArrayList<de.uka.ipd.sdq.sensorframework.entities.State>();
+    private final java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.State> m_sensorStates = new java.util.ArrayList<de.uka.ipd.sdq.sensorframework.entities.State>();
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.State addState(
 
     String p_stateliteral) {
@@ -55,10 +61,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.StateSensor
         return result;
     }
 
+    @Override
     public void addSensorState(de.uka.ipd.sdq.sensorframework.entities.State value) {
         this.m_sensorStates.add(value);
     }
 
+    @Override
     public java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.State> getSensorStates() {
         return this.m_sensorStates;
     }

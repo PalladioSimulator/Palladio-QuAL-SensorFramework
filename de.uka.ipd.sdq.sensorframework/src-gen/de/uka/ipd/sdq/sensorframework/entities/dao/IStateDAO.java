@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.dao;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public interface IStateDAO {
 
     de.uka.ipd.sdq.sensorframework.entities.State addState(

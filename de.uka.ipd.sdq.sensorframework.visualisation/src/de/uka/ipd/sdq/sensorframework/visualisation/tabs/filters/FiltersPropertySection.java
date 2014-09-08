@@ -37,6 +37,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEditorInput;
  * their pure sequence for measured values indicated in the opinion.
  * 
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class FiltersPropertySection extends AbstractPropertySection {
 
@@ -103,6 +104,7 @@ public class FiltersPropertySection extends AbstractPropertySection {
 
         viewer.setCellModifier(new FiltersTabCellModifier(this));
         viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 Object object = ((IStructuredSelection) viewer.getSelection()).getFirstElement();
                 if (object instanceof IFilteredCollectionFactory) {

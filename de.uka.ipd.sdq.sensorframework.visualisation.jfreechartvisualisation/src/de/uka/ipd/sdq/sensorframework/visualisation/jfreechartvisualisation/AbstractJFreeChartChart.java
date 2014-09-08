@@ -26,9 +26,12 @@ import org.jfree.experimental.chart.swt.ChartComposite;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 class SaveImageAsAction extends Action {
 
-    private AbstractJFreeChartChart<?> chartViewer;
+    private final AbstractJFreeChartChart<?> chartViewer;
 
     public SaveImageAsAction(AbstractJFreeChartChart<?> abstractJFreeChartChart) {
         super();
@@ -60,7 +63,7 @@ class SaveImageAsAction extends Action {
 
 class ToggleLegendAction extends Action {
 
-    private AbstractJFreeChartChart<?> chartViewer;
+    private final AbstractJFreeChartChart<?> chartViewer;
     private LegendTitle chartLegend;
 
     public ToggleLegendAction(AbstractJFreeChartChart<?> abstractJFreeChartChart) {
@@ -85,7 +88,7 @@ class ToggleLegendAction extends Action {
 
 class SaveSVGAsAction extends Action {
 
-    private AbstractJFreeChartChart<?> chartViewer;
+    private final AbstractJFreeChartChart<?> chartViewer;
 
     public SaveSVGAsAction(AbstractJFreeChartChart<?> abstractJFreeChartChart) {
         super();

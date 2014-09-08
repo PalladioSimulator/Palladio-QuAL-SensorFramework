@@ -10,7 +10,7 @@ package de.uka.ipd.sdq.sensorframework.entities.dao;
  * 
  * @author ?
  * @documentedBy: Anne
- *
+ * @deprecated Superseded by EDP2.
  */
 public interface IDAOFactory {
     public static long ID_NOT_SET = -1;

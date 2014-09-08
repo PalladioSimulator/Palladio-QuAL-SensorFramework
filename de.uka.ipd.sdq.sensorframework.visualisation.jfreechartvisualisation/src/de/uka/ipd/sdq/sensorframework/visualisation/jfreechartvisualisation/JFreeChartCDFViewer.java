@@ -12,8 +12,12 @@ import org.jfree.data.xy.XYSeries;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.Histogram;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.HistogramBucketInformation;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class JFreeChartCDFViewer extends AbstractJFreeChartWidthViewer implements IHistogramAccepter, ISeriesExporter {
 
+    @Override
     public XYSeries getSeries() {
         return densityDataset.getSeries(0);
     }
@@ -35,6 +39,7 @@ public class JFreeChartCDFViewer extends AbstractJFreeChartWidthViewer implement
      * @see de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.IHistogramAccepter#
      * addHistogram(de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.Histogram)
      */
+    @Override
     public void addHistogram(Histogram histogram) {
         XYSeries density = new XYSeries(histogram.getTitle(), true, false);
         double sum = 0;
@@ -47,6 +52,7 @@ public class JFreeChartCDFViewer extends AbstractJFreeChartWidthViewer implement
         this.redraw();
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     protected void initChart() {
         chart = ChartFactory.createXYLineChart("Cumulative Distribution Function", "Time", "Probability",
@@ -57,18 +63,22 @@ public class JFreeChartCDFViewer extends AbstractJFreeChartWidthViewer implement
         plot.getRenderer().setStroke(new BasicStroke(3));
     }
 
+    @Override
     protected XYSeries computeDensities(Histogram hist) {
         double sum = 0;
         XYSeries density;
         density = new XYSeries(hist.getTitle(), true, false);
         for (HistogramBucketInformation bucketInformation : hist.getBucketInformation()) {
-            if (sum == 0) // is only executed the first time in the loop.
+            if (sum == 0) {
                 density.add(bucketInformation.getValue(), sum);
+            }
             sum += bucketInformation.getProbability();
             if (sum != 0)
+             {
                 density.add(bucketInformation.getValue() + hist.getBucketWidth(), sum);
             // if (sum == 1)
             // density.add(bucketInformation.getValue() + hist.getBucketWidth(), sum);
+            }
         }
         return density;
     }

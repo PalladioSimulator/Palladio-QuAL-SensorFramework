@@ -8,6 +8,7 @@ import java.util.List;
  * visualized using the information about the bucket width and the Utilization for the buckets.
  * 
  * @author khameershaik
+ * @deprecated Superseded by EDP2.
  */
 public class Utilization {
     /** The default width for Utilization classes */

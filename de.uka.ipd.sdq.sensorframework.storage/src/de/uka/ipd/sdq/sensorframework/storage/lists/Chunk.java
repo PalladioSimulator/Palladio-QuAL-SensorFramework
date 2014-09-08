@@ -7,15 +7,16 @@ import java.io.RandomAccessFile;
  * @author Steffen Becker
  *
  * @param <T>
+ * @deprecated Superseded by EDP2.
  */
 public class Chunk<T> {
-    private long myFilePos;
+    private final long myFilePos;
     private T[] data = null;
     private int nextFreeElement = 0;
-    private RandomAccessFile raf;
-    private ISerialiser<T> serialiser;
+    private final RandomAccessFile raf;
+    private final ISerialiser<T> serialiser;
     private boolean changed;
-    private long fromElement;
+    private final long fromElement;
 
     @SuppressWarnings("unchecked")
     public Chunk(RandomAccessFile raf, ISerialiser<T> serialiser) throws IOException {
@@ -38,8 +39,9 @@ public class Chunk<T> {
     }
 
     public void add(T d) {
-        if (d == null)
+        if (d == null) {
             throw new IllegalArgumentException("Background memory list does not support null values.");
+        }
         data[nextFreeElement++] = d;
         changed = true;
     }
@@ -49,7 +51,7 @@ public class Chunk<T> {
     }
 
     public T get(int index) {
-        return (T) data[index];
+        return data[index];
     }
 
     public boolean isFull() {
@@ -69,8 +71,9 @@ public class Chunk<T> {
             data = newData;
         } else {
             data = (T[]) (new Object[BackgroundMemoryList.MEMORY_CHUNKS_SIZE]);
-            for (int i = 0; i < newData.length; i++)
+            for (int i = 0; i < newData.length; i++) {
                 data[i] = newData[i];
+            }
         }
         nextFreeElement = newData.length;
     }

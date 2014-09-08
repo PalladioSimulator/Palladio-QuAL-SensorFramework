@@ -8,9 +8,12 @@ import org.eclipse.ui.PlatformUI;
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class CopyClipboardAsR extends Action {
 
-    private ISeriesExporter viewer;
+    private final ISeriesExporter viewer;
 
     public CopyClipboardAsR(ISeriesExporter freeChartHistogramViewer) {
         super();

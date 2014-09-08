@@ -6,6 +6,8 @@ import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class VisualisationPlugin extends AbstractUIPlugin {
 

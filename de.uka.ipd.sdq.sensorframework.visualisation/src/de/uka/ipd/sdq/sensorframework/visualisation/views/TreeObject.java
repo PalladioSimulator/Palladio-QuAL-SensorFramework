@@ -11,6 +11,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 /**
  * @author admin
  *
+ * @deprecated Superseded by EDP2.
  */
 public class TreeObject {
     private final Object object;

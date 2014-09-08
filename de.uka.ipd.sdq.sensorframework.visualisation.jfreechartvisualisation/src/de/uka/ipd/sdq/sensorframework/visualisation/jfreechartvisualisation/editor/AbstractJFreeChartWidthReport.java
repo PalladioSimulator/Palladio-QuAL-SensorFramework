@@ -28,6 +28,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.Abst
  * classes width.
  * 
  * @author groenda
+ * @deprecated Superseded by EDP2.
  */
 public abstract class AbstractJFreeChartWidthReport extends AbstractReportView implements IVisualisation<Histogram> {
 
@@ -66,11 +67,13 @@ public abstract class AbstractJFreeChartWidthReport extends AbstractReportView i
         widthInput.setLayoutData(new RowData(60, SWT.DEFAULT));
         Listener listener = new Listener() {
 
+            @Override
             public void handleEvent(Event event) {
                 switch (event.type) {
                 case SWT.KeyDown:
-                    if (event.character == SWT.CR)
+                    if (event.character == SWT.CR) {
                         updateHistogramWidth(Double.parseDouble(widthInput.getText()));
+                    }
                     break;
                 case SWT.FocusOut:
                     updateHistogramWidth(Double.parseDouble(widthInput.getText()));
@@ -115,6 +118,7 @@ public abstract class AbstractJFreeChartWidthReport extends AbstractReportView i
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setInput(Collection<Histogram> histograms) {
         viewer.setData(histograms);
         this.widthInput.setText("" + histogramWidth);
@@ -125,8 +129,9 @@ public abstract class AbstractJFreeChartWidthReport extends AbstractReportView i
      */
     @Override
     protected void generateVisualization(List<DataAdapter> newList) {
-        if (newList == null || newList.isEmpty())
+        if (newList == null || newList.isEmpty()) {
             throw new RuntimeException("Histogram reports must have at least one data input.");
+        }
         Properties adapterProperties = null;
         // Determine width of "old" histogram, if existing
         double newWidth = Double.NaN;
@@ -199,6 +204,7 @@ public abstract class AbstractJFreeChartWidthReport extends AbstractReportView i
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addInput(Collection<Histogram> c) {
         // The implementation is not necessary.
     }
@@ -206,6 +212,7 @@ public abstract class AbstractJFreeChartWidthReport extends AbstractReportView i
     /**
      * {@inheritDoc}
      */
+    @Override
     public void deleteInput(Collection<Histogram> c) {
         // The implementation is not necessary.
     }

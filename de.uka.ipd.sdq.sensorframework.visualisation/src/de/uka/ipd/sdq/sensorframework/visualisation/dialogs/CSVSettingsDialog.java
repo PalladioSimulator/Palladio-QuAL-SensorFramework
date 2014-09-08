@@ -21,6 +21,7 @@ import org.eclipse.ui.PlatformUI;
  * A dialog for the settings of the CSV data export.
  * 
  * @author David Scherr
+ * @deprecated Superseded by EDP2.
  */
 public class CSVSettingsDialog extends Dialog {
 
@@ -37,10 +38,10 @@ public class CSVSettingsDialog extends Dialog {
     private boolean isFileOrDirDialogCanceled = false;
     private Combo cmbSeparator;
     private String selectedSeparator = Separator.Semicolon.toString();
-    private String[] separatorItems;
+    private final String[] separatorItems;
     private Label lblHeader;
     private String fileExtension = "";
-    private DialogType dialogType;
+    private final DialogType dialogType;
 
     /**
      * Create the dialog.
@@ -186,6 +187,7 @@ public class CSVSettingsDialog extends Dialog {
             {
                 cmbSeparator = new Combo(grpSeparator, SWT.NONE);
                 cmbSeparator.addSelectionListener(new SelectionAdapter() {
+                    @Override
                     public void widgetSelected(SelectionEvent e) {
                         selectedSeparator = cmbSeparator.getItem(cmbSeparator.getSelectionIndex());
                     }
@@ -205,6 +207,7 @@ public class CSVSettingsDialog extends Dialog {
             {
                 chkHeader = new Button(grpSeparator, SWT.CHECK);
                 chkHeader.addSelectionListener(new SelectionAdapter() {
+                    @Override
                     public void widgetSelected(SelectionEvent e) {
                         isHeader = chkHeader.getSelection();
                     }
@@ -221,6 +224,7 @@ public class CSVSettingsDialog extends Dialog {
         {
             btnSave = new Button(frmDialog, SWT.NONE);
             btnSave.addSelectionListener(new SelectionAdapter() {
+                @Override
                 public void widgetSelected(SelectionEvent e) {
                     if (dialogType == DialogType.FILE) {
                         saveAsCSVFileDialog();
@@ -239,6 +243,7 @@ public class CSVSettingsDialog extends Dialog {
         {
             Button btnCancel = new Button(frmDialog, SWT.NONE);
             btnCancel.addSelectionListener(new SelectionAdapter() {
+                @Override
                 public void widgetSelected(SelectionEvent e) {
                     pathFileOrDir = "";
                     frmDialog.close();

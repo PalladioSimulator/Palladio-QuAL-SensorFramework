@@ -18,16 +18,17 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  *         existing objects in adapters or simply return objects as-is. These objects may be
  *         sensitive to the current input of the view, or ignore it and always show the same content
  *         (like Task List, for example).
+ * @deprecated Superseded by EDP2.
  */
 public class TreeContainer implements IAdaptable {
 
     private Experiment experiment;
     private List<TreeObject> elements = null;
     private String name;
-    private int type;
+    private final int type;
 
-    private String EXPERIMENT_RUNS_NAME = "Experiment Runs";
-    private String SENSORS_NAME = "Sensors";
+    private final String EXPERIMENT_RUNS_NAME = "Experiment Runs";
+    private final String SENSORS_NAME = "Sensors";
 
     /**
      * REFACTORIN!!
@@ -41,15 +42,17 @@ public class TreeContainer implements IAdaptable {
 
         if (type == TreeContentProvider.EXPERIMENT_RUNS) {
             Collection<ExperimentRun> runs = experiment.getExperimentRuns();
-            for (ExperimentRun r : runs)
+            for (ExperimentRun r : runs) {
                 elements.add(new TreeObject(r, datasource, experiment));
+            }
 
             this.name = EXPERIMENT_RUNS_NAME;
         }
         if (type == TreeContentProvider.SENSORS) {
             Collection<Sensor> sensors = experiment.getSensors();
-            for (Sensor s : sensors)
+            for (Sensor s : sensors) {
                 elements.add(new TreeObject(s, datasource, experiment));
+            }
 
             this.name = SENSORS_NAME;
         }
@@ -67,6 +70,7 @@ public class TreeContainer implements IAdaptable {
         this.experiment = parent;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public Object getAdapter(Class adapter) {
         // if (adapter == de.uka.ipd.sdq.sensorfactory.entities.ExperimentRun.class) {

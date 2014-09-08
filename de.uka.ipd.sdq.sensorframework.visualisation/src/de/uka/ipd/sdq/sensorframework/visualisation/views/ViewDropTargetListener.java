@@ -16,10 +16,13 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEditorInput;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEntry;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.SensorValidationToView;
 
-/** @author admin */
+/** 
+ * @author admin
+ * @deprecated Superseded by EDP2.
+ */
 public class ViewDropTargetListener extends DropTargetAdapter {
 
-    private ConfigEditorInput configEditorInput;
+    private final ConfigEditorInput configEditorInput;
 
     public ViewDropTargetListener(IEditorInput editorInput) {
         this.configEditorInput = (ConfigEditorInput) editorInput;
@@ -33,10 +36,11 @@ public class ViewDropTargetListener extends DropTargetAdapter {
     @Override
     public void dragEnter(DropTargetEvent event) {
         if (event.detail == DND.DROP_DEFAULT) {
-            if ((event.operations & DND.DROP_COPY) != 0)
+            if ((event.operations & DND.DROP_COPY) != 0) {
                 event.detail = DND.DROP_COPY;
-            else
+            } else {
                 event.detail = DND.DROP_NONE;
+            }
         }
     }
 
@@ -60,10 +64,11 @@ public class ViewDropTargetListener extends DropTargetAdapter {
     @Override
     public void dragOperationChanged(DropTargetEvent event) {
         if (event.detail == DND.DROP_DEFAULT) {
-            if ((event.operations & DND.DROP_COPY) != 0)
+            if ((event.operations & DND.DROP_COPY) != 0) {
                 event.detail = DND.DROP_COPY;
-            else
+            } else {
                 event.detail = DND.DROP_NONE;
+            }
         }
     }
 

@@ -26,16 +26,19 @@ import org.eclipse.swt.widgets.Table;
 import de.uka.ipd.sdq.sensorframework.dao.memory.MemoryDAOFactory;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class DatasourceDialog extends TitleAreaDialog {
 
     private static String DIALOG_TITLE = "Create/Load the data source.";
 
     private Button addButton, removeButton, okButton, openButton;
-    private Object input;
+    private final Object input;
     private IDAOFactory selectedDataSet;
     private TableViewer viewer;
-    private boolean buttonValidation;
-    private String dialogTitle;
+    private final boolean buttonValidation;
+    private final String dialogTitle;
 
     /** Create the dialog */
     public DatasourceDialog(Shell parentShell, String dialogTitle, Object input, boolean makeButtonValidation) {
@@ -141,6 +144,7 @@ public class DatasourceDialog extends TitleAreaDialog {
         viewer.setLabelProvider(new DatasourceListLabelProvider());
         viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+            @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 ISelection selection = event.getSelection();
                 if (selection instanceof IStructuredSelection) {

@@ -12,6 +12,9 @@ import org.eclipse.ui.PlatformUI;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.Histogram;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.HistogramBucketInformation;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class LoadCSVHistogram extends Action {
     private Histogram histogram = null;
     private final IHistogramAccepter viewer;

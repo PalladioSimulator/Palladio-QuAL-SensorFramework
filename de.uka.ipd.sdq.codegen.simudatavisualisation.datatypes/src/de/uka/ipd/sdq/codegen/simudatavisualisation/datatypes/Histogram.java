@@ -8,6 +8,7 @@ import java.util.List;
  * visualized using the information about the bucket width and the probability for the buckets.
  * 
  * @author groenda
+ * @deprecated Superseded by EDP2.
  */
 public class Histogram {
     /** The default width for histogram classes */

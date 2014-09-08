@@ -20,7 +20,7 @@ import de.uka.ipd.sdq.sensorframework.storage.lists.DoubleSerialiser;
  * 
  * @author Ihssane El-Oudghiri
  * @author Steffen Becker
- * 
+ * @deprecated Superseded by EDP2.
  */
 public abstract class AbstractSensorAndMeasurements extends AbstractFileEntity implements SerializableEntity {
 
@@ -35,7 +35,7 @@ public abstract class AbstractSensorAndMeasurements extends AbstractFileEntity i
     protected ExperimentRun experimentRun;
     protected Sensor sensor;
     protected BackgroundMemoryList<Double> eventTimes;
-    private FileManager fm;
+    private final FileManager fm;
 
     public AbstractSensorAndMeasurements(FileManager fm, ExperimentRun exprun, Sensor sensor) throws IOException {
         super(fm.getDAOFactory());
@@ -56,6 +56,7 @@ public abstract class AbstractSensorAndMeasurements extends AbstractFileEntity i
         return FileDAOFactory.EXPRUN_FILE_NAME_PREFIX + experimentRun.getExperimentRunID() + "_" + sensor.getSensorID();
     }
 
+    @Override
     public long getID() {
         throw new UnsupportedOperationException();
     }

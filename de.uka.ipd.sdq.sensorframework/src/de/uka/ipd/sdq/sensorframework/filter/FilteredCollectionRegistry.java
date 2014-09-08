@@ -8,7 +8,7 @@ import java.util.List;
  * The class manages all available filtered collections.
  * 
  * @author Roman Andrej
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class FilteredCollectionRegistry {
 

@@ -17,6 +17,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * DAO Factory preference page implementation.
  * 
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class DAOFactoryPreferencePage extends PreferencePage {
 

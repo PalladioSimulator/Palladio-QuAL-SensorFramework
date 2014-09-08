@@ -10,6 +10,9 @@ import org.jfree.data.xy.XYSeries;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.Utilization;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.UtilizationBucketInformation;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class JFreeChartUtilizationViewer extends AbstractJFreeChartUtilizationWidthViewer implements
         IUtilizationAccepter, IUtilizationSeriesExporter {
 
@@ -24,16 +27,19 @@ public class JFreeChartUtilizationViewer extends AbstractJFreeChartUtilizationWi
         menu_manager.add(new ExportCSVUtilization(this));
     }
 
+    @Override
     public void addUtilization(Utilization utilization) {
         XYSeries density = new XYSeries(utilization.getTitle(), true, false);
-        for (UtilizationBucketInformation e : utilization.getBucketInformation())
+        for (UtilizationBucketInformation e : utilization.getBucketInformation()) {
             density.add(e.getValue(), e.getUtilization());
+        }
         densityDataset.addSeries(density);
         densityDataset.setAutoWidth(true);
         initChart();
         this.redraw();
     }
 
+    @Override
     protected void initChart() {
         chart = ChartFactory.createHistogram("Utilization over Time", "Time", "Utilization", densityDataset,
                 PlotOrientation.VERTICAL, true, true, true);
@@ -41,10 +47,12 @@ public class JFreeChartUtilizationViewer extends AbstractJFreeChartUtilizationWi
         XYPlot plot = (XYPlot) chart.getPlot();
         plot.getRangeAxis().setAutoRange(true);
         plot.setForegroundAlpha(0.8f); // for transparency
-        if (densityDataset != null)
+        if (densityDataset != null) {
             densityDataset.setAutoWidth(true);
+        }
     }
 
+    @Override
     protected XYSeries computeDensities(Utilization util) {
         XYSeries density;
         density = new XYSeries(util.getTitle(), true, false);
@@ -54,10 +62,12 @@ public class JFreeChartUtilizationViewer extends AbstractJFreeChartUtilizationWi
         return density;
     }
 
+    @Override
     public XYSeries getSeries() {
         return densityDataset.getSeries(0);
     }
 
+    @Override
     public double getUtilizationWidth() {
         return densityDataset.getIntervalWidth();
     }

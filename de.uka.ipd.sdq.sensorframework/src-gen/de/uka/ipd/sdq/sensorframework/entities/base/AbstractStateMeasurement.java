@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 public abstract class AbstractStateMeasurement
 
@@ -21,10 +24,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.StateMeasurement
     @javax.persistence.JoinColumn(name = "FK_SENSORSTATE")
     private de.uka.ipd.sdq.sensorframework.entities.State m_sensorState;
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.State getSensorState() {
         return m_sensorState;
     }
 
+    @Override
     public void setSensorState(de.uka.ipd.sdq.sensorframework.entities.State value) {
         this.m_sensorState = value;
     };
@@ -35,10 +40,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.StateMeasurement
     @javax.persistence.JoinColumn(name = "FK_SENSOR")
     private de.uka.ipd.sdq.sensorframework.entities.StateSensor m_sensor;
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.StateSensor getSensor() {
         return m_sensor;
     }
 
+    @Override
     public void setSensor(de.uka.ipd.sdq.sensorframework.entities.StateSensor value) {
         this.m_sensor = value;
     }

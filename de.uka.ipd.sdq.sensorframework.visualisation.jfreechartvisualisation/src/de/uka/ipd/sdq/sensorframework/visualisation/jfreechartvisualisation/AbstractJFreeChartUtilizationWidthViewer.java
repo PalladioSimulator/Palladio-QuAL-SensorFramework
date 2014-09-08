@@ -8,6 +8,9 @@ import org.jfree.data.xy.XYSeries;
 
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.Utilization;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public abstract class AbstractJFreeChartUtilizationWidthViewer extends AbstractJFreeChartChart<Utilization> {
 
     protected Collection<Utilization> lastData;
@@ -18,6 +21,7 @@ public abstract class AbstractJFreeChartUtilizationWidthViewer extends AbstractJ
         super(parent, style);
     }
 
+    @Override
     public void setData(Collection<Utilization> data) {
         densityDataset.removeAllSeries();
 

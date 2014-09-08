@@ -8,7 +8,10 @@ import org.eclipse.swt.widgets.Shell;
 import de.uka.ipd.sdq.sensorframework.SensorFrameworkDataset;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
-/** @author Roman Andrej */
+/**
+ * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
+ */
 public class ConfigureDatasourceDialog extends DatasourceDialog {
 
     public static String OPEN_WISARD_TITLE = "Load a source storage for the sensor framework.";

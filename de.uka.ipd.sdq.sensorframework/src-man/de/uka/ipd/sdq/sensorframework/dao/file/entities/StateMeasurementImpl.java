@@ -9,6 +9,7 @@ import de.uka.ipd.sdq.sensorframework.entities.StateSensor;
 
 /**
  * @author Ihssane El-Oudghiri
+ * @deprecated Superseded by EDP2.
  */
 public class StateMeasurementImpl extends MeasurementImpl implements StateMeasurement {
 
@@ -20,18 +21,22 @@ public class StateMeasurementImpl extends MeasurementImpl implements StateMeasur
         this.state = state;
     }
 
+    @Override
     public StateSensor getSensor() {
         return sensor;
     }
 
+    @Override
     public State getSensorState() {
         return state;
     }
 
+    @Override
     public void setSensor(StateSensor value) {
         this.sensor = value;
     }
 
+    @Override
     public void setSensorState(State value) {
         this.state = value;
     }

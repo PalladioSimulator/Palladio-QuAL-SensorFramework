@@ -13,6 +13,9 @@ import de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.AbstractReportView;
 import de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.JFreeChartPieViewer;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class JFreeChartPieReport extends AbstractReportView implements IVisualisation<AbstractPie> {
 
     public static String JFREECHART_PIE_EDITOR_ID = "de.uka.ipd.sdq.simucomframework.visualisation.JFreeChartPieReport";
@@ -47,11 +50,13 @@ public class JFreeChartPieReport extends AbstractReportView implements IVisualis
      * @see
      * de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation#setInput(java.util.Collection)
      */
+    @Override
     public void setInput(Collection<AbstractPie> c) {
         if (!c.isEmpty()) {
             viewer.setData(c);
-        } else
+        } else {
             viewer.setData(new TimeDeltaPie("Empty Datasource"));
+        }
     }
 
     /*
@@ -64,8 +69,9 @@ public class JFreeChartPieReport extends AbstractReportView implements IVisualis
     @Override
     protected void generateVisualization(List<DataAdapter> list) {
         ArrayList<AbstractPie> viewerInput = new ArrayList<AbstractPie>();
-        for (DataAdapter a : list)
+        for (DataAdapter a : list) {
             viewerInput.add((AbstractPie) a.getAdaptedObject());
+        }
         this.setInput(viewerInput);
     }
 
@@ -75,6 +81,7 @@ public class JFreeChartPieReport extends AbstractReportView implements IVisualis
      * @see
      * de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation#addInput(java.util.Collection)
      */
+    @Override
     public void addInput(Collection<AbstractPie> c) {
         // The implementation is not necessary.
 
@@ -86,6 +93,7 @@ public class JFreeChartPieReport extends AbstractReportView implements IVisualis
      * @see
      * de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation#deleteInput(java.util.Collection)
      */
+    @Override
     public void deleteInput(Collection<AbstractPie> c) {
         // The implementation is not necessary.
     }

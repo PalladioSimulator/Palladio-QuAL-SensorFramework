@@ -14,27 +14,29 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * TODO: Document me! What do I do?
  * 
  * @author ?
- *
+ * @deprecated Superseded by EDP2.
  */
 public class ConfigEntry extends Observable {
-    private List<Long> sensorIDs;
-    private long experimentRunID;
+    private final List<Long> sensorIDs;
+    private final long experimentRunID;
     private long experimentID;
-    private long datasourceID;
+    private final long datasourceID;
 
     public ConfigEntry(IDAOFactory factory, ExperimentRun experimentRun, Experiment experiment, Sensor sensor) {
         this.datasourceID = factory.getID();
         this.experimentRunID = experimentRun.getExperimentRunID();
         this.experimentID = experiment.getExperimentID();
         this.sensorIDs = new ArrayList<Long>();
-        if (sensor != null)
+        if (sensor != null) {
             this.sensorIDs.add(sensor.getSensorID());
+        }
     }
 
     public List<Sensor> getSensors() {
         ArrayList<Sensor> result = new ArrayList<Sensor>();
-        for (long sensorID : this.sensorIDs)
+        for (long sensorID : this.sensorIDs) {
             result.add(getDatasource().createSensorDAO().get(sensorID));
+        }
         return result;
     }
 

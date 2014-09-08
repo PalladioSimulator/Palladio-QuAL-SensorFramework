@@ -5,6 +5,8 @@ import de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor;
 
 /**
  * @author Ihssane El-Oudghiri
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class ScalabilitySensorImpl extends SensorImpl implements ScalabilitySensor {
 
@@ -28,6 +30,7 @@ public class ScalabilitySensorImpl extends SensorImpl implements ScalabilitySens
         return true;
     }
 
+    @Override
     public int getNbParams() {
         return nbParameters;
     }

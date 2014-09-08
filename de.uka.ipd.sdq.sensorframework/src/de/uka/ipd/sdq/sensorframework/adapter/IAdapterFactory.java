@@ -4,7 +4,7 @@ package de.uka.ipd.sdq.sensorframework.adapter;
  * Factory interface for factories creating data adapter
  * 
  * @author Steffen Becker
- *
+ * @deprecated Superseded by EDP2.
  */
 public interface IAdapterFactory {
 

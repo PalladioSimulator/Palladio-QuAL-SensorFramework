@@ -17,11 +17,13 @@ import de.uka.ipd.sdq.sensorframework.storage.lists.BackgroundMemoryList;
 /**
  * @author Ihssane El-Oudghiri
  * @author Steffen Becker
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class ScalabilitySensorAndMeasurement extends AbstractSensorAndMeasurements {
 
     private static final long serialVersionUID = 3516448762784779531L;
-    private BackgroundMemoryList<Double[]> timeSpans;
+    private final BackgroundMemoryList<Double[]> timeSpans;
 
     public ScalabilitySensorAndMeasurement(FileManager fm, ExperimentRun er, Sensor sensor) throws IOException {
         super(fm, er, sensor);
@@ -37,8 +39,9 @@ public class ScalabilitySensorAndMeasurement extends AbstractSensorAndMeasuremen
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof ScalabilitySensorAndMeasurement))
+        if (!(obj instanceof ScalabilitySensorAndMeasurement)) {
             return false;
+        }
         ScalabilitySensorAndMeasurement sam = (ScalabilitySensorAndMeasurement) obj;
 
         return super.equals(obj) && equalTimeSpans(this, sam);
@@ -47,8 +50,9 @@ public class ScalabilitySensorAndMeasurement extends AbstractSensorAndMeasuremen
     private boolean equalTimeSpans(ScalabilitySensorAndMeasurement sam1, ScalabilitySensorAndMeasurement sam2) {
         if (sam1.timeSpans.size() == sam2.timeSpans.size()) {
             for (int i = 0; i < sam1.timeSpans.size(); i++) {
-                if (sam1.timeSpans.get(i) != sam2.timeSpans.get(i))
+                if (sam1.timeSpans.get(i) != sam2.timeSpans.get(i)) {
                     return false;
+                }
             }
             return true;
         } else {

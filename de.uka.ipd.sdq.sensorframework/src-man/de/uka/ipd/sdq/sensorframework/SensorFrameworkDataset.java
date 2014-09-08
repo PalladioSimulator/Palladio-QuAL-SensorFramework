@@ -12,10 +12,11 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * 
  * @author Steffen Becker
  * @author groenda
+ * @deprecated Superseded by EDP2.
  */
 public class SensorFrameworkDataset {
     private static SensorFrameworkDataset singleton = new SensorFrameworkDataset();// why not final?
-    private ArrayList<IDAOFactory> datasources = new ArrayList<IDAOFactory>();
+    private final ArrayList<IDAOFactory> datasources = new ArrayList<IDAOFactory>();
     private long nextID = 1;
 
     private SensorFrameworkDataset() {
@@ -45,9 +46,11 @@ public class SensorFrameworkDataset {
      * @return datasource.
      */
     public synchronized IDAOFactory getDataSourceByID(long id) {
-        for (IDAOFactory f : datasources)
-            if (f.getID() == id)
+        for (IDAOFactory f : datasources) {
+            if (f.getID() == id) {
                 return f;
+            }
+        }
         return null;
     }
 
@@ -59,9 +62,10 @@ public class SensorFrameworkDataset {
      */
     public synchronized void addDataSource(IDAOFactory dataSource) {
         for (IDAOFactory f : datasources) {
-            if (f.getID() == dataSource.getID())
+            if (f.getID() == dataSource.getID()) {
                 throw new RuntimeException("Attemped to add Datasource (of a type inherting from IDAOFactory) "
                         + "with an ID already existing in the Sensorframework Dataset.");
+            }
             if (f.getID() == nextID && dataSource.getID() == IDAOFactory.ID_NOT_SET) {// why is it
                                                                                       // an "&&"?
                 throw new RuntimeException(
@@ -78,8 +82,9 @@ public class SensorFrameworkDataset {
                 // reset nextID completely
                 this.nextID = Long.MIN_VALUE;
                 for (IDAOFactory f : datasources) {
-                    if (f.getID() >= nextID)
+                    if (f.getID() >= nextID) {
                         this.nextID = f.getID() + 1;
+                    }
                 }
             }
         }

@@ -17,6 +17,9 @@ import org.jfree.data.xy.XYSeries;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.TimeSeries;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.TimeSeriesEntity;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class JFreeChartTimeSeriesViewer extends AbstractJFreeChartChart<TimeSeries> implements ISeriesExporter {
 
     DefaultTableXYDataset dataset = new DefaultTableXYDataset();
@@ -32,6 +35,7 @@ public class JFreeChartTimeSeriesViewer extends AbstractJFreeChartChart<TimeSeri
         menu_manager.add(new CopyClipboardAsR(this));
     }
 
+    @Override
     protected void initChart() {
         chart = ChartFactory.createScatterPlot("Time Series", "Number of Measurement", "Time", dataset,
                 PlotOrientation.VERTICAL, true, true, true);
@@ -93,11 +97,13 @@ public class JFreeChartTimeSeriesViewer extends AbstractJFreeChartChart<TimeSeri
         return tu;
     }
 
+    @Override
     public void setData(Collection<TimeSeries> data) {
         dataset.removeAllSeries();
 
-        for (TimeSeries timeSeries : data)
+        for (TimeSeries timeSeries : data) {
             dataset.addSeries(getSeries(timeSeries));
+        }
         initChart();
         this.setChart(chart);
         this.forceRedraw();
@@ -112,6 +118,7 @@ public class JFreeChartTimeSeriesViewer extends AbstractJFreeChartChart<TimeSeri
         return series;
     }
 
+    @Override
     public XYSeries getSeries() {
         return dataset.getSeries(0);
     }

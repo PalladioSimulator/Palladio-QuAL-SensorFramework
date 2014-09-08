@@ -15,7 +15,10 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
 import de.uka.ipd.sdq.sensorframework.visualisation.views.ExperimentAndDAO;
 import de.uka.ipd.sdq.sensorframework.visualisation.views.TreeObject;
 
-/** @author roman */
+/**
+ * @author roman
+ * @deprecated Superseded by EDP2.
+ */
 public class ExperimentRunsDialogContentProvider implements ITreeContentProvider {
 
     private List<IDAOFactory> root;
@@ -25,11 +28,13 @@ public class ExperimentRunsDialogContentProvider implements ITreeContentProvider
      * 
      * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
      */
+    @Override
     @SuppressWarnings("unchecked")
     public Object[] getChildren(Object parent) {
 
-        if (parent instanceof ArrayList)
+        if (parent instanceof ArrayList) {
             return ((ArrayList<IDAOFactory>) parent).toArray();
+        }
 
         if (parent instanceof IDAOFactory) {
             IExperimentDAO experimentDAO = ((IDAOFactory) parent).createExperimentDAO();
@@ -41,8 +46,9 @@ public class ExperimentRunsDialogContentProvider implements ITreeContentProvider
             Collection<ExperimentRun> runs = experiment.getExperiment().getExperimentRuns();
             Object[] objects = new Object[runs.size()];
             int i = 0;
-            for (ExperimentRun r : runs)
+            for (ExperimentRun r : runs) {
                 objects[i++] = new TreeObject(r, experiment.getDatasource(), experiment.getExperiment());
+            }
 
             return objects;
         }
@@ -52,8 +58,9 @@ public class ExperimentRunsDialogContentProvider implements ITreeContentProvider
 
     private List<ExperimentAndDAO> createExperimentAndDAOList(IDAOFactory dao, Collection<Experiment> experiments) {
         ArrayList<ExperimentAndDAO> result = new ArrayList<ExperimentAndDAO>();
-        for (Experiment e : experiments)
+        for (Experiment e : experiments) {
             result.add(new ExperimentAndDAO(dao, e));
+        }
         return result;
     }
 
@@ -62,6 +69,7 @@ public class ExperimentRunsDialogContentProvider implements ITreeContentProvider
      * 
      * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
      */
+    @Override
     public Object getParent(Object element) {
         // TODO Auto-generated method stub
         return null;
@@ -72,11 +80,13 @@ public class ExperimentRunsDialogContentProvider implements ITreeContentProvider
      * 
      * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
      */
+    @Override
     public boolean hasChildren(Object element) {
         if (element instanceof TreeObject) {
             TreeObject object = (TreeObject) element;
-            if (object.getObject() instanceof ExperimentRun)
+            if (object.getObject() instanceof ExperimentRun) {
                 return false;
+            }
         }
         return true;
     }
@@ -86,6 +96,7 @@ public class ExperimentRunsDialogContentProvider implements ITreeContentProvider
      * 
      * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
      */
+    @Override
     public Object[] getElements(Object inputElement) {
         if (root == null) {
             root = new ArrayList<IDAOFactory>();
@@ -99,6 +110,7 @@ public class ExperimentRunsDialogContentProvider implements ITreeContentProvider
      * 
      * @see org.eclipse.jface.viewers.IContentProvider#dispose()
      */
+    @Override
     public void dispose() {
         // TODO Auto-generated method stub
 
@@ -111,6 +123,7 @@ public class ExperimentRunsDialogContentProvider implements ITreeContentProvider
      * org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer,
      * java.lang.Object, java.lang.Object)
      */
+    @Override
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
         // TODO Auto-generated method stub
 

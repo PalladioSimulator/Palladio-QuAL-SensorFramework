@@ -16,7 +16,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentRunDAO;
  * @author Steffen Becker
  * 
  *         Data Access Object (DAO) for persistence of ExperimentRun Objects.
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class FileExperimentRunDAO extends AbstractFileDAO<ExperimentRun> implements IExperimentRunDAO {
 
@@ -24,6 +24,7 @@ public class FileExperimentRunDAO extends AbstractFileDAO<ExperimentRun> impleme
         super(factory, idGen, FileDAOFactory.EXPRUN_FILE_NAME_PREFIX);
     }
 
+    @Override
     public ExperimentRun addExperimentRun(String p_experimentdatetime) {
         ExperimentRunImpl expRun = new ExperimentRunImpl(factory);
         expRun.setExperimentRunID(idGen.getNextExperimentRunID());
@@ -34,6 +35,7 @@ public class FileExperimentRunDAO extends AbstractFileDAO<ExperimentRun> impleme
         return expRun;
     }
 
+    @Override
     public ExperimentRun addScalabilityExperimentRun(String p_experimentdatetime) {
         ScalabilityExperimentRunImpl expRun = new ScalabilityExperimentRunImpl(factory);
         expRun.setExperimentRunID(idGen.getNextExperimentRunID());
@@ -44,10 +46,12 @@ public class FileExperimentRunDAO extends AbstractFileDAO<ExperimentRun> impleme
         return expRun;
     }
 
+    @Override
     public Collection<ExperimentRun> getExperimentRuns() {
         return Collections.unmodifiableCollection(getAllEntities());
     }
 
+    @Override
     public void removeExperimentRun(ExperimentRun experimentRun, boolean doCascade) {
         this.removeEntity(experimentRun, doCascade);
     }

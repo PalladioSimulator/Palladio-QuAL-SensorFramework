@@ -28,6 +28,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.Abst
  * classes width.
  * 
  * @author khameershaik
+ * @deprecated Superseded by EDP2.
  */
 public abstract class AbstractJFreeChartUtilizationWidthReport extends AbstractReportView implements
         IVisualisation<Utilization> {
@@ -67,11 +68,13 @@ public abstract class AbstractJFreeChartUtilizationWidthReport extends AbstractR
         widthInput.setLayoutData(new RowData(60, SWT.DEFAULT));
         Listener listener = new Listener() {
 
+            @Override
             public void handleEvent(Event event) {
                 switch (event.type) {
                 case SWT.KeyDown:
-                    if (event.character == SWT.CR)
+                    if (event.character == SWT.CR) {
                         updateUtilizationWidth(Double.parseDouble(widthInput.getText()));
+                    }
                     break;
                 case SWT.FocusOut:
                     updateUtilizationWidth(Double.parseDouble(widthInput.getText()));
@@ -116,6 +119,7 @@ public abstract class AbstractJFreeChartUtilizationWidthReport extends AbstractR
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setInput(Collection<Utilization> utilization) {
         viewer.setData(utilization);
         this.widthInput.setText("" + utilizationWidth);
@@ -126,8 +130,9 @@ public abstract class AbstractJFreeChartUtilizationWidthReport extends AbstractR
      */
     @Override
     protected void generateVisualization(List<DataAdapter> newList) {
-        if (newList == null || newList.isEmpty())
+        if (newList == null || newList.isEmpty()) {
             throw new RuntimeException("Utilization reports must have at least one data input.");
+        }
         Properties adapterProperties = null;
         // Determine width of "old" utilization, if existing
         double newWidth = Double.NaN;
@@ -201,6 +206,7 @@ public abstract class AbstractJFreeChartUtilizationWidthReport extends AbstractR
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addInput(Collection<Utilization> c) {
         // The implementation is not necessary.
     }
@@ -208,6 +214,7 @@ public abstract class AbstractJFreeChartUtilizationWidthReport extends AbstractR
     /**
      * {@inheritDoc}
      */
+    @Override
     public void deleteInput(Collection<Utilization> c) {
         // The implementation is not necessary.
     }

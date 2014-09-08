@@ -9,6 +9,8 @@ import de.uka.ipd.sdq.sensorframework.storage.lists.ISerialiser;
 /**
  * @author Henning Groenda
  * @author Steffen Becker
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class StateSerializer implements ISerialiser<State> {
 
@@ -28,6 +30,7 @@ public class StateSerializer implements ISerialiser<State> {
         }
     }
 
+    @Override
     public State[] deserialise(byte[] bytes) {
         initSensorStateHash();
 
@@ -41,17 +44,20 @@ public class StateSerializer implements ISerialiser<State> {
             }
             blockPos += 8;
             states[j] = hashMap.get(l);
-            if (states[j] == null)
+            if (states[j] == null) {
                 throw new RuntimeException("State could not be deserialized " + "as it returned null values for state "
                         + j + ".");
+            }
         }
         return states;
     }
 
+    @Override
     public long getElementLength() {
         return 8;
     }
 
+    @Override
     public byte[] serialise(Object[] objects, int count) {
         byte[] block = new byte[(int) (count * getElementLength())];
         int blockPos = 0;

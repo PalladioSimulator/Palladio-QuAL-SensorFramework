@@ -7,9 +7,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Locale;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public abstract class AbstractPie {
     protected ArrayList<PieEntity> entities = new ArrayList<PieEntity>();
-    private String label;
+    private final String label;
 
     public AbstractPie(String string) {
         this.label = string;
@@ -36,8 +39,9 @@ public abstract class AbstractPie {
             sum += entities.get(i).getValue();
         }
         double remaining = 0;
-        for (; i >= 0; i--)
+        for (; i >= 0; i--) {
             remaining += entities.get(i).getValue();
+        }
         sum += remaining;
         DecimalFormat df = new DecimalFormat("#0.0", new DecimalFormatSymbols(Locale.US));
         newEntities.add(new PieEntity(remaining, "Other (" + df.format(remaining * 100.0 / sum) + "%)"));

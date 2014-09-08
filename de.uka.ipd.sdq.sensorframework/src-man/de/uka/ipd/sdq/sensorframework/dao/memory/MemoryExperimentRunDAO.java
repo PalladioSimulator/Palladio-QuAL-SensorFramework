@@ -14,17 +14,19 @@ import de.uka.ipd.sdq.sensorframework.entities.impl.ScalabilityExperimentRunImpl
 /**
  * TODO
  *
+ * @deprecated Superseded by EDP2.
  */
 public class MemoryExperimentRunDAO implements IExperimentRunDAO {
 
     private long nextID = 0;
-    private IDAOFactory myFactory;
-    private HashMap<Long, ExperimentRun> index = new HashMap<Long, ExperimentRun>();
+    private final IDAOFactory myFactory;
+    private final HashMap<Long, ExperimentRun> index = new HashMap<Long, ExperimentRun>();
 
     public MemoryExperimentRunDAO(IDAOFactory memoryDAOFactory) {
         this.myFactory = memoryDAOFactory;
     }
 
+    @Override
     public synchronized ExperimentRun addExperimentRun(String p_experimentdatetime) {
         ExperimentRun result = new ExperimentRunImpl(this.myFactory);
         result.setExperimentRunID(nextID++);
@@ -34,6 +36,7 @@ public class MemoryExperimentRunDAO implements IExperimentRunDAO {
         return result;
     }
 
+    @Override
     public synchronized ExperimentRun addScalabilityExperimentRun(String p_experimentdatetime) {
         ExperimentRun result = new ScalabilityExperimentRunImpl(this.myFactory);
         result.setExperimentRunID(nextID++);
@@ -43,10 +46,12 @@ public class MemoryExperimentRunDAO implements IExperimentRunDAO {
         return result;
     }
 
+    @Override
     public synchronized ExperimentRun get(long id) {
         return index.get(id);
     }
 
+    @Override
     public synchronized Collection<ExperimentRun> getExperimentRuns() {
         return Collections.unmodifiableCollection(index.values());
     }
@@ -54,6 +59,7 @@ public class MemoryExperimentRunDAO implements IExperimentRunDAO {
     public void store(ExperimentRun er) {
     }
 
+    @Override
     public synchronized void removeExperimentRun(ExperimentRun experimentRun, boolean doCascade) {
         if (experimentRun == null) {
             return;
@@ -68,6 +74,7 @@ public class MemoryExperimentRunDAO implements IExperimentRunDAO {
         index.remove(experimentRun.getExperimentRunID());
     }
 
+    @Override
     public void storeAll() {
         // Nothing to do here
     }

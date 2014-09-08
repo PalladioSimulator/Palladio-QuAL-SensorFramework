@@ -8,6 +8,9 @@ import de.uka.ipd.sdq.sensorframework.visualisation.IVisualisation;
 import de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.AbstractJFreeChartUtilizationWidthViewer;
 import de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.JFreeChartUtilizationViewer;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class JFreeChartUtilizationReport extends AbstractJFreeChartUtilizationWidthReport implements
         ITabbedPropertySheetPageContributor, IVisualisation<Utilization> {
 

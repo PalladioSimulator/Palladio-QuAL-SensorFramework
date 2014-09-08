@@ -8,6 +8,7 @@ import org.eclipse.ui.PlatformUI;
  * This class demonstrates the DirectoryDialog class.
  * 
  * @author David Scherr
+ * @deprecated Superseded by EDP2.
  */
 public class CSVDirectoryDialog {
     private String pathDir;

@@ -16,6 +16,7 @@ import java.util.RandomAccess;
  *         not implemented.
  * @param <T>
  *            The generic type parameter of the list's elements
+ * @deprecated Superseded by EDP2.
  */
 public class BackgroundMemoryList<T> extends AbstractList<T> implements List<T>, RandomAccess {
 
@@ -96,11 +97,14 @@ public class BackgroundMemoryList<T> extends AbstractList<T> implements List<T>,
         }
     }
 
+    @Override
     public synchronized T get(int index) {
-        if (this.isClosed)
+        if (this.isClosed) {
             throw new IllegalStateException("Tryed to get data from a closed background list");
-        if (index >= size())
+        }
+        if (index >= size()) {
             throw new ArrayIndexOutOfBoundsException("Read behind background list length");
+        }
         try {
             ensureCorrectChunkLoaded(index);
             return currentChunk.get((int) (index - currentChunk.fromElement()));
@@ -114,14 +118,15 @@ public class BackgroundMemoryList<T> extends AbstractList<T> implements List<T>,
      * if so swaps the chunks
      */
     private void ensureCorrectChunkLoaded(int index) throws IOException {
-        if (currentChunk != null && currentChunk.accepts(index))
+        if (currentChunk != null && currentChunk.accepts(index)) {
             return;
-        else {
+        } else {
             flush();
             currentChunk = new Chunk<T>(raf, serialiser, index / MEMORY_CHUNKS_SIZE);
         }
     }
 
+    @Override
     public synchronized int size() {
         return this.listSize;
     }

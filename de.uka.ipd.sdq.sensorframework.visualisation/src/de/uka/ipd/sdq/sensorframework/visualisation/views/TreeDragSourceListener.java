@@ -16,6 +16,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.SensorValidationToVie
 
 /**
  * @author admin
+ * @deprecated Superseded by EDP2.
  */
 public class TreeDragSourceListener implements DragSourceListener {
 
@@ -30,6 +31,7 @@ public class TreeDragSourceListener implements DragSourceListener {
      * 
      * @see org.eclipse.swt.dnd.DragSourceListener#dragSetData(org.eclipse.swt.dnd.DragSourceEvent)
      */
+    @Override
     public void dragSetData(DragSourceEvent event) {
         IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
         Object object = selection.getFirstElement();
@@ -89,6 +91,7 @@ public class TreeDragSourceListener implements DragSourceListener {
      * 
      * @see org.eclipse.swt.dnd.DragSourceListener#dragStart(org.eclipse.swt.dnd.DragSourceEvent)
      */
+    @Override
     public void dragStart(DragSourceEvent event) {
         IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
         Object object = selection.getFirstElement();
@@ -100,11 +103,13 @@ public class TreeDragSourceListener implements DragSourceListener {
             // if the sensor is not a child from ExperimentRun
             TreeObject treeObject = (TreeObject) object;
             ExperimentRun run = treeObject.getRun();
-            if (treeObject.getObject() instanceof Sensor && run == null)
+            if (treeObject.getObject() instanceof Sensor && run == null) {
                 event.doit = false;
+            }
         }
     }
 
+    @Override
     public void dragFinished(DragSourceEvent event) {
     }
 }

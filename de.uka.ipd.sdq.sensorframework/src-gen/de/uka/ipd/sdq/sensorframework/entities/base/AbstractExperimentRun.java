@@ -1,5 +1,8 @@
 package de.uka.ipd.sdq.sensorframework.entities.base;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 @javax.persistence.Entity
 @javax.persistence.Table(name = "EXPERIMENTRUN")
 public abstract class AbstractExperimentRun
@@ -21,10 +24,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
     @javax.persistence.Column(name = "EXPERIMENTDATETIME")
     private String m_experimentDateTime;
 
+    @Override
     public String getExperimentDateTime() {
         return m_experimentDateTime;
     }
 
+    @Override
     public void setExperimentDateTime(String value) {
         this.m_experimentDateTime = value;
     };
@@ -34,10 +39,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
     @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long m_experimentRunID;
 
+    @Override
     public long getExperimentRunID() {
         return m_experimentRunID;
     }
 
+    @Override
     public void setExperimentRunID(long value) {
         this.m_experimentRunID = value;
     }
@@ -60,8 +67,9 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
     }, inverseJoinColumns = {
         @javax.persistence.JoinColumn(name = "MEASUREMENT_ID")
     })
-    private java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Measurement> m_measurements = new java.util.ArrayList<de.uka.ipd.sdq.sensorframework.entities.Measurement>();
+    private final java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Measurement> m_measurements = new java.util.ArrayList<de.uka.ipd.sdq.sensorframework.entities.Measurement>();
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.StateMeasurement addStateMeasurement(
 
     de.uka.ipd.sdq.sensorframework.entities.StateSensor p_sensor,
@@ -85,6 +93,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
         return result;
     }
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement addTimeSpanMeasurement(
 
     de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor p_sensor
@@ -108,6 +117,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
         return result;
     }
 
+    @Override
     public de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement addScalabilityMeasurement(
 
     de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor p_sensor
@@ -131,16 +141,19 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
         return result;
     }
 
+    @Override
     public void addMeasurement(de.uka.ipd.sdq.sensorframework.entities.Measurement value) {
         this.m_measurements.add(value);
     }
 
+    @Override
     public java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Measurement> getMeasurements() {
         return this.m_measurements;
     }
 
     /* Abstract Operations */
 
+    @Override
     public abstract de.uka.ipd.sdq.sensorframework.entities.SensorAndMeasurements
 
     getMeasurementsOfSensor(

@@ -9,6 +9,7 @@ package de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes;
  * 
  * @author admin
  * @author khameershaik
+ * @deprecated Superseded by EDP2.
  */
 public class UtilizationBucketInformation {
 

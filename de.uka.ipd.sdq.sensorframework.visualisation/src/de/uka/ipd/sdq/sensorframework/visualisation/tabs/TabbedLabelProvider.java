@@ -10,7 +10,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.VisualisationPlugin;
 
 /**
  * @author admin
- *
+ * @deprecated Superseded by EDP2.
  */
 public class TabbedLabelProvider extends LabelProvider {
 

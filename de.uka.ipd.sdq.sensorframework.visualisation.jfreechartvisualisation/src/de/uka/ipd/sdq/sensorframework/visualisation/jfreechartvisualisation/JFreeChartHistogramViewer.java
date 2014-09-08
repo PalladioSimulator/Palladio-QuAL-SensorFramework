@@ -10,6 +10,9 @@ import org.jfree.data.xy.XYSeries;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.Histogram;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.HistogramBucketInformation;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class JFreeChartHistogramViewer extends AbstractJFreeChartWidthViewer implements IHistogramAccepter,
         IHistSeriesExporter {
 
@@ -25,16 +28,19 @@ public class JFreeChartHistogramViewer extends AbstractJFreeChartWidthViewer imp
         menu_manager.add(new ExportDoublePDF(this));
     }
 
+    @Override
     public void addHistogram(Histogram histogram) {
         XYSeries density = new XYSeries(histogram.getTitle(), true, false);
-        for (HistogramBucketInformation e : histogram.getBucketInformation())
+        for (HistogramBucketInformation e : histogram.getBucketInformation()) {
             density.add(e.getValue(), e.getProbability());
+        }
         densityDataset.addSeries(density);
         densityDataset.setAutoWidth(true);
         initChart();
         this.redraw();
     }
 
+    @Override
     protected void initChart() {
         chart = ChartFactory.createHistogram("Histogram", "Time", "Probability", densityDataset,
                 PlotOrientation.VERTICAL, true, true, true);
@@ -42,10 +48,12 @@ public class JFreeChartHistogramViewer extends AbstractJFreeChartWidthViewer imp
         XYPlot plot = (XYPlot) chart.getPlot();
         plot.getRangeAxis().setAutoRange(true);
         plot.setForegroundAlpha(0.8f); // for transparency
-        if (densityDataset != null)
+        if (densityDataset != null) {
             densityDataset.setAutoWidth(true);
+        }
     }
 
+    @Override
     protected XYSeries computeDensities(Histogram hist) {
         XYSeries density;
         density = new XYSeries(hist.getTitle(), true, false);
@@ -55,10 +63,12 @@ public class JFreeChartHistogramViewer extends AbstractJFreeChartWidthViewer imp
         return density;
     }
 
+    @Override
     public XYSeries getSeries() {
         return densityDataset.getSeries(0);
     }
 
+    @Override
     public double getHistogramWidth() {
         return densityDataset.getIntervalWidth();
     }

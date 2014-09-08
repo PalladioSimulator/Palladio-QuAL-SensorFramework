@@ -8,9 +8,12 @@ import org.eclipse.ui.PlatformUI;
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class ExportDoublePDF extends Action {
 
-    private IHistSeriesExporter viewer;
+    private final IHistSeriesExporter viewer;
 
     public ExportDoublePDF(IHistSeriesExporter freeChartHistogramViewer) {
         super();

@@ -8,7 +8,7 @@ import java.util.Properties;
  * respective AdapterFactory.
  * 
  * @author Steffen Becker
- *
+ * @deprecated Superseded by EDP2.
  */
 public interface IAdapter {
 

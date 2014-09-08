@@ -11,8 +11,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 import de.uka.ipd.sdq.sensorframework.tests.util.TempDir;
 
 /**
- * @author Steffen Becker
- *
+ * @deprecated Superseded by EDP2.
  */
 public class FileSerialiserTests extends AbstractSerialiserTests {
 

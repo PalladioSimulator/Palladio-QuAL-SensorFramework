@@ -12,6 +12,7 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement;
  * Adapter for TimeSpanSensors to Histograms.
  * 
  * @author groenda
+ * @deprecated Superseded by EDP2.
  */
 public class TimeSpanToHistogramAdapter extends DataAdapter {
 
@@ -21,7 +22,7 @@ public class TimeSpanToHistogramAdapter extends DataAdapter {
     // private static final String ACTIVEDE_FILTERS = "ACTIVEDE_FILTERS";
     // private FilteredMeasurementsCollection measurements;
     /** Information about the TimeSpanSensor and the measurements. */
-    private SensorAndMeasurements samInformation;
+    private final SensorAndMeasurements samInformation;
 
     /**
      * Initializes a new adapter for the provided TimeSpanSensor.
@@ -73,6 +74,7 @@ public class TimeSpanToHistogramAdapter extends DataAdapter {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getAdaptedObject() {
         // SensorAndMeasurements values = (Boolean) properties
         // .get(ACTIVEDE_FILTERS) ? (SensorAndMeasurements) measurements
@@ -120,7 +122,7 @@ public class TimeSpanToHistogramAdapter extends DataAdapter {
                 firstValueFound = true;
                 // calculate probability and store class
                 histogram.addEntity(new HistogramBucketInformation(histClass.doubleValue()
-                        / (double) samInformation.getMeasurements().size(), i * histWidth));
+                        / samInformation.getMeasurements().size(), i * histWidth));
             }
         }
     }

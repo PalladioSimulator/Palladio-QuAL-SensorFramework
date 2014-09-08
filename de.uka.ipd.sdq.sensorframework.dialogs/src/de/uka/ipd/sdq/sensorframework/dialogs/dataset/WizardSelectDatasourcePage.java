@@ -10,6 +10,9 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class WizardSelectDatasourcePage extends WizardPage {
 
     /** String constants for existing data sources */
@@ -18,8 +21,8 @@ public class WizardSelectDatasourcePage extends WizardPage {
 
     private Combo myCombo;
     protected String result = "";
-    private String pageName;
-    private boolean memoryEntry, db40Entry, fileEntry;
+    private final String pageName;
+    private final boolean memoryEntry, db40Entry, fileEntry;
 
     protected WizardSelectDatasourcePage(String pageName, boolean memoryEntry, boolean db40Entry, boolean fileEntry) {
         super(pageName);
@@ -34,6 +37,7 @@ public class WizardSelectDatasourcePage extends WizardPage {
      * 
      * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
      */
+    @Override
     public void createControl(Composite parent) {
 
         initializeDialogUnits(parent);
@@ -60,11 +64,13 @@ public class WizardSelectDatasourcePage extends WizardPage {
         populateComboBox();
         myCombo.addSelectionListener(new SelectionListener() {
 
+            @Override
             public void widgetDefaultSelected(SelectionEvent e) {
                 WizardSelectDatasourcePage.this.result = myCombo.getText();
                 WizardSelectDatasourcePage.this.setPageComplete(!myCombo.getText().equals(""));
             }
 
+            @Override
             public void widgetSelected(SelectionEvent e) {
                 WizardSelectDatasourcePage.this.result = myCombo.getText();
                 WizardSelectDatasourcePage.this.setPageComplete(!myCombo.getText().equals(""));
@@ -74,10 +80,12 @@ public class WizardSelectDatasourcePage extends WizardPage {
     }
 
     private void populateComboBox() {
-        if (memoryEntry)
+        if (memoryEntry) {
             myCombo.add(MEMORY_DATASRC);
-        if (fileEntry)
+        }
+        if (fileEntry) {
             myCombo.add(FILE_DATASRC);
+        }
     }
 
     /*

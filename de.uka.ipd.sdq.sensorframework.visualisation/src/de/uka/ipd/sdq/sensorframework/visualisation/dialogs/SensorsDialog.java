@@ -26,11 +26,11 @@ import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEntry;
  * TODO
  * 
  * @author admin
- *
+ * @deprecated Superseded by EDP2.
  */
 public class SensorsDialog extends TitleAreaDialog {
 
-    private ConfigEntry entry;
+    private final ConfigEntry entry;
 
     public static final int CHECK_COLUMN_INDEX = 0;
     public static final int SENSOR_ID_INDEX = 1;
@@ -94,6 +94,7 @@ public class SensorsDialog extends TitleAreaDialog {
 
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+            @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 tableViewer.refresh();
             }

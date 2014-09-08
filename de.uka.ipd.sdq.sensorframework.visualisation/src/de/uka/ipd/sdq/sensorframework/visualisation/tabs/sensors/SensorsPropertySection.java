@@ -40,6 +40,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.views.TreeObject;
 
 /**
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class SensorsPropertySection extends AbstractPropertySection implements Observer {
 
@@ -48,9 +49,11 @@ public class SensorsPropertySection extends AbstractPropertySection implements O
      * 
      * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
      */
+    @Override
     public void update(Observable subject, Object signal) {
-        if (subject instanceof ConfigEditorInput)
+        if (subject instanceof ConfigEditorInput) {
             refresh();
+        }
     }
 
     private ConfigEditorInput configObject;
@@ -117,14 +120,16 @@ public class SensorsPropertySection extends AbstractPropertySection implements O
         viewer.setLabelProvider(new SensorsTabLabelProvider());
         viewer.setCellModifier(new SensorsTabCellModifier());
         viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 Object object = ((IStructuredSelection) viewer.getSelection()).getFirstElement();
                 selectedEntry = (ConfigEntry) object;
 
-                if (selectedEntry != null)
+                if (selectedEntry != null) {
                     deleteRunItem.setEnabled(true);
-                else
+                } else {
                     deleteRunItem.setEnabled(false);
+                }
             }
         });
         editors[SENSORS_COLUMN_INDEX] = new DialogCellEditor(table) {
@@ -133,8 +138,9 @@ public class SensorsPropertySection extends AbstractPropertySection implements O
             protected Object openDialogBox(Control cellEditorWindow) {
                 SensorsDialog dialog = new SensorsDialog(cellEditorWindow.getShell(), selectedEntry);
 
-                if (dialog.open() == Dialog.OK)
+                if (dialog.open() == Dialog.OK) {
                     viewer.refresh();
+                }
                 return null;
             }
         };

@@ -21,7 +21,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IStateDAO;
  *         DAO pattern can be made highly flexible by adopting the Factory Method pattern. This
  *         class represents the DAOFactory and provides methods to create DAOs. The used data
  *         sources are files.
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class FileDAOFactory implements IDAOFactory {
 
@@ -92,9 +92,11 @@ public class FileDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createExperimentDAO()
      */
+    @Override
     public IExperimentDAO createExperimentDAO() {
-        if (this.experimentDAO == null)
+        if (this.experimentDAO == null) {
             this.experimentDAO = new FileExperimentDAO(this, idGen);
+        }
         return this.experimentDAO;
     }
 
@@ -103,9 +105,11 @@ public class FileDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createExperimentRunDAO()
      */
+    @Override
     public IExperimentRunDAO createExperimentRunDAO() {
-        if (this.experimentRunDAO == null)
+        if (this.experimentRunDAO == null) {
             this.experimentRunDAO = new FileExperimentRunDAO(this, idGen);
+        }
         return this.experimentRunDAO;
     }
 
@@ -114,6 +118,7 @@ public class FileDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createMeasurementDAO()
      */
+    @Override
     public IMeasurementDAO createMeasurementDAO() {
         throw new UnsupportedOperationException();
     }
@@ -123,9 +128,11 @@ public class FileDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createSensorDAO()
      */
+    @Override
     public ISensorDAO createSensorDAO() {
-        if (this.sensorDAO == null)
+        if (this.sensorDAO == null) {
             this.sensorDAO = new FileSensorDAO(this, idGen);
+        }
         return this.sensorDAO;
     }
 
@@ -134,52 +141,65 @@ public class FileDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createStateDAO()
      */
+    @Override
     public IStateDAO createStateDAO() {
-        if (this.stateDAO == null)
+        if (this.stateDAO == null) {
             this.stateDAO = new FileStateDAO(this, idGen);
+        }
         return this.stateDAO;
     }
 
+    @Override
     public void finalizeAndClose() {
         fileManager.closeAllLists();
         fileManager.serializeToFile(FileDAOFactory.IDGEN_FILE_NAME_PREFIX, idGen);
 
-        if (this.experimentDAO != null)
+        if (this.experimentDAO != null) {
             ((FileExperimentDAO) this.experimentDAO).dispose();
-        if (this.sensorDAO != null)
+        }
+        if (this.sensorDAO != null) {
             ((FileSensorDAO) this.sensorDAO).dispose();
-        if (this.stateDAO != null)
+        }
+        if (this.stateDAO != null) {
             ((FileStateDAO) this.stateDAO).dispose();
-        if (this.experimentRunDAO != null)
+        }
+        if (this.experimentRunDAO != null) {
             ((FileExperimentRunDAO) this.experimentRunDAO).dispose();
+        }
     }
 
     public FileManager getFileManager() {
         return fileManager;
     }
 
+    @Override
     public String getDescription() {
         return fileManager.getRootDirectory();
     }
 
+    @Override
     public long getID() {
         return factoryID;
     }
 
+    @Override
     public String getName() {
         return "File Datasource";
     }
 
+    @Override
     public String getPersistendInfo() {
         return fileManager.getRootDirectory();
     }
 
+    @Override
     public void setID(long i) {
         factoryID = i;
     }
 
     // This code is only a temporary solution to the reload problem. It
     // can cause problems on concurrent access.
+    @Override
     public void reload() {
         String oldFilename = "";
         boolean failed = false;
@@ -206,21 +226,27 @@ public class FileDAOFactory implements IDAOFactory {
             SensorFrameworkPluginActivator.log(IStatus.ERROR, "Closing the open File Provider failed", ex);
             failed = true;
         }
-        if (failed)
+        if (failed) {
             throw new RuntimeException("Reloading the file provider with ID " + this.getID()
                     + " failed. Consult the Error Log for Details.");
+        }
     }
 
+    @Override
     public void store() {
         fileManager.serializeToFile(FileDAOFactory.IDGEN_FILE_NAME_PREFIX, idGen);
-        if (this.experimentDAO != null)
+        if (this.experimentDAO != null) {
             ((FileExperimentDAO) this.experimentDAO).storeAll();
-        if (this.sensorDAO != null)
+        }
+        if (this.sensorDAO != null) {
             ((FileSensorDAO) this.sensorDAO).storeAll();
-        if (this.stateDAO != null)
+        }
+        if (this.stateDAO != null) {
             ((FileStateDAO) this.stateDAO).storeAll();
-        if (this.experimentRunDAO != null)
+        }
+        if (this.experimentRunDAO != null) {
             ((FileExperimentRunDAO) this.experimentRunDAO).storeAll();
+        }
 
         fileManager.flush();
     }

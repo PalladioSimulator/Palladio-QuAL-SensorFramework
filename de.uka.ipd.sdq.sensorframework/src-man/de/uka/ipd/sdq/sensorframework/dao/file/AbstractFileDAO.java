@@ -17,6 +17,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  *
  * @param <T>
  *            The type of the entities this DAO is able to handle
+ * @deprecated Superseded by EDP2.
  */
 public abstract class AbstractFileDAO<T> {
 
@@ -28,7 +29,7 @@ public abstract class AbstractFileDAO<T> {
     /**
      * Prefix of the file which stores the elements controlled by this DAO
      */
-    private String myPrefix;
+    private final String myPrefix;
 
     /**
      * ID Generator instance. Used by subclasses to create IDs of new elements
@@ -91,8 +92,9 @@ public abstract class AbstractFileDAO<T> {
      * @return The requested element
      */
     public T get(long id) {
-        if (!entitiesCache.containsKey(id))
+        if (!entitiesCache.containsKey(id)) {
             throw new IllegalArgumentException("Entity with ID " + id + " not found in DAO");
+        }
         return entitiesCache.get(id);
     }
 
@@ -104,8 +106,9 @@ public abstract class AbstractFileDAO<T> {
      */
     protected void putEntity(T entity) {
         SerializableEntity serialisable = (SerializableEntity) entity;
-        if (entitiesCache.containsKey(serialisable.getID()))
+        if (entitiesCache.containsKey(serialisable.getID())) {
             throw new IllegalArgumentException("Entity with ID " + serialisable.getID() + " already exists in this DAO");
+        }
         this.entitiesCache.put(serialisable.getID(), entity);
     }
 
@@ -127,10 +130,12 @@ public abstract class AbstractFileDAO<T> {
      *            If true, all entities which depend on the passed entity are deleted as well
      */
     public void removeEntity(T entity, boolean doCascade) {
-        if (entity == null)
+        if (entity == null) {
             throw new IllegalArgumentException("Entity can not be null");
-        if (!entitiesCache.containsValue(entity))
+        }
+        if (!entitiesCache.containsValue(entity)) {
             throw new IllegalArgumentException("Entity not controlled by this DAO");
+        }
 
         if (doCascade == true) {
             throw new UnsupportedOperationException();

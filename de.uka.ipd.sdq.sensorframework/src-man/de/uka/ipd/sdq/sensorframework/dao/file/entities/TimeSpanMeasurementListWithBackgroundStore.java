@@ -3,6 +3,9 @@ package de.uka.ipd.sdq.sensorframework.dao.file.entities;
 import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 import de.uka.ipd.sdq.sensorframework.storage.lists.BackgroundMemoryList;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class TimeSpanMeasurementListWithBackgroundStore extends MeasurementListWithBackgroundStore<Double> {
 
     public TimeSpanMeasurementListWithBackgroundStore(BackgroundMemoryList<Double> eventTimes,

@@ -6,7 +6,7 @@ package de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes;
  * Used for resource utilization visualization.
  * 
  * @author brosch
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class TimeDeltaPie extends AbstractPie {
 

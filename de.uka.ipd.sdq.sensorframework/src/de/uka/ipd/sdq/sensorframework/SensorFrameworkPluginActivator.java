@@ -28,6 +28,7 @@ import de.uka.ipd.sdq.sensorframework.filter.IFilteredCollectionFactory;
  * 
  * @author Roman Andrej
  * @author Steffen Becker
+ * @deprecated Superseded by EDP2.
  */
 public class SensorFrameworkPluginActivator extends Plugin {
 
@@ -92,8 +93,9 @@ public class SensorFrameworkPluginActivator extends Plugin {
             } else {
                 log(IStatus.WARNING, "Restoring Dataset Configuration failed. Resetting configuration...", e);
             }
-            if (SensorFrameworkDataset.singleton().getDataSources().size() == 0)
+            if (SensorFrameworkDataset.singleton().getDataSources().size() == 0) {
                 SensorFrameworkDataset.singleton().addDataSource(new MemoryDAOFactory(0));
+            }
         }
     }
 

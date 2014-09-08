@@ -19,7 +19,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 
 /**
  * @author Ihssane El-Oudghiri
- * 
+ * @deprecated Superseded by EDP2.
  */
 public class ExperimentImpl extends AbstractFileEntity implements Experiment, SerializableEntity {
 
@@ -41,12 +41,12 @@ public class ExperimentImpl extends AbstractFileEntity implements Experiment, Se
     /**
      * Collection of IDs of sensors in this experiment.
      */
-    private Collection<Long> sensors;
+    private final Collection<Long> sensors;
 
     /**
      * Collection of IDs of ExperimentRuns of this experiment.
      */
-    private Collection<Long> experimentRuns;
+    private final Collection<Long> experimentRuns;
 
     public ExperimentImpl(IDAOFactory factory) {
         super(factory);
@@ -54,10 +54,12 @@ public class ExperimentImpl extends AbstractFileEntity implements Experiment, Se
         experimentRuns = new ArrayList<Long>();
     }
 
+    @Override
     public void addExperimentRun(ExperimentRun experimentRun) {
         experimentRuns.add(experimentRun.getExperimentRunID());
     }
 
+    @Override
     public ExperimentRun addExperimentRun(String experimentdatetime) {
         ExperimentRun expRun = factory.createExperimentRunDAO().addExperimentRun(experimentdatetime);
         experimentRuns.add(expRun.getExperimentRunID());
@@ -66,6 +68,7 @@ public class ExperimentImpl extends AbstractFileEntity implements Experiment, Se
         return expRun;
     }
 
+    @Override
     public ExperimentRun addScalabilityExperimentRun(String experimentdatetime) {
         ExperimentRun expRun = factory.createExperimentRunDAO().addScalabilityExperimentRun(experimentdatetime);
         experimentRuns.add(expRun.getExperimentRunID());
@@ -74,22 +77,26 @@ public class ExperimentImpl extends AbstractFileEntity implements Experiment, Se
         return expRun;
     }
 
+    @Override
     public ScalabilitySensor addScalabilitySensor(String sensorName) {
         ScalabilitySensor scals = factory.createSensorDAO().addScalabilitySensor(sensorName);
         sensors.add(scals.getSensorID());
         return scals;
     }
 
+    @Override
     public void addSensor(Sensor value) {
         sensors.add(value.getSensorID());
     }
 
+    @Override
     public StateSensor addStateSensor(State p_initialstate, String p_sensorname) {
         StateSensor stsen = factory.createSensorDAO().addStateSensor(p_initialstate, p_sensorname);
         sensors.add(stsen.getSensorID());
         return stsen;
     }
 
+    @Override
     public TimeSpanSensor addTimeSpanSensor(String sensorName) {
         TimeSpanSensor tss = factory.createSensorDAO().addTimeSpanSensor(sensorName);
         sensors.add(tss.getSensorID());
@@ -98,30 +105,37 @@ public class ExperimentImpl extends AbstractFileEntity implements Experiment, Se
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof ExperimentImpl))
+        if (!(obj instanceof ExperimentImpl)) {
             return false;
+        }
         ExperimentImpl exp = (ExperimentImpl) obj;
 
-        if (!(experimentID == exp.getExperimentID() && experimentName.equals(exp.getExperimentName())))
+        if (!(experimentID == exp.getExperimentID() && experimentName.equals(exp.getExperimentName()))) {
             return false;
+        }
 
-        if (!(experimentRuns.equals(exp.getExperimentRuns())))
+        if (!(experimentRuns.equals(exp.getExperimentRuns()))) {
             return false;
+        }
 
-        if (!(sensors.equals(exp.getSensors())))
+        if (!(sensors.equals(exp.getSensors()))) {
             return false;
+        }
 
         return true;
     }
 
+    @Override
     public long getExperimentID() {
         return experimentID;
     }
 
+    @Override
     public String getExperimentName() {
         return experimentName;
     }
 
+    @Override
     public Collection<ExperimentRun> getExperimentRuns() {
         ArrayList<ExperimentRun> result = new ArrayList<ExperimentRun>();
         for (Long id : experimentRuns) {
@@ -134,6 +148,7 @@ public class ExperimentImpl extends AbstractFileEntity implements Experiment, Se
         return FileDAOFactory.EXP_FILE_NAME_PREFIX + getExperimentID();
     }
 
+    @Override
     public long getID() {
         return this.getExperimentID();
     }
@@ -143,6 +158,7 @@ public class ExperimentImpl extends AbstractFileEntity implements Experiment, Se
      * 
      * @see de.uka.ipd.sdq.sensorframework.entities.Experiment#getSensors()
      */
+    @Override
     public Collection<Sensor> getSensors() {
         ArrayList<Sensor> result = new ArrayList<Sensor>();
         for (Long id : sensors) {
@@ -151,14 +167,17 @@ public class ExperimentImpl extends AbstractFileEntity implements Experiment, Se
         return Collections.unmodifiableCollection(result);
     }
 
+    @Override
     public void setExperimentID(long experimentID) {
         this.experimentID = experimentID;
     }
 
+    @Override
     public void setExperimentName(String experimentName) {
         this.experimentName = experimentName;
     }
 
+    @Override
     public void setFactory(FileDAOFactory factory) {
         this.factory = factory;
     }

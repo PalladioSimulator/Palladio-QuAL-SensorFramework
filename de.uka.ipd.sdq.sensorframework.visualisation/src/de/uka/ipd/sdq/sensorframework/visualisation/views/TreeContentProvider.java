@@ -18,6 +18,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
  * TODO
  * 
  * @author admin
+ * @deprecated Superseded by EDP2.
  */
 public class TreeContentProvider implements ITreeContentProvider {
 
@@ -31,6 +32,7 @@ public class TreeContentProvider implements ITreeContentProvider {
      * 
      * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
      */
+    @Override
     public Object[] getElements(Object parent) {
         rootEntry = new ArrayList<IDAOFactory>();
         rootEntry.addAll(SensorFrameworkDataset.singleton().getDataSources());
@@ -42,12 +44,14 @@ public class TreeContentProvider implements ITreeContentProvider {
      * 
      * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
      */
+    @Override
     @SuppressWarnings("unchecked")
     public Object[] getChildren(Object parent) {
 
         /** List of root elements (DAO,...) */
-        if (parent instanceof ArrayList)
+        if (parent instanceof ArrayList) {
             return ((ArrayList<IDAOFactory>) parent).toArray();
+        }
 
         /** ExperimentDAO */
         if (parent instanceof IDAOFactory) {
@@ -85,16 +89,18 @@ public class TreeContentProvider implements ITreeContentProvider {
         }
 
         /** TreeContainer - container a collection of TreeObject */
-        if (parent instanceof TreeContainer)
+        if (parent instanceof TreeContainer) {
             return ((TreeContainer) parent).getElements().toArray();
+        }
 
         return new Object[0];
     }
 
     private List<ExperimentAndDAO> createExperimentAndDAOList(IDAOFactory dao, Collection<Experiment> experiments) {
         ArrayList<ExperimentAndDAO> result = new ArrayList<ExperimentAndDAO>();
-        for (Experiment e : experiments)
+        for (Experiment e : experiments) {
             result.add(new ExperimentAndDAO(dao, e));
+        }
         return result;
     }
 
@@ -103,11 +109,13 @@ public class TreeContentProvider implements ITreeContentProvider {
      * 
      * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
      */
+    @Override
     public boolean hasChildren(Object parent) {
         if (parent instanceof TreeObject) {
             TreeObject object = (TreeObject) parent;
-            if (object.getObject() instanceof Sensor)
+            if (object.getObject() instanceof Sensor) {
                 return false;
+            }
         }
 
         if (parent instanceof IDAOFactory) {
@@ -122,9 +130,11 @@ public class TreeContentProvider implements ITreeContentProvider {
      * 
      * @see org.eclipse.jface.viewers.IContentProvider#dispose()
      */
+    @Override
     public void dispose() {
-        if (rootEntry != null)
+        if (rootEntry != null) {
             rootEntry.clear();
+        }
     }
 
     /*
@@ -132,11 +142,13 @@ public class TreeContentProvider implements ITreeContentProvider {
      * 
      * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
      */
+    @Override
     public Object getParent(Object child) {
         // TODO Auto-generated method stub
         return null;
     }
 
+    @Override
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
         // TODO Auto-generated method stub
     }

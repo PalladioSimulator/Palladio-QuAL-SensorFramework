@@ -13,6 +13,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IStateDAO;
 /**
  * @author Steffen Becker
  *
+ * @deprecated Superseded by EDP2.
  */
 public class MemoryDAOFactory implements IDAOFactory {
 
@@ -36,9 +37,11 @@ public class MemoryDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createExperimentDAO()
      */
+    @Override
     public IExperimentDAO createExperimentDAO() {
-        if (this.experimentDAO == null)
+        if (this.experimentDAO == null) {
             this.experimentDAO = new MemoryExperimentDAO(this);
+        }
         return this.experimentDAO;
     }
 
@@ -47,9 +50,11 @@ public class MemoryDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createExperimentRunDAO()
      */
+    @Override
     public IExperimentRunDAO createExperimentRunDAO() {
-        if (this.experimentRunDAO == null)
+        if (this.experimentRunDAO == null) {
             this.experimentRunDAO = new MemoryExperimentRunDAO(this);
+        }
         return this.experimentRunDAO;
     }
 
@@ -58,9 +63,11 @@ public class MemoryDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createMeasurementDAO()
      */
+    @Override
     public IMeasurementDAO createMeasurementDAO() {
-        if (this.measurementDAO == null)
+        if (this.measurementDAO == null) {
             this.measurementDAO = new MemoryMeasurementDAO(this);
+        }
         return this.measurementDAO;
     }
 
@@ -69,9 +76,11 @@ public class MemoryDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createSensorDAO()
      */
+    @Override
     public ISensorDAO createSensorDAO() {
-        if (this.sensorDAO == null)
+        if (this.sensorDAO == null) {
             this.sensorDAO = new MemorySensorDAO(this);
+        }
         return this.sensorDAO;
     }
 
@@ -80,39 +89,49 @@ public class MemoryDAOFactory implements IDAOFactory {
      * 
      * @see de.uka.ipd.sdq.sensorfactory.entities.dao.IDAOFactory#createStateDAO()
      */
+    @Override
     public IStateDAO createStateDAO() {
-        if (this.stateDAO == null)
+        if (this.stateDAO == null) {
             this.stateDAO = new MemoryStateDAO(this);
+        }
         return this.stateDAO;
     }
 
+    @Override
     public String getDescription() {
         return "A datasource stored in memory. Changes are lost, when unsafed";
     }
 
+    @Override
     public String getName() {
         return "Memory Datasource";
     }
 
+    @Override
     public void finalizeAndClose() {
     }
 
+    @Override
     public long getID() {
         return this.id;
     }
 
+    @Override
     public void setID(long i) {
         this.id = i;
     }
 
+    @Override
     public String getPersistendInfo() {
         return "";
     }
 
+    @Override
     public void reload() {
         // Nothing to do here
     }
 
+    @Override
     public void store() {
         // Nothing to do here
     }

@@ -13,6 +13,7 @@ import de.uka.ipd.sdq.sensorframework.entities.StateMeasurement;
  * measurements.
  * 
  * @author groenda
+ * @deprecated Superseded by EDP2.
  */
 public class StateToUtilizationAdapter extends DataAdapter {
 
@@ -26,7 +27,7 @@ public class StateToUtilizationAdapter extends DataAdapter {
     public static final String UTILIZATION_WIDTH = "UTILIZATION_WIDTH";
 
     /** Information about the TimeSpanSensor and the measurements. */
-    private SensorAndMeasurements samInformation;
+    private final SensorAndMeasurements samInformation;
 
     /**
      * Initializes a new adapter for the provided TimeSpanSensor.
@@ -81,6 +82,7 @@ public class StateToUtilizationAdapter extends DataAdapter {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getAdaptedObject() {
         double utilWidth = (Double) adapterProperties.get(UTILIZATION_WIDTH);
         if (utilWidth <= 0) {

@@ -18,6 +18,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * JUnit tests of the sensor framework in their own plugin.
  * 
  * @author Steffen Becker
+ * @deprecated Superseded by EDP2.
  */
 public class SensorFrameworkAPIDemo {
 

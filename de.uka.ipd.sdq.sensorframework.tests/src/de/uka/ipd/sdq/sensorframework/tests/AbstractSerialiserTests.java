@@ -17,6 +17,9 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public abstract class AbstractSerialiserTests extends TestCase {
 
     private static final int CREATE_COUNT = 10;

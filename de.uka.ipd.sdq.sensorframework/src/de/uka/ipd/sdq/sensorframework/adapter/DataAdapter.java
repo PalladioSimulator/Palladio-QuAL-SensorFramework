@@ -8,6 +8,7 @@ import java.util.Properties;
  * changes need to be observed to allow changes on the GUI.
  * 
  * @author Henning Groenda
+ * @deprecated Superseded by EDP2.
  */
 public abstract class DataAdapter extends Observable implements IAdapter {
     public static final String SETTINGS_CHANGED = "Settings have changed";
@@ -35,6 +36,7 @@ public abstract class DataAdapter extends Observable implements IAdapter {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Properties getProperties() {
         return adapterProperties;
     }
@@ -42,6 +44,7 @@ public abstract class DataAdapter extends Observable implements IAdapter {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setProperties(Properties newProperties) {
         this.adapterProperties = newProperties;
         // notify observers that settings have changed.

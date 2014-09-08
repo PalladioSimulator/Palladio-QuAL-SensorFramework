@@ -14,11 +14,12 @@ import de.uka.ipd.sdq.sensorframework.visualisation.VisualisationPlugin;
 
 /**
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class FiltersTabCellModifier implements ICellModifier {
 
-    private FiltersPropertySection section;
-    private List<String> columnNames;
+    private final FiltersPropertySection section;
+    private final List<String> columnNames;
 
     public FiltersTabCellModifier(FiltersPropertySection section) {
         this.section = section;
@@ -30,6 +31,7 @@ public class FiltersTabCellModifier implements ICellModifier {
      * 
      * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object, java.lang.String)
      */
+    @Override
     public boolean canModify(Object element, String property) {
         return true;
     }
@@ -39,6 +41,7 @@ public class FiltersTabCellModifier implements ICellModifier {
      * 
      * @see org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object, java.lang.String)
      */
+    @Override
     public Object getValue(Object element, String property) {
         return (new FiltersTabLabelProvider()).getColumnText(element, columnNames.indexOf(property));
     }
@@ -49,6 +52,7 @@ public class FiltersTabCellModifier implements ICellModifier {
      * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object, java.lang.String,
      * java.lang.Object)
      */
+    @Override
     public void modify(Object element, String property, Object value) {
         // Find the index of the column
         int columnIndex = columnNames.indexOf(property);

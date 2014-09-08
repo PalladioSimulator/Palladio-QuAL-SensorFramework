@@ -2,6 +2,9 @@ package de.uka.ipd.sdq.sensorframework.entities;
 
 import java.util.Map;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public interface ScalabilityExperimentRun extends ExperimentRun {
     public String[] getVarParameterNames();
 

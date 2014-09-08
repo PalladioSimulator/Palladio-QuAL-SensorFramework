@@ -4,6 +4,9 @@ import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 import de.uka.ipd.sdq.sensorframework.entities.State;
 import de.uka.ipd.sdq.sensorframework.storage.lists.BackgroundMemoryList;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class StateMeasurementListWithBackgroundStore extends MeasurementListWithBackgroundStore<State> {
 
     public StateMeasurementListWithBackgroundStore(BackgroundMemoryList<Double> eventTimes,

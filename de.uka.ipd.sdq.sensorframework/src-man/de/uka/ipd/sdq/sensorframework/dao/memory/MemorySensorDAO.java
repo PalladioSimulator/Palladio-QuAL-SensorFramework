@@ -19,17 +19,19 @@ import de.uka.ipd.sdq.sensorframework.entities.impl.TimeSpanSensorImpl;
 /**
  * TODO
  *
+ * @deprecated Superseded by EDP2.
  */
 public class MemorySensorDAO implements ISensorDAO {
 
-    private IDAOFactory myFactory;
+    private final IDAOFactory myFactory;
     private long nextID = 0;
-    private HashMap<Long, Sensor> index = new HashMap<Long, Sensor>();
+    private final HashMap<Long, Sensor> index = new HashMap<Long, Sensor>();
 
     public MemorySensorDAO(IDAOFactory memoryDAOFactory) {
         this.myFactory = memoryDAOFactory;
     }
 
+    @Override
     public synchronized StateSensor addStateSensor(State p_initialstate, String p_sensorname) {
         StateSensor result = new StateSensorImpl(myFactory);
         result.setSensorID(nextID++);
@@ -40,6 +42,7 @@ public class MemorySensorDAO implements ISensorDAO {
         return result;
     }
 
+    @Override
     public synchronized TimeSpanSensor addTimeSpanSensor(String p_sensorname) {
         TimeSpanSensor result = new TimeSpanSensorImpl(myFactory);
         result.setSensorID(nextID++);
@@ -49,6 +52,7 @@ public class MemorySensorDAO implements ISensorDAO {
         return result;
     }
 
+    @Override
     public synchronized ScalabilitySensor addScalabilitySensor(String p_sensorname) {
         ScalabilitySensor result = new ScalabilitySensorImpl(myFactory);
         result.setSensorID(nextID++);
@@ -58,25 +62,31 @@ public class MemorySensorDAO implements ISensorDAO {
         return result;
     }
 
+    @Override
     public synchronized Sensor get(long id) {
-        if (!index.containsKey(id))
+        if (!index.containsKey(id)) {
             throw new RuntimeException("Attempt to retrieve non-existing sensor.");
+        }
         return index.get(id);
     }
 
+    @Override
     public synchronized Collection<Sensor> getSensors() {
         return Collections.unmodifiableCollection(index.values());
     }
 
+    @Override
     public synchronized Collection<Sensor> findBySensorName(String searchKey) {
         ArrayList<Sensor> result = new ArrayList<Sensor>();
         for (Sensor e : this.index.values()) {
-            if (e.getSensorName().equals(searchKey))
+            if (e.getSensorName().equals(searchKey)) {
                 result.add(e);
+            }
         }
         return Collections.unmodifiableCollection(result);
     }
 
+    @Override
     public synchronized void removeSensor(Sensor sensor, boolean doCascade) {
         if (sensor == null) {
             return;
@@ -97,6 +107,7 @@ public class MemorySensorDAO implements ISensorDAO {
     public void store(Sensor s) {
     }
 
+    @Override
     public void storeAll() {
         // Nothing to do here
     }

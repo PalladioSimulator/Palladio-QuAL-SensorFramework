@@ -12,11 +12,14 @@ import org.eclipse.ui.PlatformUI;
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class ExportCSV extends Action {
     /** Logger for this class. */
     private static final Logger LOGGER = Logger.getLogger(ExportCSV.class);
 
-    private ISeriesExporter viewer;
+    private final ISeriesExporter viewer;
 
     public ExportCSV(ISeriesExporter freeChartHistogramViewer) {
         super();

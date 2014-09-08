@@ -17,6 +17,7 @@ import de.uka.ipd.sdq.sensorframework.visualisation.VisualisationImages;
  * single label provider can be shared between views in order to ensure that objects of the same
  * type are presented in the same way everywhere.
  * 
+ * @deprecated Superseded by EDP2.
  */
 public class TreeLabelProvider extends LabelProvider {
 
@@ -27,11 +28,13 @@ public class TreeLabelProvider extends LabelProvider {
      */
     @Override
     public String getText(Object obj) {
-        if (obj instanceof ExperimentAndDAO)
+        if (obj instanceof ExperimentAndDAO) {
             return ((ExperimentAndDAO) obj).getExperiment().getExperimentName();
+        }
 
-        if (obj instanceof TreeContainer)
+        if (obj instanceof TreeContainer) {
             return ((TreeContainer) obj).getName();
+        }
 
         if (obj instanceof TreeObject) {
             TreeObject object = (TreeObject) obj;
@@ -43,8 +46,9 @@ public class TreeLabelProvider extends LabelProvider {
 
             if (object.getObject() instanceof Sensor) {
                 Sensor sensor = (Sensor) object.getObject();
-                if (object.isEmpty())
+                if (object.isEmpty()) {
                     return "EMPTY -" + sensorRepresentation(sensor);
+                }
                 return sensorRepresentation(sensor);
             }
         }
@@ -65,8 +69,9 @@ public class TreeLabelProvider extends LabelProvider {
     @Override
     public Image getImage(Object obj) {
 
-        if (obj instanceof ExperimentAndDAO)
+        if (obj instanceof ExperimentAndDAO) {
             return VisualisationImages.imageRegistry.get(VisualisationImages.EXPERIMENT);
+        }
 
         if (obj instanceof TreeContainer) {
             String icon = "";
@@ -85,15 +90,18 @@ public class TreeLabelProvider extends LabelProvider {
         if (obj instanceof TreeObject) {
             TreeObject object = (TreeObject) obj;
 
-            if (object.getObject() instanceof ExperimentRun)
+            if (object.getObject() instanceof ExperimentRun) {
                 return VisualisationImages.imageRegistry.get(VisualisationImages.RUN);
+            }
 
-            if (object.getObject() instanceof Sensor)
+            if (object.getObject() instanceof Sensor) {
                 return VisualisationImages.imageRegistry.get(VisualisationImages.SENSOR);
+            }
         }
 
-        if (obj instanceof IDAOFactory)
+        if (obj instanceof IDAOFactory) {
             return VisualisationImages.imageRegistry.get(VisualisationImages.TREEROOT);
+        }
 
         return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
     }

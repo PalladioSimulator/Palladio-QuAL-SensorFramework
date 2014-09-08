@@ -9,6 +9,7 @@ package de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes;
  * 
  * @author admin
  * @author groenda
+ * @deprecated Superseded by EDP2.
  */
 public class HistogramBucketInformation {
 

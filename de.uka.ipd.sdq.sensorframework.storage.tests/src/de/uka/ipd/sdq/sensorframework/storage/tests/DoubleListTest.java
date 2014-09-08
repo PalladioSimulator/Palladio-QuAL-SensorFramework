@@ -8,6 +8,9 @@ import junit.framework.TestCase;
 import de.uka.ipd.sdq.sensorframework.storage.lists.BackgroundMemoryList;
 import de.uka.ipd.sdq.sensorframework.storage.lists.DoubleSerialiser;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class DoubleListTest extends TestCase {
 
     private static final int LARGE_LIST_TEST_COUNT = 1000000;
@@ -41,14 +44,16 @@ public class DoubleListTest extends TestCase {
         try {
             File tempFile = File.createTempFile("TempDB", "lst");
             list = new BackgroundMemoryList<Double>(tempFile.getAbsolutePath(), new DoubleSerialiser());
-            for (double i = 0; i < LARGE_LIST_TEST_COUNT; i += 1)
+            for (double i = 0; i < LARGE_LIST_TEST_COUNT; i += 1) {
                 list.add(i);
+            }
             list.close();
             Assert.assertEquals(LARGE_LIST_TEST_COUNT * 8, tempFile.length());
 
             list = new BackgroundMemoryList<Double>(tempFile.getAbsolutePath(), new DoubleSerialiser());
-            for (double i = 0; i < LARGE_LIST_TEST_COUNT; i += 1)
+            for (double i = 0; i < LARGE_LIST_TEST_COUNT; i += 1) {
                 Assert.assertEquals(i, list.get((int) i));
+            }
             list.close();
         } catch (IOException e) {
             e.printStackTrace();

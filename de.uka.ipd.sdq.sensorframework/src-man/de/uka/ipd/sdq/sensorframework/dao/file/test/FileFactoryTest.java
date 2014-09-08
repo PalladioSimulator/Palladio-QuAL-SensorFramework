@@ -26,6 +26,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * 
  * @author Ihssane El-Oudghiri
  * 
+ * @deprecated Superseded by EDP2.
  */
 public class FileFactoryTest {
 
@@ -50,12 +51,15 @@ public class FileFactoryTest {
                 2.0, 2.0, 3.0, 1.0, 0.0, 7.4
         };
 
-        for (double d : m1s1)
+        for (double d : m1s1) {
             er1.addTimeSpanMeasurement(s1, d, d);
-        for (double d : m1s2)
+        }
+        for (double d : m1s2) {
             er1.addTimeSpanMeasurement(s2, d, d);
-        for (double d : m2s1)
+        }
+        for (double d : m2s1) {
             er2.addTimeSpanMeasurement(s1, d, d);
+        }
 
         f.finalizeAndClose();
     }

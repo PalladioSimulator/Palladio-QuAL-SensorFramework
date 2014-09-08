@@ -7,6 +7,7 @@ import de.uka.ipd.sdq.sensorframework.entities.SensorAndMeasurements;
  * Adapter for TimeSpanSensors to Utilization.
  * 
  * @author khameershaik
+ * @deprecated Superseded by EDP2.
  */
 public class TimeSpanToThroughputUtilizationAdapter extends DataAdapter {
 
@@ -18,7 +19,7 @@ public class TimeSpanToThroughputUtilizationAdapter extends DataAdapter {
     private static final double DEFAULT_TIME_SPAN_WIDTH = 10.0;
 
     /** Information about the TimeSpanSensor and the measurements. */
-    private SensorAndMeasurements samInformation;
+    private final SensorAndMeasurements samInformation;
 
     /**
      * Initializes the adapter with the provided TimeSpanSensor.
@@ -36,6 +37,7 @@ public class TimeSpanToThroughputUtilizationAdapter extends DataAdapter {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getAdaptedObject() {
         throw new RuntimeException("Is not correctly implemented.");
 

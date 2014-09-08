@@ -6,7 +6,7 @@ import java.util.Collection;
  * Container class which stores a tuple of a sensor and its measuremnts collection
  * 
  * @author Steffen Becker
- *
+ * @deprecated Superseded by EDP2.
  */
 public class SensorAndMeasurements {
     private final Sensor mySensor;

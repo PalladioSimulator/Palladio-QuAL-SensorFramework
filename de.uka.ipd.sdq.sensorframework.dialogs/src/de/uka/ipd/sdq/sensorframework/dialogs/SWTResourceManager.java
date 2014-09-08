@@ -38,6 +38,8 @@ import org.eclipse.swt.widgets.Display;
  * 
  * @author scheglov_ke
  * @author Dan Rubel
+ * 
+ * @deprecated Superseded by EDP2.
  */
 public class SWTResourceManager {
 
@@ -109,8 +111,9 @@ public class SWTResourceManager {
      * Dispose of all the cached colors
      */
     public static void disposeColors() {
-        for (Iterator<Color> iter = m_ColorMap.values().iterator(); iter.hasNext();)
-            ((Color) iter.next()).dispose();
+        for (Iterator<Color> iter = m_ColorMap.values().iterator(); iter.hasNext();) {
+            iter.next().dispose();
+        }
         m_ColorMap.clear();
     }
 
@@ -138,8 +141,9 @@ public class SWTResourceManager {
     protected static Image getImage(InputStream is) {
         Display display = Display.getCurrent();
         ImageData data = new ImageData(is);
-        if (data.transparentPixel > 0)
+        if (data.transparentPixel > 0) {
             return new Image(display, data, data.getTransparencyMask());
+        }
         return new Image(display, data);
     }
 
@@ -297,12 +301,13 @@ public class SWTResourceManager {
      * Dispose all of the cached images
      */
     public static void disposeImages() {
-        for (Iterator<Image> I = m_ClassImageMap.values().iterator(); I.hasNext();)
-            ((Image) I.next()).dispose();
+        for (Iterator<Image> I = m_ClassImageMap.values().iterator(); I.hasNext();) {
+            I.next().dispose();
+        }
         m_ClassImageMap.clear();
         //
         for (Iterator<HashMap<Image, Image>> I = m_ImageToDecoratorMap.values().iterator(); I.hasNext();) {
-            HashMap<?, ?> decoratedMap = (HashMap<?, ?>) I.next();
+            HashMap<?, ?> decoratedMap = I.next();
             for (Iterator<?> J = decoratedMap.values().iterator(); J.hasNext();) {
                 Image image = (Image) J.next();
                 image.dispose();
@@ -318,9 +323,10 @@ public class SWTResourceManager {
      */
     public static void disposeImages(String section) {
         for (Iterator<String> I = m_ClassImageMap.keySet().iterator(); I.hasNext();) {
-            String key = (String) I.next();
-            if (!key.startsWith(section + '|'))
+            String key = I.next();
+            if (!key.startsWith(section + '|')) {
                 continue;
+            }
             Image image = m_ClassImageMap.get(key);
             image.dispose();
             I.remove();
@@ -422,8 +428,9 @@ public class SWTResourceManager {
      * Dispose all of the cached fonts
      */
     public static void disposeFonts() {
-        for (Iterator<Font> iter = m_FontMap.values().iterator(); iter.hasNext();)
-            ((Font) iter.next()).dispose();
+        for (Iterator<Font> iter = m_FontMap.values().iterator(); iter.hasNext();) {
+            iter.next().dispose();
+        }
         m_FontMap.clear();
     }
 
@@ -442,13 +449,14 @@ public class SWTResourceManager {
         // ensure that each item has control (at least empty one)
         for (int i = 0; i < items.length; i++) {
             CoolItem item = items[i];
-            if (item.getControl() == null)
+            if (item.getControl() == null) {
                 item.setControl(new Canvas(bar, SWT.NONE) {
                     @Override
                     public Point computeSize(int wHint, int hHint, boolean changed) {
                         return new Point(20, 20);
                     }
                 });
+            }
         }
         // compute size for each item
         for (int i = 0; i < items.length; i++) {
@@ -490,8 +498,9 @@ public class SWTResourceManager {
      * Dispose all of the cached cursors
      */
     public static void disposeCursors() {
-        for (Iterator<Cursor> iter = m_IdToCursorMap.values().iterator(); iter.hasNext();)
-            ((Cursor) iter.next()).dispose();
+        for (Iterator<Cursor> iter = m_IdToCursorMap.values().iterator(); iter.hasNext();) {
+            iter.next().dispose();
+        }
         m_IdToCursorMap.clear();
     }
 }

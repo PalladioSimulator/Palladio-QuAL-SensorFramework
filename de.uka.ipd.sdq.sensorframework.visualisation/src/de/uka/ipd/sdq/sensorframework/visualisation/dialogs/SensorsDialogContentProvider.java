@@ -14,7 +14,10 @@ import de.uka.ipd.sdq.sensorframework.entities.Sensor;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEntry;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.SensorValidationToView;
 
-/** @author roman */
+/**
+ * @author roman
+ * @deprecated Superseded by EDP2.
+ */
 public class SensorsDialogContentProvider implements IStructuredContentProvider {
 
     Collection<Sensor> sensors;
@@ -24,9 +27,11 @@ public class SensorsDialogContentProvider implements IStructuredContentProvider 
      * 
      * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
      */
+    @Override
     public Object[] getElements(Object inputElement) {
-        if (inputElement instanceof ConfigEntry)
+        if (inputElement instanceof ConfigEntry) {
             return sensorsValidation((ConfigEntry) inputElement);
+        }
         return null;
     }
 
@@ -39,8 +44,9 @@ public class SensorsDialogContentProvider implements IStructuredContentProvider 
         ArrayList<Sensor> validSensors = new ArrayList<Sensor>();
 
         for (Sensor sensor : sensors) {
-            if (SensorValidationToView.canViewSensor(run.getMeasurementsOfSensor(sensor)))
+            if (SensorValidationToView.canViewSensor(run.getMeasurementsOfSensor(sensor))) {
                 validSensors.add(sensor);
+            }
         }
 
         return validSensors.toArray();
@@ -51,6 +57,7 @@ public class SensorsDialogContentProvider implements IStructuredContentProvider 
      * 
      * @see org.eclipse.jface.viewers.IContentProvider#dispose()
      */
+    @Override
     public void dispose() {
         // TODO Auto-generated method stub
 
@@ -63,6 +70,7 @@ public class SensorsDialogContentProvider implements IStructuredContentProvider 
      * org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer,
      * java.lang.Object, java.lang.Object)
      */
+    @Override
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
         // TODO Auto-generated method stub
 

@@ -7,7 +7,7 @@ import de.uka.ipd.sdq.sensorframework.storage.lists.ISerialiser;
  * TODO document me!!! Raw type...
  * 
  * @author Paul-Remis Beauvais
- *
+ * @deprecated Superseded by EDP2.
  */
 public class ParameterValueSerialiser implements ISerialiser {
 
@@ -21,6 +21,7 @@ public class ParameterValueSerialiser implements ISerialiser {
          */
     }
 
+    @Override
     public Object[] deserialise(byte[] bytes) {
         if (bytes.length < 4) {
             return new Double[0][0];
@@ -54,10 +55,12 @@ public class ParameterValueSerialiser implements ISerialiser {
         return values;
     }
 
+    @Override
     public long getElementLength() {
         return 8 * nbParameters;
     }
 
+    @Override
     public byte[] serialise(Object[] objects, int count) {
 
         if (count > 0) {
@@ -78,7 +81,7 @@ public class ParameterValueSerialiser implements ISerialiser {
 
             for (int k = 0; k < nbParameters; k++) {
 
-                long l = ((Double) serie[k]).longValue();
+                long l = serie[k].longValue();
                 for (int i = 0; i < 8; i++) {
                     block[blockPos++] = (byte) (l & 0xff);
                     l = l >> 8;

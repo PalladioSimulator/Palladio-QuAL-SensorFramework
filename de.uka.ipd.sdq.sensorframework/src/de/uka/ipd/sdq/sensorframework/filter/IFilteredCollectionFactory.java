@@ -9,6 +9,7 @@ import de.uka.ipd.sdq.sensorframework.entities.Measurement;
  * Factory interface for creating the filtered collection - cf. java.util.Collection.
  * 
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public interface IFilteredCollectionFactory {
 

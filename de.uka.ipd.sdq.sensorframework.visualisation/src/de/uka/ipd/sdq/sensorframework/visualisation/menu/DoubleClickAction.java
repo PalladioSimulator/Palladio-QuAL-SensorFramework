@@ -7,11 +7,14 @@ import org.eclipse.ui.PartInitException;
 import de.uka.ipd.sdq.sensorframework.visualisation.VisualisationPlugin;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEditorInput;
 
-/** @author roman */
+/**
+ * @author roman
+ * @deprecated Superseded by EDP2.
+ */
 public class DoubleClickAction extends Action {
 
-    private ConfigEditorInput editorInput;
-    private String editorID;
+    private final ConfigEditorInput editorInput;
+    private final String editorID;
 
     public DoubleClickAction(ConfigEditorInput editorInput, String editorID) {
         this.editorInput = editorInput;

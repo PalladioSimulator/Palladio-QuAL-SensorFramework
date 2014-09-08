@@ -9,6 +9,7 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement;
  * Adapter for TimeSpanSensor to TimeSeries.
  * 
  * @author groenda
+ * @deprecated Superseded by EDP2.
  */
 public class TimeSpanToTimeSeriesAdapter extends DataAdapter {
 

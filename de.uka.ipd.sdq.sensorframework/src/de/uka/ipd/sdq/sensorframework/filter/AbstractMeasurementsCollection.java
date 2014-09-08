@@ -11,6 +11,7 @@ import de.uka.ipd.sdq.sensorframework.entities.Measurement;
  * Superclass for all filtered collection in the SensorFramework.
  * 
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public abstract class AbstractMeasurementsCollection extends AbstractCollection<Measurement> {
 
@@ -52,10 +53,12 @@ public abstract class AbstractMeasurementsCollection extends AbstractCollection<
             Iterator<Measurement> it = originalMeasurements.iterator();
             int currentOriginal = 0, alreadyReturned = 0;
 
+            @Override
             public boolean hasNext() {
                 return currentOriginal < originalMeasurements.size() && alreadyReturned < size();
             }
 
+            @Override
             public Measurement next() {
                 Measurement next;
                 while (filteredItems.contains(next = it.next())) {
@@ -66,6 +69,7 @@ public abstract class AbstractMeasurementsCollection extends AbstractCollection<
                 return next;
             }
 
+            @Override
             public void remove() {// TODO add logging here
 
             }
@@ -112,8 +116,9 @@ public abstract class AbstractMeasurementsCollection extends AbstractCollection<
                                                                                             // rather
                                                                                             // a
                                                                                             // NullPointerException?
-        if (originalMeasurements == null)
+        if (originalMeasurements == null) {
             throw new InstantiationException("No original measurements saved!");
+        }
         return originalMeasurements;
     }
 

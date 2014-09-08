@@ -7,10 +7,13 @@ import org.eclipse.ui.PartInitException;
 import de.uka.ipd.sdq.sensorframework.visualisation.VisualisationPlugin;
 import de.uka.ipd.sdq.sensorframework.visualisation.editor.ConfigEditorInput;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class OpenAction extends Action {
 
-    private String editorID;
-    private String adapterFactoryID;
+    private final String editorID;
+    private final String adapterFactoryID;
 
     public OpenAction(String label, String adapterFactoryID, String editorID) {
         super(label);

@@ -50,6 +50,7 @@ import org.eclipse.ui.part.DrillDownComposite;
  *            specifies the type of resource to link to. IResource.FILE or IResource.FOLDER
  * 
  * @author Roman Andrej
+ * @deprecated Superseded by EDP2.
  */
 public class WizardDatasourceLoadPage extends WizardPage implements Listener {
 
@@ -62,7 +63,7 @@ public class WizardDatasourceLoadPage extends WizardPage implements Listener {
     private static final int SIZING_CONTAINER_GROUP_HEIGHT = 300;
     private static final int SIZING_CONTAINER_GROUP_WIDTH = 250;
 
-    private int type;
+    private final int type;
 
     private Button advancedButton;
 
@@ -104,6 +105,7 @@ public class WizardDatasourceLoadPage extends WizardPage implements Listener {
      * 
      * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
      */
+    @Override
     public void createControl(Composite parent) {
         initializeDialogUnits(parent);
         // top level group
@@ -171,6 +173,7 @@ public class WizardDatasourceLoadPage extends WizardPage implements Listener {
             data.horizontalAlignment = GridData.BEGINNING;
             advancedButton.setLayoutData(data);
             advancedButton.addSelectionListener(new SelectionAdapter() {
+                @Override
                 public void widgetSelected(SelectionEvent e) {
                     handleAdvancedButtonSelect();
                 }
@@ -179,10 +182,12 @@ public class WizardDatasourceLoadPage extends WizardPage implements Listener {
 
         linkedResourceGroup = new CreateLinkedResourceGroup(type, this, new CreateLinkedResourceGroup.IStringValue() {
 
+            @Override
             public String getValue() {
                 return containerNameField.getText();
             }
 
+            @Override
             public void setValue(String string) {
                 containerNameField.setText(string);
             }
@@ -217,6 +222,7 @@ public class WizardDatasourceLoadPage extends WizardPage implements Listener {
         treeViewer.setComparator(new ViewerComparator());
         treeViewer.setUseHashlookup(true);
         treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection selection = (IStructuredSelection) event.getSelection();
                 Object object = selection.getFirstElement();
@@ -228,6 +234,7 @@ public class WizardDatasourceLoadPage extends WizardPage implements Listener {
             }
         });
         treeViewer.addDoubleClickListener(new IDoubleClickListener() {
+            @Override
             public void doubleClick(DoubleClickEvent event) {
                 ISelection selection = event.getSelection();
                 if (selection instanceof IStructuredSelection) {
@@ -378,6 +385,7 @@ public class WizardDatasourceLoadPage extends WizardPage implements Listener {
      * The WizardDatasourceFileLoadPage implementation of this Listener method handles all events
      * and enablements for controls on this page. Subclasses may extend.
      */
+    @Override
     public void handleEvent(Event event) {
         if (linkedResourceComposite != null && !linkedResourceComposite.isDisposed()) {
             setPageComplete(validitaLinkedResource());
@@ -387,10 +395,12 @@ public class WizardDatasourceLoadPage extends WizardPage implements Listener {
     }
 
     private String getResourceType() {
-        if (type == IResource.FILE)
+        if (type == IResource.FILE) {
             return "file";
-        if (type == IResource.FOLDER)
+        }
+        if (type == IResource.FOLDER) {
             return "folder";
+        }
         return "<undefined>";
     }
 

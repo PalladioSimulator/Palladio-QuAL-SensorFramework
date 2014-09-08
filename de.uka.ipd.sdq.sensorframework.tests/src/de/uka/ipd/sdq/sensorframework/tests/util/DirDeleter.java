@@ -7,15 +7,19 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class DirDeleter extends Thread {
     @SuppressWarnings("unchecked")
-    private ArrayList dirList = new ArrayList();
+    private final ArrayList dirList = new ArrayList();
 
     @SuppressWarnings("unchecked")
     public synchronized void add(File dir) {
         dirList.add(dir);
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public void run() {
         synchronized (this) {
@@ -33,10 +37,11 @@ public class DirDeleter extends Thread {
 
         if (fileArray != null) {
             for (int i = 0; i < fileArray.length; i++) {
-                if (fileArray[i].isDirectory())
+                if (fileArray[i].isDirectory()) {
                     deleteDirectory(fileArray[i]);
-                else
+                } else {
                     fileArray[i].delete();
+                }
             }
         }
         dir.delete();

@@ -4,10 +4,13 @@ import org.eclipse.core.runtime.IConfigurationElement;
 
 import de.uka.ipd.sdq.sensorframework.adapter.IAdapterFactory;
 
+/**
+ * @deprecated Superseded by EDP2.
+ */
 public class ViewAndAdapterFactory {
 
-    private IConfigurationElement view;
-    private IAdapterFactory factory;
+    private final IConfigurationElement view;
+    private final IAdapterFactory factory;
 
     public IConfigurationElement getView() {
         return view;

@@ -7,6 +7,7 @@ import de.uka.ipd.sdq.sensorframework.entities.Measurement;
 
 /**
  * @author Ihssane El-Oudghiri
+ * @deprecated Superseded by EDP2.
  */
 public class MeasurementImpl implements Measurement {
 
@@ -18,18 +19,22 @@ public class MeasurementImpl implements Measurement {
         this.measurementID = id;
     }
 
+    @Override
     public double getEventTime() {
         return eventTime;
     }
 
+    @Override
     public long getMeasurementID() {
         return measurementID;
     }
 
+    @Override
     public void setEventTime(double value) {
         this.eventTime = value;
     }
 
+    @Override
     public void setMeasurementID(long value) {
         this.measurementID = value;
     }
