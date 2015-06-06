@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.uka.ipd.sdq.sensorframework.dao.file.test;
+package de.uka.ipd.sdq.sensorframework.tests;
 
 import static org.junit.Assert.assertEquals;
 
