@@ -3,7 +3,7 @@
       id="de.uka.ipd.sdq.sensorframework.feature"
       label="Sensor Framework Feature"
       version="3.5.0.qualifier"
-      provider-name="sdq.ipd.kit.edu">
+      provider-name="palladiosimulator.org">
 
    <description url="http://sdq.ipd.uka.de">
       Framework for sensors for measuring time spans, state changes,
