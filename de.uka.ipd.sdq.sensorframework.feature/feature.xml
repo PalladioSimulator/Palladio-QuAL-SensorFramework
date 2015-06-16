@@ -12,12 +12,6 @@
 etc.
    </description>
 
-   <copyright url="http://sdqweb.ipd.uka.de/eclipse/PCM/">
-      This plugin is protected by copyright held by the members of
-the Palladio Research Group, University of Karlsruhe.
-   </copyright>
-
-   
    <url>
       <discovery label="Palladio Commons" url="https://sdqweb.ipd.kit.edu/eclipse/commons/nightly/"/>
       <discovery label="Palladio Third Party Wrapper" url="https://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/nightly/"/>
