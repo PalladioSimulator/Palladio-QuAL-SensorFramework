@@ -5,7 +5,6 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public class TimeSpanMeasurementImpl extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractTimeSpanMeasurement {
 
     /**
@@ -13,7 +12,7 @@ public class TimeSpanMeasurementImpl extends de.uka.ipd.sdq.sensorframework.enti
      */
     public static final double EPSILON_ERROR = 1e-5;
 
-    public TimeSpanMeasurementImpl(IDAOFactory myFactory) {
+    public TimeSpanMeasurementImpl(final IDAOFactory myFactory) {
         super(myFactory);
     }
 
@@ -34,7 +33,7 @@ public class TimeSpanMeasurementImpl extends de.uka.ipd.sdq.sensorframework.enti
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override

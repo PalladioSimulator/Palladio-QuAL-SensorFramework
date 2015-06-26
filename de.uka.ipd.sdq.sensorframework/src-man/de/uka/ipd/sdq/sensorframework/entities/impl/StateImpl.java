@@ -5,10 +5,9 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public class StateImpl extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractState {
 
-    public StateImpl(IDAOFactory myFactory) {
+    public StateImpl(final IDAOFactory myFactory) {
         super(myFactory);
     }
 }

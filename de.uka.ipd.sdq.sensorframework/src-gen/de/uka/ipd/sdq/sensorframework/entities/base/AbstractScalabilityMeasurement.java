@@ -3,7 +3,6 @@ package de.uka.ipd.sdq.sensorframework.entities.base;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public abstract class AbstractScalabilityMeasurement
 
 extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractMeasurement
@@ -12,13 +11,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement
 
 {
 
-    public AbstractScalabilityMeasurement(de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
+    public AbstractScalabilityMeasurement(final de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
         super(myFactory);
     }
 
     /* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
 
-    @javax.persistence.Column(name = "TIMESPAN")
     private Double[] m_timeSpan;
 
     @Override
@@ -27,14 +25,10 @@ implements de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement
     }
 
     @Override
-    public void setParameters(Double[] value) {
+    public void setParameters(final Double[] value) {
         this.m_timeSpan = value;
     };
 
-    @javax.persistence.OneToOne(
-
-    )
-    @javax.persistence.JoinColumn(name = "FK_SENSOR")
     private de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor m_sensor;
 
     @Override
@@ -43,7 +37,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement
     }
 
     @Override
-    public void setSensor(de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor value) {
+    public void setSensor(final de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor value) {
         this.m_sensor = value;
     }
 

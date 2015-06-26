@@ -9,19 +9,18 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public class ScalabilityExperimentRunImpl extends ExperimentRunImpl implements ScalabilityExperimentRun {
 
     private String[] paramNames = null;
 
     private final Map<String, Integer> constParameters = new HashMap<String, Integer>();
 
-    public ScalabilityExperimentRunImpl(IDAOFactory myFactory) {
+    public ScalabilityExperimentRunImpl(final IDAOFactory myFactory) {
         super(myFactory);
     }
 
     @Override
-    public void setVarParameterNames(String[] names) {
+    public void setVarParameterNames(final String[] names) {
         paramNames = names;
     }
 
@@ -36,7 +35,7 @@ public class ScalabilityExperimentRunImpl extends ExperimentRunImpl implements S
     }
 
     @Override
-    public void addConstParameter(String parameterName, int parameterValue) {
+    public void addConstParameter(final String parameterName, final int parameterValue) {
         constParameters.put(parameterName, parameterValue);
     }
 

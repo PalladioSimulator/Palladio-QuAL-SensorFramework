@@ -5,16 +5,15 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public class ScalabilityMeasurementImpl extends
-        de.uka.ipd.sdq.sensorframework.entities.base.AbstractScalabilityMeasurement {
+de.uka.ipd.sdq.sensorframework.entities.base.AbstractScalabilityMeasurement {
 
     /**
      * Difference up to which two values are considered as equal.
      */
     public static final double EPSILON_ERROR = 1e-5;
 
-    public ScalabilityMeasurementImpl(IDAOFactory myFactory) {
+    public ScalabilityMeasurementImpl(final IDAOFactory myFactory) {
         super(myFactory);
     }
 
@@ -22,7 +21,7 @@ public class ScalabilityMeasurementImpl extends
      * {@inheritDoc}
      */
     @Override
-    public void setParameters(Double[] value) {
+    public void setParameters(final Double[] value) {
         // if (value < -EPSILON_ERROR)
         // throw new
         // RuntimeException("TimeSpan Measurements are not allowed to be smaller than 0.");

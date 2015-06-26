@@ -12,15 +12,14 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public class ExperimentRunImpl extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractExperimentRun {
 
-    public ExperimentRunImpl(IDAOFactory myFactory) {
+    public ExperimentRunImpl(final IDAOFactory myFactory) {
         super(myFactory);
     }
 
     @Override
-    public SensorAndMeasurements getMeasurementsOfSensor(Sensor sensor) {
+    public SensorAndMeasurements getMeasurementsOfSensor(final Sensor sensor) {
         // TODO: Fix this conceptually!!!
         // EntityManager em =
         // ExperimentDAO.singleton().getEntityManagerFactory().createEntityManager();
@@ -28,16 +27,16 @@ public class ExperimentRunImpl extends de.uka.ipd.sdq.sensorframework.entities.b
         // em.createQuery("SELECT m FROM Measurement m WHERE FK_SENSOR = "+sensor.getSensorID());
         // Collection <Measurement> result = q.getResultList();
         // em.close();
-        ArrayList<Measurement> result = new ArrayList<Measurement>();
-        for (Measurement m : this.getMeasurements()) {
+        final ArrayList<Measurement> result = new ArrayList<Measurement>();
+        for (final Measurement m : this.getMeasurements()) {
             if (m instanceof TimeSpanMeasurement) {
-                TimeSpanMeasurement tsm = (TimeSpanMeasurement) m;
+                final TimeSpanMeasurement tsm = (TimeSpanMeasurement) m;
                 if (tsm.getSensor() == sensor) {
                     result.add(m);
                 }
             }
             if (m instanceof StateMeasurement) {
-                StateMeasurement tsm = (StateMeasurement) m;
+                final StateMeasurement tsm = (StateMeasurement) m;
                 if (tsm.getSensor() == sensor) {
                     result.add(m);
                 }

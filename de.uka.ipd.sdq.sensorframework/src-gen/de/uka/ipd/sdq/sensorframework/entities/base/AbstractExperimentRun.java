@@ -3,8 +3,6 @@ package de.uka.ipd.sdq.sensorframework.entities.base;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "EXPERIMENTRUN")
 public abstract class AbstractExperimentRun
 
 implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
@@ -13,7 +11,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
 
     protected transient de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myDAOFactory = null;
 
-    public AbstractExperimentRun(de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
+    public AbstractExperimentRun(final de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
         this.myDAOFactory = myFactory;
     }
 
@@ -21,7 +19,6 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
      * Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition
      */
 
-    @javax.persistence.Column(name = "EXPERIMENTDATETIME")
     private String m_experimentDateTime;
 
     @Override
@@ -30,13 +27,10 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
     }
 
     @Override
-    public void setExperimentDateTime(String value) {
+    public void setExperimentDateTime(final String value) {
         this.m_experimentDateTime = value;
     };
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "EXPERIMENTRUNID")
-    @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long m_experimentRunID;
 
     @Override
@@ -45,7 +39,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
     }
 
     @Override
-    public void setExperimentRunID(long value) {
+    public void setExperimentRunID(final long value) {
         this.m_experimentRunID = value;
     }
 
@@ -61,33 +55,27 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
      * Getter and Setter for Properties with cardinality 0..* which are a composition
      */
 
-    @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL)
-    @javax.persistence.JoinTable(name = "ExperimentRun_measurements", joinColumns = {
-        @javax.persistence.JoinColumn(name = "EXPERIMENTRUN_ID")
-    }, inverseJoinColumns = {
-        @javax.persistence.JoinColumn(name = "MEASUREMENT_ID")
-    })
     private final java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.Measurement> m_measurements = new java.util.ArrayList<de.uka.ipd.sdq.sensorframework.entities.Measurement>();
 
     @Override
     public de.uka.ipd.sdq.sensorframework.entities.StateMeasurement addStateMeasurement(
 
-    de.uka.ipd.sdq.sensorframework.entities.StateSensor p_sensor,
+            final de.uka.ipd.sdq.sensorframework.entities.StateSensor p_sensor,
 
-    de.uka.ipd.sdq.sensorframework.entities.State p_sensorstate
+            final de.uka.ipd.sdq.sensorframework.entities.State p_sensorstate
 
-    ,
+            ,
 
-    double p_eventtime) {
+            final double p_eventtime) {
 
-        de.uka.ipd.sdq.sensorframework.entities.StateMeasurement result = myDAOFactory.createMeasurementDAO()
+        final de.uka.ipd.sdq.sensorframework.entities.StateMeasurement result = myDAOFactory.createMeasurementDAO()
                 .addStateMeasurement(
 
-                p_sensor, p_sensorstate
+                        p_sensor, p_sensorstate
 
-                ,
+                        ,
 
-                p_eventtime);
+                        p_eventtime);
 
         m_measurements.add(result);
         return result;
@@ -96,22 +84,22 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
     @Override
     public de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement addTimeSpanMeasurement(
 
-    de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor p_sensor
+            final de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor p_sensor
 
-    ,
+            ,
 
-    double p_eventtime,
+            final double p_eventtime,
 
-    double p_timespan) {
+            final double p_timespan) {
 
-        de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement result = myDAOFactory.createMeasurementDAO()
+        final de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement result = myDAOFactory.createMeasurementDAO()
                 .addTimeSpanMeasurement(
 
-                p_sensor
+                        p_sensor
 
-                ,
+                        ,
 
-                p_eventtime, p_timespan);
+                        p_eventtime, p_timespan);
 
         m_measurements.add(result);
         return result;
@@ -120,29 +108,29 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
     @Override
     public de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement addScalabilityMeasurement(
 
-    de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor p_sensor
+            final de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor p_sensor
 
-    , Double[] p_parameters,
+            , final Double[] p_parameters,
 
-    double p_result
+            final double p_result
 
-    ) {
+            ) {
 
-        de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement result = myDAOFactory.createMeasurementDAO()
+        final de.uka.ipd.sdq.sensorframework.entities.ScalabilityMeasurement result = myDAOFactory.createMeasurementDAO()
                 .addScalabilityMeasurement(
 
-                p_sensor
+                        p_sensor
 
-                ,
+                        ,
 
-                p_parameters, p_result);
+                        p_parameters, p_result);
 
         m_measurements.add(result);
         return result;
     }
 
     @Override
-    public void addMeasurement(de.uka.ipd.sdq.sensorframework.entities.Measurement value) {
+    public void addMeasurement(final de.uka.ipd.sdq.sensorframework.entities.Measurement value) {
         this.m_measurements.add(value);
     }
 
@@ -158,8 +146,8 @@ implements de.uka.ipd.sdq.sensorframework.entities.ExperimentRun
 
     getMeasurementsOfSensor(
 
-    de.uka.ipd.sdq.sensorframework.entities.Sensor sensor
+            de.uka.ipd.sdq.sensorframework.entities.Sensor sensor
 
-    );
+            );
 
 }

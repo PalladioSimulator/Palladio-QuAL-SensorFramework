@@ -3,7 +3,6 @@ package de.uka.ipd.sdq.sensorframework.entities.base;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public abstract class AbstractTimeSpanMeasurement
 
 extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractMeasurement
@@ -12,13 +11,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement
 
 {
 
-    public AbstractTimeSpanMeasurement(de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
+    public AbstractTimeSpanMeasurement(final de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
         super(myFactory);
     }
 
     /* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
 
-    @javax.persistence.Column(name = "TIMESPAN")
     private double m_timeSpan;
 
     @Override
@@ -27,14 +25,10 @@ implements de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement
     }
 
     @Override
-    public void setTimeSpan(double value) {
+    public void setTimeSpan(final double value) {
         this.m_timeSpan = value;
     };
 
-    @javax.persistence.OneToOne(
-
-    )
-    @javax.persistence.JoinColumn(name = "FK_SENSOR")
     private de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor m_sensor;
 
     @Override
@@ -43,7 +37,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement
     }
 
     @Override
-    public void setSensor(de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor value) {
+    public void setSensor(final de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor value) {
         this.m_sensor = value;
     }
 

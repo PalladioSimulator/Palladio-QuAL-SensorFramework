@@ -3,7 +3,6 @@ package de.uka.ipd.sdq.sensorframework.entities.base;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public abstract class AbstractStateSensor
 
 extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractSensor
@@ -12,16 +11,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.StateSensor
 
 {
 
-    public AbstractStateSensor(de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
+    public AbstractStateSensor(final de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
         super(myFactory);
     }
 
     /* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
 
-    @javax.persistence.OneToOne(
-
-    )
-    @javax.persistence.JoinColumn(name = "FK_INITIALSTATE")
     private de.uka.ipd.sdq.sensorframework.entities.State m_initialState;
 
     @Override
@@ -30,7 +25,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.StateSensor
     }
 
     @Override
-    public void setInitialState(de.uka.ipd.sdq.sensorframework.entities.State value) {
+    public void setInitialState(final de.uka.ipd.sdq.sensorframework.entities.State value) {
         this.m_initialState = value;
     }
 
@@ -40,29 +35,23 @@ implements de.uka.ipd.sdq.sensorframework.entities.StateSensor
 
     /* Getter and Setter for Properties with cardinality 0..* which are a composition */
 
-    @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL)
-    @javax.persistence.JoinTable(name = "StateSensor_sensorStates", joinColumns = {
-        @javax.persistence.JoinColumn(name = "STATESENSOR_ID")
-    }, inverseJoinColumns = {
-        @javax.persistence.JoinColumn(name = "SENSORSTATE_ID")
-    })
     private final java.util.Collection<de.uka.ipd.sdq.sensorframework.entities.State> m_sensorStates = new java.util.ArrayList<de.uka.ipd.sdq.sensorframework.entities.State>();
 
     @Override
     public de.uka.ipd.sdq.sensorframework.entities.State addState(
 
-    String p_stateliteral) {
+            final String p_stateliteral) {
 
-        de.uka.ipd.sdq.sensorframework.entities.State result = myDAOFactory.createStateDAO().addState(
+        final de.uka.ipd.sdq.sensorframework.entities.State result = myDAOFactory.createStateDAO().addState(
 
-        p_stateliteral);
+                p_stateliteral);
 
         m_sensorStates.add(result);
         return result;
     }
 
     @Override
-    public void addSensorState(de.uka.ipd.sdq.sensorframework.entities.State value) {
+    public void addSensorState(final de.uka.ipd.sdq.sensorframework.entities.State value) {
         this.m_sensorStates.add(value);
     }
 

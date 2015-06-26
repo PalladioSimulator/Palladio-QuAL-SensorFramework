@@ -3,7 +3,6 @@ package de.uka.ipd.sdq.sensorframework.entities.base;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
 public abstract class AbstractScalabilitySensor
 
 extends de.uka.ipd.sdq.sensorframework.entities.base.AbstractSensor
@@ -12,7 +11,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.ScalabilitySensor
 
 {
 
-    public AbstractScalabilitySensor(de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
+    public AbstractScalabilitySensor(final de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
         super(myFactory);
     }
 

@@ -3,8 +3,6 @@ package de.uka.ipd.sdq.sensorframework.entities.base;
 /**
  * @deprecated Superseded by EDP2.
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "SENSOR")
 public abstract class AbstractSensor
 
 implements de.uka.ipd.sdq.sensorframework.entities.Sensor
@@ -13,13 +11,12 @@ implements de.uka.ipd.sdq.sensorframework.entities.Sensor
 
     protected transient de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myDAOFactory = null;
 
-    public AbstractSensor(de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
+    public AbstractSensor(final de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory myFactory) {
         this.myDAOFactory = myFactory;
     }
 
     /* Getter and Setter for Properties with cardinality 0..1 or 1 which are not a composition */
 
-    @javax.persistence.Column(name = "SENSORNAME")
     private String m_sensorName;
 
     @Override
@@ -28,13 +25,10 @@ implements de.uka.ipd.sdq.sensorframework.entities.Sensor
     }
 
     @Override
-    public void setSensorName(String value) {
+    public void setSensorName(final String value) {
         this.m_sensorName = value;
     };
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "SENSORID")
-    @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long m_sensorID;
 
     @Override
@@ -43,7 +37,7 @@ implements de.uka.ipd.sdq.sensorframework.entities.Sensor
     }
 
     @Override
-    public void setSensorID(long value) {
+    public void setSensorID(final long value) {
         this.m_sensorID = value;
     }
 
