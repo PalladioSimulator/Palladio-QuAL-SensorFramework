@@ -2,7 +2,7 @@
 <feature
       id="de.uka.ipd.sdq.sensorframework.buckminster"
       label="Palladio SensorFramework"
-      version="2.0.0.qualifier"
+      version="1.0.0.qualifier"
       license-feature="org.palladiosimulator.license"
       license-feature-version="1.0.0">
 
