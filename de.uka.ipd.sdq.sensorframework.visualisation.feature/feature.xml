@@ -3,6 +3,7 @@
       id="de.uka.ipd.sdq.sensorframework.visualisation.feature"
       label="Visual Analysis Plugins for the Sensorframework"
       version="3.5.0.qualifier"
+      plugin="org.palladiosimulator.branding"
       license-feature="org.palladiosimulator.license"
       license-feature-version="1.0.0">
 
@@ -10,7 +11,7 @@
       Visualisations for Sensors of the Sensorframework, plotting charts
 of different kinds and complexities
    </description>
-   
+
    <requires>
       <import plugin="org.eclipse.core.runtime" version="3.10.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.views.properties.tabbed" version="3.6.0" match="greaterOrEqual"/>
@@ -91,6 +92,13 @@ of different kinds and complexities
 
    <plugin
          id="de.uka.ipd.sdq.sensorframework.visualisation.statistics"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.palladiosimulator.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
