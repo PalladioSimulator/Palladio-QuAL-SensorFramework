@@ -6,7 +6,7 @@
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.sensorframework.*" searchPathRef="sensorframework" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.codegen\.simudatavisualisation\.datatypes$" searchPathRef="sensorframework" failOnError="true"/>
 
-  <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Commons/trunk/org.palladiosimulator.commons.buckminster/commons.rmap"/>
+  <rm:redirect pattern=".*" href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Core-Commons/master/org.palladiosimulator.commons.buckminster/commons.rmap"/>
 
   <rm:searchPath name="sensorframework">
     <rm:provider  resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
@@ -15,10 +15,13 @@
     <rm:provider  resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/sensorframework/releases/latest"/>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn">
-      <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/SensorFramework/trunk/{0}">
-        <bc:propertyRef key="buckminster.component"/>
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="git" source="true">
+      <rm:uri format="{0}/GIT,{1}">
+        <bc:propertyRef key="workspace.root" />
+        <bc:propertyRef key="buckminster.component" />
       </rm:uri>
+      <rm:property key="git.remote.uri" value="https://github.com/PalladioSimulator/Palladio-QuAL-SensorFramework"/>
+      <rm:property key="git.auto.fetch" value="true"/>
     </rm:provider>
   </rm:searchPath>
 
