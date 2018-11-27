@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 
-  <rm:property key="resolveFrom" value="release"/>
+	<rm:property key="resolveFrom" value="release"/>
 
-  <rm:locator pattern="^de\.uka\.ipd\.sdq\.sensorframework.*" searchPathRef="sensorframework" failOnError="true"/>
-  <rm:locator pattern="^de\.uka\.ipd\.sdq\.codegen\.simudatavisualisation\.datatypes$" searchPathRef="sensorframework" failOnError="true"/>
+	<rm:locator pattern="^de\.uka\.ipd\.sdq\.sensorframework.*" searchPathRef="sensorframework" failOnError="true"/>
+	<rm:locator pattern="^de\.uka\.ipd\.sdq\.codegen\.simudatavisualisation\.datatypes$" searchPathRef="sensorframework" failOnError="true"/>
 
-  <rm:redirect pattern=".*" href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Core-Commons/master/org.palladiosimulator.commons.buckminster/commons.rmap"/>
+	<rm:locator pattern="^de\.uka\.ipd\.sdq\.[dialogs|errorhandling|identifier|probfuction|statistics|stoex|units].*" searchPathRef="commons" failOnError="true" />
+	<rm:locator pattern="^org\.palladiosimulator\.commons.*" searchPathRef="commons" failOnError="true" />
 
-  <rm:searchPath name="sensorframework">
-    <rm:provider  resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/sensorframework/nightly"/>
-    </rm:provider>
-    <rm:provider  resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/sensorframework/releases/latest"/>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="git" source="true">
-      <rm:uri format="{0}/GIT,{1}">
-        <bc:propertyRef key="workspace.root" />
-        <bc:propertyRef key="buckminster.component" />
-      </rm:uri>
-      <rm:property key="git.remote.uri" value="https://github.com/PalladioSimulator/Palladio-QuAL-SensorFramework"/>
-      <rm:property key="git.auto.fetch" value="true"/>
-    </rm:provider>
-  </rm:searchPath>
+	<rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/ThirdPartyWrapper/trunk/org.palladiosimulator.thirdpartywrapper.buckminster/thirdpartywrapper.rmap" />
+
+	<rm:searchPath name="commons">
+		<rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolveFrom=nightly)" readerType="p2" source="false" mutable="false">
+			<rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/commons/nightly/"/>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolveFrom=release)" readerType="p2" source="false" mutable="false">
+			<rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/commons/releases/latest/"/>
+		</rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="sensorframework">
+		<rm:provider  resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+			<rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/sensorframework/nightly"/>
+		</rm:provider>
+		<rm:provider  resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+			<rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/sensorframework/releases/latest"/>
+		</rm:provider>
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="git" source="true">
+			<rm:uri format="{0}/GIT,{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri" value="https://github.com/PalladioSimulator/Palladio-QuAL-SensorFramework"/>
+			<rm:property key="git.auto.fetch" value="true"/>
+		</rm:provider>
+	</rm:searchPath>
 
 </rm:rmap>
