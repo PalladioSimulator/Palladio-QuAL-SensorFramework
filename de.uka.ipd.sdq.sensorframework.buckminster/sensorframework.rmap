@@ -9,7 +9,30 @@
 	<rm:locator pattern="^de\.uka\.ipd\.sdq\.[dialogs|errorhandling|identifier|probfuction|statistics|stoex|units].*" searchPathRef="commons" failOnError="true" />
 	<rm:locator pattern="^org\.palladiosimulator\.commons.*" searchPathRef="commons" failOnError="true" />
 
-	<rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/ThirdPartyWrapper/trunk/org.palladiosimulator.thirdpartywrapper.buckminster/thirdpartywrapper.rmap" />
+	<rm:locator pattern="^org\.palladiosimulator\.thirdpartywrapper.*" searchPathRef="thirdparty"/>
+	<rm:locator pattern="^ca\.umontreal\.iro\.lecuyer\.ssj.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^ch\.ethz\.iks\.r_osgi.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^de\.desmoj.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^de\.ikv\.medini\.qvt.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.apache\.chemistry\.opencmis.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.apache\.commons\.collections15.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.apache\.commons\.logging\.fragment.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.apache\.commons\.math3.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.apache\.commons\.csv.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.jfree\.jfreechart.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.jscience.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.opt4j.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:locator pattern="^org\.rosuda.*" searchPathRef="thirdparty" failOnError="false"/>
+	<rm:redirect pattern=".*" href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Build-Infrastructure/master/org.palladiosimulator.targetPlatformBuild/license.rmap"/>
+
+	<rm:searchPath name="thirdparty">
+		<rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolveFrom=nightly)" readerType="p2" source="false" mutable="false">
+			<rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/nightly/"/>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolveFrom=release)" readerType="p2" source="false" mutable="false">
+			<rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/releases/latest/" />
+		</rm:provider>
+	</rm:searchPath>
 
 	<rm:searchPath name="commons">
 		<rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolveFrom=nightly)" readerType="p2" source="false" mutable="false">
