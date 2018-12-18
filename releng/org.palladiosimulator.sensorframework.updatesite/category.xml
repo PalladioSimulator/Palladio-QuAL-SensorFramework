@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<feature url="features/de.uka.ipd.sdq.sensorframework.feature_4.0.1.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.feature" version="4.0.1.qualifier">
+	   <category name="org.palladiosimulator.qual.category"/>
+	</feature>
+	<feature url="features/de.uka.ipd.sdq.sensorframework.feature.source_4.0.1.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.feature.source" version="4.0.1.qualifier">
+	   <category name="org.palladiosimulator.qual.source.category"/>
+	</feature>
+	<feature url="features/de.uka.ipd.sdq.sensorframework.visualisation.feature_4.0.1.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.visualisation.feature" version="4.0.1.qualifier">
+	   <category name="org.palladiosimulator.qual.category"/>
+	</feature>
+	<feature url="features/de.uka.ipd.sdq.sensorframework.visualisation.feature.source_4.0.1.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.visualisation.feature.source" version="4.0.1.qualifier">
+	   <category name="org.palladiosimulator.qual.source.category"/>
+	</feature>
+	<category-def name="org.palladiosimulator.qual.category" label="Quality Analysis Lab">
+	   <description>
+	      The Quality Analysis Lab (QuAL) is responsible for taking measurements from experiments or simulations and their persistance
+	   </description>
+	  </category-def>
+	  <category-def name="org.palladiosimulator.qual.source.category" label="Quality Analysis Lab Source">
+	     <description>
+	        Quality Analysis Lab Source
+	     </description>
+	  </category-def>
+</site>
