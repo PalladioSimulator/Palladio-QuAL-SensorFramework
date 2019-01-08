@@ -13,15 +13,12 @@
 	
 	<modules>
 		<module>de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes</module>
-		<module>de.uka.ipd.sdq.generator.uml2jpa</module>
 		<module>de.uka.ipd.sdq.sensorframework</module>
 		<module>de.uka.ipd.sdq.sensorframework.adapter</module>
-		<module>de.uka.ipd.sdq.sensorframework.adapter.test</module>
 		<module>de.uka.ipd.sdq.sensorframework.dialogs</module>
 		<module>de.uka.ipd.sdq.sensorframework.filter</module>
 		<module>de.uka.ipd.sdq.sensorframework.storage</module>
 		<module>de.uka.ipd.sdq.sensorframework.visualisation</module>
-		<module>de.uka.ipd.sdq.sensorframework.visualisation.birt</module>
 		<module>de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation</module>
 		<module>de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation</module>
 		<module>de.uka.ipd.sdq.sensorframework.visualisation.statistics</module>
