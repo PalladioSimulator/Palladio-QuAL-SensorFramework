@@ -71,20 +71,7 @@ of different kinds and complexities
          unpack="false"/>
 
    <plugin
-         id="org.jfree.jfreechart"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="de.uka.ipd.sdq.sensorframework.dialogs"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.rosuda.JRI"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -12,6 +12,7 @@ import junit.framework.JUnit4TestAdapter;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import de.uka.ipd.sdq.sensorframework.SensorFrameworkDataset;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
@@ -28,7 +29,7 @@ import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
  * 
  * @deprecated Superseded by EDP2.
  */
-public class FileFactoryTest {
+@Ignore public class FileFactoryTest {
 
     static IDAOFactory f;
 
