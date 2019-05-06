@@ -26,6 +26,7 @@ etc.
       <import plugin="org.eclipse.pde.ui" version="3.8.100" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.dialogs" version="2.0.1" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.errorhandling" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.branding"/>
    </requires>
 
    <plugin
@@ -65,13 +66,6 @@ etc.
 
    <plugin
          id="de.uka.ipd.sdq.sensorframework.dialogs"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.palladiosimulator.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
