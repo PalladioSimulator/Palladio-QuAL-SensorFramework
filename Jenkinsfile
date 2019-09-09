@@ -1,4 +1,3 @@
-palladioBuild {
-	webserverDir = 'sensorframework'
-	updateSiteLocation = 'releng/org.palladiosimulator.sensorframework.updatesite/target/repository'
+PalladioPipeline {
+    deployUpdatesite 'releng/org.palladiosimulator.sensorframework.updatesite/target/repository'
 }
