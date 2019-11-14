@@ -2,7 +2,7 @@
 <feature
       id="de.uka.ipd.sdq.sensorframework.feature"
       label="Sensor Framework Feature"
-      version="4.0.1.qualifier"
+      version="4.2.0.qualifier"
       plugin="org.palladiosimulator.branding"
       license-feature="org.palladiosimulator.license"
       license-feature-version="1.0.0">
@@ -16,7 +16,7 @@ etc.
       <import plugin="org.apache.log4j" version="1.2.13" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.core.runtime" version="3.10.0" match="compatible"/>
-      <import plugin="de.uka.ipd.sdq.sensorframework.storage" version="1.0.0" match="compatible"/>
+      <import plugin="de.uka.ipd.sdq.sensorframework.storage" version="4.2.0" match="compatible"/>
       <import plugin="de.uka.ipd.sdq.sensorframework" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui" version="3.106.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.resources" version="3.9.0" match="greaterOrEqual"/>
