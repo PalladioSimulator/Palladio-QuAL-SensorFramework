@@ -17,5 +17,11 @@
 <unit id="org.palladiosimulator.thirdpartywrapper.feature.feature.group" version="1.0.2.201709282218"/>
 <repository location="https://updatesite.palladio-simulator.com/palladio-thirdparty-wrapper/nightly/"/>
 </location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.apache.batik.dom" version="1.14.0.v20210324-0332" />
+<unit id="org.apache.batik.awt.util" version="1.14.0.v20210324-0332" />
+<unit id="org.apache.batik.svggen" version="1.14.0.v20210324-0332" />
+<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20211122181901/repository"/>
+</location>
 </locations>
 </target>
