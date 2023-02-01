@@ -6,4 +6,4 @@ Bundle-Version: 5.1.0.qualifier
 Bundle-Vendor: sdq.ipd.uka.de
 Require-Bundle: de.uka.ipd.sdq.sensorframework.storage,
  org.junit
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
