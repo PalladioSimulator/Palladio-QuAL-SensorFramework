@@ -38,9 +38,9 @@ of different kinds and complexities
       <import plugin="org.eclipse.debug.ui" version="3.10.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.sensorframework.dialogs" version="5.1.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.branding"/>
-      <import plugin="org.apache.batik.dom" version="1.14.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.batik.svggen" version="1.14.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.batik.awt.util" version="1.14.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.batik.dom"/>
+      <import plugin="org.apache.batik.svggen"/>
+      <import plugin="org.apache.batik.awt.util"/>
    </requires>
 
    <plugin
