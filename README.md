@@ -1,7 +1,7 @@
 # Palladio-QuAL-SensorFramework
 A framework for storage and management of sensor data.
-## Documentation
-For comprehensive documentation, please visit our [wiki page](https://sdqweb.ipd.kit.edu/wiki/Palladio_Component_Model/Sensorframework).
+## Update Site
+Latest Release: https://updatesite.palladio-simulator.com/palladio-qual-sensorframework/releases/latest/
 
 ## Support
 For support
