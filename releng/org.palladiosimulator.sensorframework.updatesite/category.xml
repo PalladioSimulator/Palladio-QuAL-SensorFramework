@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-	<feature url="features/de.uka.ipd.sdq.sensorframework.feature_5.2.1.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.feature" version="5.2.1.qualifier">
+	<feature url="features/de.uka.ipd.sdq.sensorframework.feature_5.3.0.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.feature" version="5.3.0.qualifier">
 	   <category name="org.palladiosimulator.qual.category"/>
 	</feature>
-	<feature url="features/de.uka.ipd.sdq.sensorframework.feature.source_5.2.1.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.feature.source" version="5.2.1.qualifier">
+	<feature url="features/de.uka.ipd.sdq.sensorframework.feature.source_5.3.0.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.feature.source" version="5.3.0.qualifier">
 	   <category name="org.palladiosimulator.qual.source.category"/>
 	</feature>
-	<feature url="features/de.uka.ipd.sdq.sensorframework.visualisation.feature_5.2.1.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.visualisation.feature" version="5.2.1.qualifier">
+	<feature url="features/de.uka.ipd.sdq.sensorframework.visualisation.feature_5.3.0.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.visualisation.feature" version="5.3.0.qualifier">
 	   <category name="org.palladiosimulator.qual.category"/>
 	</feature>
-	<feature url="features/de.uka.ipd.sdq.sensorframework.visualisation.feature.source_5.2.1.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.visualisation.feature.source" version="5.2.1.qualifier">
+	<feature url="features/de.uka.ipd.sdq.sensorframework.visualisation.feature.source_5.3.0.qualifier.jar" id="de.uka.ipd.sdq.sensorframework.visualisation.feature.source" version="5.3.0.qualifier">
 	   <category name="org.palladiosimulator.qual.source.category"/>
 	</feature>
 	<category-def name="org.palladiosimulator.qual.category" label="Quality Analysis Lab">
