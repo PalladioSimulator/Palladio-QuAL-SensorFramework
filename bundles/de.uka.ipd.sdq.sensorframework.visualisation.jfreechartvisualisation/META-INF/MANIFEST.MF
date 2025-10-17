@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JFreeChart Visualisation Plug-in
 Bundle-SymbolicName: de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation;singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.sensorframework.visualisation.jfreechartvisualisation.Activator
 Bundle-Vendor: sdq.ipd.uka.de
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0",
