@@ -2,7 +2,7 @@
 <feature
       id="de.uka.ipd.sdq.sensorframework.feature"
       label="Sensor Framework Feature"
-      version="5.2.2"
+      version="6.0.0.qualifier"
       plugin="org.palladiosimulator.branding"
       license-feature="org.palladiosimulator.license"
       license-feature-version="1.0.0">
@@ -15,16 +15,16 @@ etc.
    <requires>
       <import plugin="org.apache.log4j" version="1.2.13" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.logging"/>
-      <import plugin="de.uka.ipd.sdq.sensorframework.storage" version="5.2.2" match="compatible"/>
-      <import plugin="de.uka.ipd.sdq.sensorframework" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.sensorframework.storage"/>
+      <import plugin="de.uka.ipd.sdq.sensorframework"/>
       <import plugin="org.eclipse.ui" version="3.106.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.resources" version="3.9.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.ui.ide" version="3.10.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.filesystem" version="1.4.100" match="greaterOrEqual"/>
       <import plugin="org.eclipse.pde.ui" version="3.8.100" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.dialogs" version="2.0.1" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.errorhandling" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.dialogs"/>
+      <import plugin="de.uka.ipd.sdq.errorhandling"/>
       <import plugin="org.palladiosimulator.branding"/>
    </requires>
 
