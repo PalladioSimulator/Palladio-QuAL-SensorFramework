@@ -12,5 +12,5 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.106.0",
  de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation,
  de.uka.ipd.sdq.statistics
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Vendor: sdq.ipd.uka.de
