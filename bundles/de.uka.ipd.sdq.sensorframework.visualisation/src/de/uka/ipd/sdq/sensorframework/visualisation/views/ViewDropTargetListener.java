@@ -6,7 +6,7 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.views.navigator.LocalSelectionTransfer;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
